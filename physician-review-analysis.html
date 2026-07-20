@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physician Review Analysis — Jan-Luca Ahlemeyer</title>
+  <meta name="description" content="Content analysis of physician online reviews.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kaisei+Opti:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="page-scrollable study-page">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <a href="index.html" class="nav-name">jan-luca ahlemeyer</a>
+    <nav class="nav-links">
+      <a href="user-understanding.html" class="nav-item nav-item--active" id="nav-user-understanding">user
+        understanding</a>
+      <a href="designs.html" class="nav-item" id="nav-designs">designs</a>
+      <a href="campaigns.html" class="nav-item" id="nav-campaigns">campaigns</a>
+      <a href="ai.html" class="nav-item" id="nav-ai">ai</a>
+    </nav>
+  </header>
+
+  <main class="designs-page-main">
+    <div class="designs-wrapper">
+
+      <section class="ds-section" style="flex-direction: column;">
+        <h2 class="ds-title">Content analysis of physician online reviews</h2>
+        <p class="ds-body" style="font-size: 18px; margin-top: 24px;">
+          <strong>tl;dr:</strong> This research project was conducted to investigate if patients in Germany experience
+          discrimination in medical treatment based on their insurance. A sample of 415 online reviews from the
+          physician-rating website "Jameda" was gathered and a content-analysis was applied to the data. A comparison
+          between patients with governmental insurance and privately insured patients was made. It was analyzed whether
+          one group was more likely to give positive reviews, and also whether patients outlined differences in
+          physician-patient communication. The results indicate that patients with private health insurance were more
+          likely to give a positive review to their physician, but there was no indication of differences in
+          communication.
+        </p>
+      </section>
+
+      <hr class="ds-divider">
+
+      <section class="ds-section">
+        <div class="ds-col ds-col--text">
+          <h3 class="ds-subtitle">BACKGROUND</h3>
+          <p class="ds-body">
+            Germany has a mandatory tax-founded health insurance system. However, citizens have the option to choose
+            so-called “private” insurance, for which they pay themselves. Private health insurances often pay larger
+            sums for treatments, and accusations that physicians favor patients with private health insurances are
+            commonplace. It was, moreover, found that patients with governmental health insurance report lower levels of
+            health and satisfaction than those with private insurance. Many patients feel like their physicians do not
+            communicate sufficiently with them.
+          </p>
+
+        </div>
+        <div class="ds-col ds-col--image" style="display: grid; gap: 16px;">
+          <img src="PhysicanOnlineReviwes_1big.jpg" alt="Jameda Reviews"
+            style="width: 100%; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        </div>
+      </section>
+
+      <hr class="ds-divider">
+
+      <section class="ds-section">
+        <div class="ds-col ds-col--text">
+          <h3 class="ds-subtitle">RESEARCH GOAL</h3>
+          <p class="ds-body">
+            This research project aimed at investigating whether patients with private health insurance are more likely
+            to be satisfied with their physician, to address concerns of unequal treatment between patients with
+            governmental and private health insurance. Furthermore, it was invested whether patients with different
+            insurance types report different aspects of physician-patient communication (also when controlling for
+            satisfaction).
+          </p>
+        </div>
+      </section>
+
+      <hr class="ds-divider">
+
+      <section class="ds-section">
+        <div class="ds-col ds-col--text">
+          <h3 class="ds-subtitle">METHOD</h3>
+          <p class="ds-body">
+            A sample of 415 online reviews from the physician-rating website "Jameda" was gathered. A content analysis
+            was conducted with a coding scheme that was based on the six function model of medical communication. Before
+            the coding took place, a sufficiently high level of inter-rater reliability was established. The data was
+            then analyzed with chi-square tests.
+          </p>
+
+          <img src="research_PhysicanOnlineReviwes_2.png" alt="Data Results"
+            style="width: 100%; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-top: 24px; margin-bottom: 24px;">
+
+          <h3 class="ds-subtitle">RESULTS</h3>
+          <p class="ds-body">
+            It was found that patients with private health insurance were significantly overrepresented among positive
+            reviews. Nonetheless, no statistically significant difference was found between privately insured patients
+            and patients with governmental health insurance regarding communication based on the six function model of
+            medical communication (also not when controlling for satisfaction).
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

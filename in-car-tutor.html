@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>In-Car Tutor Study — Jan-Luca Ahlemeyer</title>
+  <meta name="description" content="Evaluation of the effects of a digital in-car tutor in automated cars.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kaisei+Opti:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="page-scrollable study-page">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <a href="index.html" class="nav-name">jan-luca ahlemeyer</a>
+    <nav class="nav-links">
+      <a href="user-understanding.html" class="nav-item nav-item--active" id="nav-user-understanding">user understanding</a>
+      <a href="designs.html" class="nav-item" id="nav-designs">designs</a>
+      <a href="campaigns.html" class="nav-item" id="nav-campaigns">campaigns</a>
+      <a href="ai.html" class="nav-item" id="nav-ai">ai</a>
+    </nav>
+  </header>
+
+  <main class="designs-page-main">
+    <div class="designs-wrapper">
+
+      <section class="ds-section" style="flex-direction: column;">
+        <h2 class="ds-title">Evaluation of the effects of a digital in-car tutor in automated cars</h2>
+        <p class="ds-body" style="font-size: 18px; margin-top: 24px;">
+          <strong>tl;dr:</strong> My most notable research project is my master thesis, for which I investigated the effect of a visual and auditory tutor in highly automated cars on driving safety. For this purpose, I conducted a driving simulator study and analyzed reaction time, lane deviation, and glances away from the traffic situation. It was found that participants who use the tutor performed at least as good as participants who received written instructions for the automated car regarding reaction time and shift of glances away from the traffic situation. However, participants who used the tutor had higher mean lateral deviations.
+        </p>
+      </section>
+
+      <hr class="ds-divider">
+
+      <section class="ds-section">
+        <div class="ds-col ds-col--text">
+          <h3 class="ds-subtitle">BACKGROUND</h3>
+          <p class="ds-body">
+            Interaction problems between humans and automated systems are commonplace. Especially in cars with low-level automation, situational awareness and reactivity driver may diminish when there is a need to take back control. It was also found that written information did not suffice in making drivers understand the characteristics and limitations of the automated system.
+          </p>
+          <p class="ds-body">
+            Thus, at the University of Twente, a research project was started to develop an auditory and visual in-car tutor that communicates with the driver while driving to highlight when the automated system reaches its limitations.
+          </p>
+        </div>
+        <div class="ds-col ds-col--image" style="display: grid; gap: 16px;">
+          <img src="in-car-tutor.png" alt="In-car tutor design" style="width: 100%; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          <img src="in-car-tutor2.png" alt="In-car tutor interface" style="width: 100%; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        </div>
+      </section>
+
+      <hr class="ds-divider">
+
+      <section class="ds-section">
+        <div class="ds-col ds-col--image" style="display: flex; flex-direction: column; justify-content: center;">
+            <img src="in-car-tutor3big.png" alt="Driving simulator setup" style="width: 100%; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        </div>
+        <div class="ds-col ds-col--text">
+          <h3 class="ds-subtitle">RESEARCH GOAL</h3>
+          <p class="ds-body">
+            To ensure that this tutor itself does not have a negative effect on the driver's attention, reaction time, and ability to safely take back control, I conducted a research project in the context of my master’s thesis. Its goal was to compare the effects on driving safety among participants who received written instruction into the limitation of automated cars and participants who used the digital in-car tutor.
+          </p>
+          <p class="ds-body">
+            The driving safety was thereby defined by three measures: Reaction time to hazardous events, lateral lane deviations, and glances away from the traffic situation. It was hypnotized that participants who used the tutor would have safety measures that were at least as good as those among participants who did not use the tutor but received written explanations of the car automation.
+          </p>
+        </div>
+      </section>
+
+      <hr class="ds-divider">
+
+      <section class="ds-section">
+        <div class="ds-col ds-col--text">
+          <h3 class="ds-subtitle">METHOD</h3>
+          <p class="ds-body">
+            A voluntary response sample was gathered, which included 21 female participants, and 19 males. As inclusion criteria, the possession of a driving license and the frequent use of cars were used. The experiment had a between-subjects design and the experimental group used the tutor while the control group received a printed booklet explaining the limitations and characteristics of the automated car.
+          </p>
+          <p class="ds-body">
+            The experiment was conducted in a near life-size driving simulator with a steering wheel and pedals that provided force feedback. Participants had to complete ten different scenarios, each lasting for three to four minutes. One of these scenarios was an emergency situation in which it was necessary to retake control over the vehicle as the automated system was not able to cope with the situation.
+          </p>
+        </div>
+      </section>
+
+      <hr class="ds-divider">
+
+      <section class="ds-section">
+        <div class="ds-col ds-col--text">
+          <h3 class="ds-subtitle">RESULTS</h3>
+          <p class="ds-body">
+            No significant difference was found between the experimental group and the control group for glances away from the traffic situation and reaction time to hazardous events. But for lateral lane deviation, the mean reaction time in the experimental condition was significantly higher than in the control group. Therefore, the hypothesis was found to be only partially supported.
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

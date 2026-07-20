@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Understanding — Jan-Luca Ahlemeyer</title>
+  <meta name="description" content="User research methods, analytics, and data analysis work by Jan-Luca Ahlemeyer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kaisei+Opti:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <a href="index.html" class="nav-name">jan-luca ahlemeyer</a>
+    <nav class="nav-links">
+      <a href="user-understanding.html" class="nav-item nav-item--active" id="nav-user-understanding">user
+        understanding</a>
+      <a href="designs.html" class="nav-item" id="nav-designs">designs</a>
+      <a href="campaigns.html" class="nav-item" id="nav-campaigns">campaigns</a>
+      <a href="ai.html" class="nav-item" id="nav-ai">ai</a>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main-layout layout-flipped">
+
+    <!-- LEFT: Horizontal Slider (text) -->
+    <div class="left-panel slider-panel">
+      <div class="slides-track" id="slidesTrack">
+
+        <!-- SLIDE 1: Overview -->
+        <div class="slide" id="slide-1">
+          <div class="slide-content">
+            <h1 class="ux-main-heading">User<br>Understanding</h1>
+            <h2 class="ux-sub-heading">studies & data collection</h2>
+            <p class="ux-body">
+              Throughout my academic and professional work, I have gained experience with a broad range of user research
+              methods and analysis techniques. My projects included <a href="in-car-tutor.html" class="ux-link">driving simulator
+                studies</a>, <a href="eye-tracking-study.html" class="ux-link">eye-tracking</a> experiments, <a href="physician-review-analysis.html"
+                class="ux-link">content analyses</a>, statistical evaluation of large consumer datasets, and qualitative coding of online reviews.
+            </p>
+            <p class="ux-body">
+              I worked with experimental and quasi-experimental study designs, survey research, behavioral measures, and
+              inferential statistics to generate evidence-based insights for user-centered design. My experience covers
+              both controlled laboratory studies and the analysis of real-world user behavior, enabling me to combine
+              rigorous research methods with practical UX decision-making.
+            </p>
+          </div>
+        </div>
+
+        <!-- SLIDE 2: Analytics -->
+        <div class="slide" id="slide-2">
+          <div class="slide-content">
+            <h2 class="ux-sub-heading">google analytics &<br>social media dashboards</h2>
+            <p class="ux-body">
+              Experience with Google Analytics and a range of social media dashboards, including Meta Business Suite,
+              Instagram Professional Dashboard, TikTok Analytics, and YouTube Studio, forms part of a regular workflow
+              focused on monitoring content performance, understanding user behavior, and evaluating engagement metrics
+              across platforms.
+            </p>
+            <p class="ux-body">
+              I use these insights to assess reach, optimize content strategies, and make data-driven decisions aimed at
+              improving engagement and audience growth. My background also includes applying analytics in a professional
+              context to better understand user behavior and refine digital experiences based on measurable performance
+              data.
+            </p>
+          </div>
+        </div>
+
+        <!-- SLIDE 3: Data Analysis -->
+        <div class="slide" id="slide-3">
+          <div class="slide-content">
+            <h2 class="ux-sub-heading">user data analysis</h2>
+            <p class="ux-body">
+              My experience in Customer Experience (CX) research and data-driven market analysis within the automotive
+              industry includes statistical analysis of consumer data among luxury car brand customers on behalf of BMW,
+              contributing to insights for strategic decision-making.
+            </p>
+            <p class="ux-body">
+              Additional work includes the analysis of large-scale industry datasets such as the Deloitte Global
+              Automotive Consumer Study, translating consumer behavior patterns into actionable findings for market
+              positioning and product strategy. In addition, familiarity with initiatives like Catena-X has been
+              developed, focusing on data ecosystems and collaboration across automotive stakeholders.
+            </p>
+            <p class="ux-body">
+              Across these projects, the focus has been on transforming complex consumer and market data into clear
+              insights that support evidence-based decision-making in CX and automotive strategy.
+            </p>
+          </div>
+        </div>
+
+      </div><!-- end slides-track -->
+
+      <!-- DOT NAVIGATION -->
+      <div class="dots-nav" id="dotsNav">
+        <button class="dot active" data-index="0" aria-label="Go to slide 1"></button>
+        <button class="dot" data-index="1" aria-label="Go to slide 2"></button>
+        <button class="dot" data-index="2" aria-label="Go to slide 3"></button>
+      </div>
+    </div><!-- end left-panel -->
+
+    <!-- RIGHT: Fixed Image (layered) -->
+    <div class="right-panel">
+      <div class="image-layers">
+        <img src="user_layer1.png" alt="UX Research" class="hero-image layer-base">
+        <img src="user_layer2.png" alt="UX Research middle" class="hero-image layer-middle" id="imageLayer2">
+        <img src="user_layer3.png" alt="UX Research overlay" class="hero-image layer-top" id="imageLayer3">
+      </div>
+    </div>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
