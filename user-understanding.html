@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Understanding — Jan-Luca Ahlemeyer</title>
+  <title>User Understanding &mdash; Jan-Luca Ahlemeyer</title>
   <meta name="description" content="User research methods, analytics, and data analysis work by Jan-Luca Ahlemeyer.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,38 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kaisei+Opti:wght@400;500;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-</head>
+  <style>
+    /* ── Intro animation ── */
+
+    /* Layer 1: always visible, no animation */
+    .layer-base {
+      opacity: 1;
+    }
+
+    /* Layers 2 & 3: start far offset, throw into place - no opacity change */
+    .layer-middle {
+      transform: translate(160px, -70px) rotate(10deg);
+      transition: transform 0.35s cubic-bezier(0.15, 0.85, 0.35, 1);
+    }
+    .layer-top {
+      transform: translate(-140px, 80px) rotate(-8deg);
+      transition: transform 0.32s cubic-bezier(0.15, 0.85, 0.35, 1);
+    }
+
+    .layer-middle.img-visible,
+    .layer-top.img-visible {
+      transform: translate(0, 0) rotate(0deg);
+    }
+
+    /* Text: pure fade, no movement */
+    #slide-1 .slide-content {
+      opacity: 0;
+      transition: opacity 0.55s ease;
+    }
+    #slide-1 .slide-content.text-visible {
+      opacity: 1;
+    }
+  </style></head>
 
 <body>
 
@@ -41,16 +72,14 @@
             <h1 class="ux-main-heading">User<br>Understanding</h1>
             <h2 class="ux-sub-heading">studies & data collection</h2>
             <p class="ux-body">
-              Throughout my academic and professional work, I have gained experience with a broad range of user research
-              methods and analysis techniques. My projects included <a href="in-car-tutor.html" class="ux-link">driving simulator
-                studies</a>, <a href="eye-tracking-study.html" class="ux-link">eye-tracking</a> experiments, <a href="physician-review-analysis.html"
-                class="ux-link">content analyses</a>, statistical evaluation of large consumer datasets, and qualitative coding of online reviews.
+              My background spans empirical user research and data-driven analysis. From <a href="in-car-tutor.html"
+                class="ux-link">driving simulator studies</a> and <a href="eye-tracking-study.html"
+                class="ux-link">eye-tracking</a> experiments to qualitative <a href="physician-review-analysis.html"
+                class="ux-link">content analyses</a> and consumer dataset evaluations.
             </p>
             <p class="ux-body">
-              I worked with experimental and quasi-experimental study designs, survey research, behavioral measures, and
-              inferential statistics to generate evidence-based insights for user-centered design. My experience covers
-              both controlled laboratory studies and the analysis of real-world user behavior, enabling me to combine
-              rigorous research methods with practical UX decision-making.
+              By combining controlled lab experiments with real-world behavioral analytics, I turn complex data and
+              statistical insights into evidence-based UX decisions.
             </p>
           </div>
         </div>
@@ -80,18 +109,18 @@
             <h2 class="ux-sub-heading">user data analysis</h2>
             <p class="ux-body">
               My experience in Customer Experience (CX) research and data-driven market analysis within the automotive
-              industry includes statistical analysis of consumer data among luxury car brand customers on behalf of BMW,
-              contributing to insights for strategic decision-making.
+              industry includes statistical evaluations of luxury consumer data on behalf of BMW, providing key insights
+              for strategic decision-making.
             </p>
             <p class="ux-body">
-              Additional work includes the analysis of large-scale industry datasets such as the Deloitte Global
-              Automotive Consumer Study, translating consumer behavior patterns into actionable findings for market
-              positioning and product strategy. In addition, familiarity with initiatives like Catena-X has been
-              developed, focusing on data ecosystems and collaboration across automotive stakeholders.
+              Additionally, I analyze large-scale industry datasets such as the Deloitte Global Automotive Consumer
+              Study to translate consumer behavior patterns into actionable market positioning and product strategies.
+              My work also touches on data ecosystem initiatives like Catena-X to foster cross-stakeholder
+              collaboration.
             </p>
             <p class="ux-body">
-              Across these projects, the focus has been on transforming complex consumer and market data into clear
-              insights that support evidence-based decision-making in CX and automotive strategy.
+              Across these projects, I focus on turning complex consumer and market data into clear, evidence-based
+              insights that drive CX innovation and automotive strategy.
             </p>
           </div>
         </div>
@@ -109,15 +138,42 @@
     <!-- RIGHT: Fixed Image (layered) -->
     <div class="right-panel">
       <div class="image-layers">
-        <img src="user_layer1.png" alt="UX Research" class="hero-image layer-base">
-        <img src="user_layer2.png" alt="UX Research middle" class="hero-image layer-middle" id="imageLayer2">
-        <img src="user_layer3.png" alt="UX Research overlay" class="hero-image layer-top" id="imageLayer3">
+        <img src="img_user/user_layer1.png" alt="UX Research" class="hero-image layer-base">
+        <img src="img_user/user_layer2.png" alt="UX Research middle" class="hero-image layer-middle" id="imageLayer2">
+        <img src="img_user/user_layer3.png" alt="UX Research overlay" class="hero-image layer-top" id="imageLayer3">
       </div>
     </div>
 
   </main>
 
   <script src="script.js"></script>
+  <script>
+    (function () {
+      var layer2  = document.querySelector('.layer-middle');
+      var layer3  = document.querySelector('.layer-top');
+      var textEl  = document.querySelector('#slide-1 .slide-content');
+
+      if (sessionStorage.getItem('uu-intro-done')) {
+        // Skip intro — snap everything to final state instantly
+        layer2.style.transition = 'none';
+        layer3.style.transition = 'none';
+        layer2.classList.add('img-visible');
+        layer3.classList.add('img-visible');
+        textEl.classList.add('text-visible');
+        return;
+      }
+      sessionStorage.setItem('uu-intro-done', '1');
+
+      // Layer 2 throws in at 120ms
+      setTimeout(function () { layer2.classList.add('img-visible'); }, 120);
+
+      // Layer 3 throws in at 270ms
+      setTimeout(function () { layer3.classList.add('img-visible'); }, 270);
+
+      // Text fades in shortly after layer 3 lands (270 + 320 + 100 = ~690ms)
+      setTimeout(function () { textEl.classList.add('text-visible'); }, 690);
+    })();
+  </script>
 </body>
 
 </html>

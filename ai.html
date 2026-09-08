@@ -1,18 +1,151 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI — Jan-Luca Ahlemeyer</title>
+  <title>AI &mdash; Jan-Luca Ahlemeyer</title>
   <meta name="description" content="AI Product Management and projects by Jan-Luca Ahlemeyer.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kaisei+Opti:wght@400;500;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kaisei+Opti:wght@400;500;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ===== AI PAGE RESPONSIVE LAYOUT (≤900px) ===== */
+    @media (max-width: 900px) {
+
+      /* Wrapper side padding – matches designs/campaigns */
+      .ai-page .designs-wrapper {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        padding-top: 20px !important;
+      }
+
+      /* Main two-column section: stack vertically */
+      .ai-page .ds-section {
+        flex-direction: column !important;
+        gap: 36px !important;
+        align-items: stretch !important;
+      }
+
+      /* Flatten columns so direct children can be ordered with flex order */
+      .ai-page .ds-section > .ds-col--text {
+        display: contents !important;
+      }
+
+      /* Explicit mobile ordering requested:
+         1. Hero + Image 1
+         2. Scrapers intro + cards (ai scrapers)
+         3. Data interpretation & decision making
+         4. Image 2
+         5. Custom AI solutions
+         6. Impressum
+      */
+      .ai-hero-wrapper {
+        order: 1 !important;
+        width: 100% !important;
+        position: relative !important;
+        z-index: 1 !important;
+      }
+
+      .ai-block-scrapers {
+        order: 2 !important;
+        width: 100% !important;
+        margin-top: -115px !important;
+        position: relative !important;
+        z-index: 5 !important;
+      }
+
+      .ai-block-data {
+        order: 3 !important;
+        width: 100% !important;
+        margin-top: 0 !important;
+      }
+
+      .ai-block-custom-ai {
+        order: 4 !important;
+        width: 100% !important;
+        margin-top: 0 !important;
+      }
+
+      .ai-col-impressum {
+        order: 5 !important;
+        width: 100% !important;
+        margin-top: 16px !important;
+        padding-top: 0 !important;
+        gap: 24px !important;
+      }
+
+      /* Hide desktop-only images on mobile */
+      .ai-hero-wrapper > .ai-img-01,
+      .ds-col--text > .ai-img-02 {
+        display: none !important;
+      }
+
+      /* Show mobile-placed images */
+      .ai-img-mobile {
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        margin: 28px 0 !important;
+      }
+
+      /* Hero text: match ds-hero-title from designs.html */
+      .ai-hero-text {
+        font-size: clamp(32px, 4.5vw, 58px) !important;
+      }
+
+      /* Prevent horizontal scroll from edge-to-edge bleed */
+      body.ai-page {
+        overflow-x: hidden !important;
+      }
+
+      /* Image 1 on mobile: bleed to corners/edges of screen */
+      .ai-img-01-mobile,
+      img[src*="ai_img_01.png"].ai-img-mobile {
+        width: calc(100% + 32px) !important;
+        max-width: none !important;
+        margin-left: -16px !important;
+        margin-right: -16px !important;
+        margin-top: 28px !important;
+        margin-bottom: 28px !important;
+        display: block !important;
+        border-radius: 0 !important;
+      }
+
+      /* ai scrapers 2-column: stack vertically */
+      div[style*="display: flex; gap: 32px"] {
+        flex-direction: column !important;
+        gap: 24px !important;
+      }
+
+      /* Body text: justify */
+      .ai-page .ds-body,
+      .ai-page p,
+      .ai-page li {
+        text-align: justify !important;
+      }
+
+      .ai-impressum__de,
+      .ai-impressum__de-small,
+      .ai-impressum__en,
+      .ai-impressum__availability {
+        text-align: left !important;
+      }
+    }
+
+    /* Hero text: 33px when screen width is less than 400px */
+    @media (max-width: 400px) {
+      .ai-hero-text {
+        font-size: 33px !important;
+      }
+    }
+  </style>
 </head>
 
-<body class="page-scrollable">
+<body class="page-scrollable ai-page">
 
   <!-- NAVBAR -->
   <header class="navbar">
@@ -26,17 +159,122 @@
   </header>
 
   <main class="designs-page-main">
-    <div class="designs-wrapper">
+    <div class="designs-wrapper" style="overflow: visible;">
 
-      <section class="ds-section" style="flex-direction: column; align-items: center; justify-content: center; min-height: 50vh; text-align: center;">
-        <h2 class="ds-title" style="margin-bottom: 24px;">AI</h2>
-        <p class="ds-body" style="font-size: 18px; max-width: 600px; text-align: center; margin: 0 auto; color: var(--color-muted);">
-          Content coming soon.
-        </p>
-      </section>
+      <div class="ds-section" style="gap: 64px; align-items: flex-start;">
+
+        <!-- LEFT COLUMN -->
+        <div class="ds-col--text" style="display: flex; flex-direction: column;">
+
+          <!-- Hero text + Image 1 overlap wrapper -->
+          <div class="ai-hero-wrapper">
+            <div class="ai-hero-text">
+              <div class="ai-line-1">PROGRAMMING &amp; AI</div>
+              <div class="ai-line-2">PROGRAMM1NG &amp; A1</div>
+              <div class="ai-line-3">PR0GR11MM1N0 &amp; A1</div>
+              <div class="ai-line-4">0110GR11MM1N0 &amp; 11</div>
+              <div class="ai-hero-binary">
+                01010000 01110010<br>
+                01101111 01100111<br>
+                01110010 01100001<br>
+                01101101 01101101<br>
+                01101001 01101110<br>
+                01100111 00100000<br>
+                00100110 00100000<br>
+                01000001 01001001
+              </div>
+            </div>
+            <img src="img_ai/ai_img_01.png" alt="AI Project Image 1" class="ai-img-01">
+          </div>
+
+          <!-- custom ai solutions -->
+          <div class="ai-block-custom-ai" style="margin-top: 48px;">
+            <h2 class="ux-sub-heading" style="margin-top: 0; margin-bottom: 16px;">custom ai solutions</h2>
+            <p class="ds-body" style="margin-bottom: 24px;">I build lightweight, custom AI tools and browser-based interfaces tailored to specific internal and external data workflows. The goal is always to make data processing accessible and fast, without adding bloated infrastructure.</p>
+            <!-- Mobile Image 2 -->
+            <img src="img_ai/ai_img_02.png" alt="AI Project Image 2" class="ai-img-mobile">
+            <p class="ds-body">For example, I set up custom web apps through Google AI Studio that can be launched directly from a terminal or used in the browser to parse, sort, and extract complex information on the fly. This allows for rapid processing of raw files and media while keeping workflows lean and avoiding unnecessary API overhead. Whether it is an internal management tool or a public-facing data pipeline, I focus on building straightforward interfaces that seamlessly handle the heavy lifting.</p>
+          </div>
+
+          <!-- IMPRESSUM + CONTACT (uses left-column white space) -->
+          <div class="ai-col-impressum">
+
+            <div class="ai-col-impressum__legal">
+              <h2 class="ux-sub-heading" style="margin-top: 0; margin-bottom: 20px;">impressum</h2>
+              <p class="ai-impressum__de-label">Angaben gemäß § 5 TMG</p>
+              <p class="ai-impressum__de-small">Jan-Luca Ahlemeyer<br>Musterstraße 00<br>80000 München<br>Deutschland</p>
+
+              <p class="ai-impressum__de-label" style="margin-top: 16px;">Kontakt</p>
+              <p class="ai-impressum__de">E-Mail: <a href="mailto:mail@example.com" class="ai-impressum__link">mail@example.com</a></p>
+
+              <p class="ai-impressum__de-label" style="margin-top: 16px;">Verantwortlich nach § 18 Abs. 2 MStV</p>
+              <p class="ai-impressum__de-small">Jan-Luca Ahlemeyer, Musterstraße 00, 80000 München</p>
+
+              <p class="ai-impressum__de-label" style="margin-top: 16px;">Haftung für Inhalte</p>
+              <p class="ai-impressum__de-small">Als Diensteanbieter bin ich gemäß § 7 Abs. 1 TMG für eigene Inhalte verantwortlich. Nach §§ 8–10 TMG bin ich jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
+
+              <p class="ai-impressum__de-label" style="margin-top: 16px;">Urheberrecht</p>
+              <p class="ai-impressum__de-small">Alle Inhalte dieser Website unterliegen dem deutschen Urheberrecht. Vervielfältigung oder Nutzung bedarf der schriftlichen Zustimmung des Autors.</p>
+
+              <p class="ai-impressum__en" style="margin-top: 20px;">Personal portfolio by Jan-Luca Ahlemeyer, Munich. All content is protected by German copyright law.</p>
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="ds-col--text" style="display: flex; flex-direction: column; gap: 80px;">
+
+          <!-- ai scarpers -->
+          <div class="ai-block-scrapers">
+            <p class="ds-body" style="margin-bottom: 24px;">I build custom AI applications focused on web scraping and data interpretation. Leveraging models from Gemini and OpenAI, I create pipelines to efficiently analyze and structure complex datasets. Additionally, I am highly proficient in AI image generation and "vibe coding," using tools like Midjourney, DaVinci, Codex, Antigravity, and Gemini to streamline creative and technical workflows.</p>
+            <h2 class="ux-sub-heading" style="margin-top: 0; margin-bottom: 16px;">ai scarpers</h2>
+
+            <div style="display: flex; gap: 32px;">
+              <div style="flex: 1;">
+                <p class="ds-body" style="font-weight: 500; color: #1a1a1a; margin-bottom: 8px;">
+                  Job offerings <a href="https://github.com/JL-Ahlemeyer/Creative_Job_Scraper_Munich_-public-" target="_blank" rel="noopener noreferrer" class="ai-tag">view code</a>
+                </p>
+                <p class="ds-body">Built with Python, BeautifulSoup, and Aiogram, this automation pipeline scrapes creative job listings from cultural boards. Leveraging an AI model, it categorizes opportunities by field and automatically dispatches them to dedicated Telegram threads, streamlining the job search process for creative professionals.</p>
+              </div>
+              <div style="flex: 1;">
+                <p class="ds-body" style="font-weight: 500; color: #1a1a1a; margin-bottom: 8px;">
+                  Funding &amp; Submission <a href="https://github.com/JL-Ahlemeyer/Funding" target="_blank" rel="noopener noreferrer" class="ai-tag">view code</a>
+                </p>
+                <p class="ds-body">This project explores how thoughtful design can connect people, technology, and everyday experiences. By combining creativity, functionality, and a clear understanding of human needs, it aims to create solutions that feel intuitive, meaningful, and engaging. The focus lies on transforming complex ideas into simple, accessible experiences that work naturally in real-world contexts.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- data interpretation -->
+          <div class="ai-block-data">
+            <h2 class="ux-sub-heading" style="margin-top: 0; margin-bottom: 16px;">data
+              interpretation &amp;<br>decision making</h2>
+            <p class="ds-body" style="margin-bottom: 24px;">A big focus of my work is turning unstructured, messy information into actionable data for better decision-making. Instead of manually sifting through raw inputs, I use AI to analyze, summarize, and categorize data based on its actual content and context.</p>
+            <!-- Mobile Image 1 -->
+            <img src="img_ai/ai_img_01.png" alt="AI Project Image 1" class="ai-img-mobile ai-img-01-mobile">
+            <p class="ds-body" style="margin-bottom: 16px;">Once the data is structured, it can power all kinds of automated systems:</p>
+            <ul class="ds-body" style="padding-left: 20px; margin-bottom: 24px;">
+              <li style="margin-bottom: 8px;"><strong>Audience Targeting:</strong> Segmenting content and listings to reach the right people more effectively.</li>
+              <li style="margin-bottom: 8px;"><strong>Automated Newsletters:</strong> Generating relevant, curated updates without having to write or format everything from scratch.</li>
+              <li style="margin-bottom: 8px;"><strong>Calendar &amp; Schedule Management:</strong> Feeding clean, date-specific entries directly into internal workflows or public community calendars.</li>
+            </ul>
+            <p class="ds-body">It is all about letting the models handle the synthesis and categorization so the resulting data is ready to use right away.</p>
+          </div>
+
+          <!-- Image 2 &mdash; bleeds past right edge -->
+          <img src="img_ai/ai_img_02.png" alt="AI Project Image 2" class="ai-img-02">
+
+        </div>
+      </div>
 
     </div>
+  
   </main>
 
 </body>
+
 </html>

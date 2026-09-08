@@ -1,3 +1,27 @@
+// Mobile accordion dropdowns
+document.querySelectorAll('.accordion-header').forEach((header) => {
+  header.addEventListener('click', (e) => {
+    if (window.innerWidth > 900) return;
+    const content = header.nextElementSibling;
+    const isExpanded = header.classList.contains('active');
+    header.classList.toggle('active', !isExpanded);
+    if (content) {
+      content.classList.toggle('active', !isExpanded);
+    }
+    header.setAttribute('aria-expanded', !isExpanded);
+  });
+});
+
+// Mobile navbar toggle
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navLinks.classList.toggle('active');
+  });
+}
+
 // === HORIZONTAL SLIDER ===
 const track = document.getElementById('slidesTrack');
 const slides = Array.from(track.querySelectorAll('.slide'));
@@ -69,6 +93,7 @@ document.addEventListener('keydown', (e) => {
 const rightPanel = document.querySelector('.slider-panel');
 
 rightPanel.addEventListener('touchstart', (e) => {
+  if (window.innerWidth <= 900) return;
   startX = e.touches[0].clientX;
   isDragging = true;
 }, { passive: true });

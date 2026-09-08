@@ -13,6 +13,392 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kaisei+Opti:wght@400;500;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ===== MOBILE STYLES (≤900px) ===== */
+    /* Desktop accordion defaults: always expanded, arrows hidden */
+    .mobile-accordion {
+      width: 100%;
+    }
+    .accordion-header {
+      background: none;
+      border: none;
+      padding: 0;
+      width: 100%;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: default;
+    }
+    .accordion-arrow {
+      display: none;
+    }
+    .accordion-content {
+      display: block;
+    }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      flex-direction: column;
+      gap: 5px;
+      z-index: 201;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: #111;
+      transition: all 0.25s ease;
+    }
+    .nav-toggle.active span:nth-child(1) {
+      transform: translateY(3.25px) rotate(45deg);
+    }
+    .nav-toggle.active span:nth-child(2) {
+      transform: translateY(-3.25px) rotate(-45deg);
+    }
+
+    @media (max-width: 900px) {
+      html, body {
+        height: auto !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+      }
+
+      /* Navbar mobile */
+      .navbar {
+        padding: 0 16px !important;
+        height: 52px !important;
+      }
+      .nav-name {
+        font-size: 20px !important;
+        letter-spacing: -2% !important;
+      }
+      .nav-toggle {
+        display: flex !important;
+      }
+      .nav-links {
+        display: none !important;
+        position: fixed !important;
+        top: 52px !important;
+        left: 0 !important;
+        right: 0 !important;
+        background: #FFFDFB !important;
+        flex-direction: column !important;
+        padding: 24px 20px !important;
+        gap: 20px !important;
+        border-bottom: 1px solid var(--color-border) !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.06) !important;
+        z-index: 199 !important;
+      }
+      .nav-links.active {
+        display: flex !important;
+      }
+      .nav-item {
+        font-size: 20px !important;
+      }
+
+      /* Main layout mobile */
+      .main-layout {
+        position: static !important;
+        display: flex !important;
+        flex-direction: column !important;
+        margin-top: 52px !important;
+        height: auto !important;
+      }
+
+      /* Hero photo - edge to edge, cropped to 300px */
+      .left-panel {
+        width: 100% !important;
+        height: 300px !important;
+        max-height: 300px !important;
+        flex: none !important;
+        overflow: hidden !important;
+      }
+      .hero-image {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center 25% !important;
+        display: block !important;
+      }
+
+      /* Right panel (content) mobile */
+      .right-panel {
+        width: 100% !important;
+        height: auto !important;
+        flex: none !important;
+        overflow: visible !important;
+        position: static !important;
+      }
+      .slides-track {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        transform: none !important;
+        transition: none !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
+      .slide {
+        width: 100% !important;
+        min-width: 100% !important;
+        height: auto !important;
+        transform: none !important;
+        transition: none !important;
+        overflow: visible !important;
+        display: block !important;
+      }
+      .slide-content {
+        padding: 20px 16px 36px !important;
+        max-width: 100% !important;
+      }
+
+      /* Slide 1 - Match attached image ordering & typography */
+      #slide-1 .slide-content {
+        display: flex !important;
+        flex-direction: column !important;
+      }
+
+      /* Disable animations on mobile */
+      .anim-letter,
+      .fade-in,
+      .blur-in {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+        animation: none !important;
+      }
+
+      /* Typography matched to designs.html (17px ds-body, justified, 1.8 line-height) */
+      #slide-1 .skills-list {
+        order: 1 !important;
+        font-family: var(--font-inter) !important;
+        font-weight: 250 !important;
+        font-size: 15px !important;
+        line-height: 1.5 !important;
+        color: #666666 !important;
+        text-align: justify !important;
+        letter-spacing: -0.01em !important;
+        margin-bottom: 12px !important;
+        margin-top: 0 !important;
+      }
+
+      #slide-1 .hero-heading {
+        order: 2 !important;
+        font-family: var(--font-inter) !important;
+        font-weight: 300 !important;
+        font-size: clamp(32px, 8vw, 44px) !important;
+        line-height: 1.05 !important;
+        margin-top: 0 !important;
+        margin-bottom: 16px !important;
+        letter-spacing: -0.02em !important;
+        color: #1a1a1a !important;
+        background: none !important;
+        -webkit-text-fill-color: #1a1a1a !important;
+      }
+      #slide-1 .serif-word {
+        font-family: var(--font-serif) !important;
+        font-weight: 400 !important;
+        letter-spacing: -0.02em !important;
+        background: none !important;
+        -webkit-text-fill-color: #1a1a1a !important;
+        color: #1a1a1a !important;
+      }
+
+      #slide-1 .bio-text-lead {
+        order: 3 !important;
+        font-family: var(--font-inter) !important;
+        font-size: 17px !important;
+        font-weight: 400 !important;
+        color: #1a1a1a !important;
+        line-height: 1.8 !important;
+        text-align: justify !important;
+        margin-bottom: 14px !important;
+      }
+
+      #slide-1 .bio-text {
+        order: 4 !important;
+        font-family: var(--font-inter) !important;
+        font-size: 17px !important;
+        font-weight: 300 !important;
+        line-height: 1.85 !important;
+        color: #333333 !important;
+        text-align: justify !important;
+        margin-bottom: 28px !important;
+      }
+
+      #slide-1 .divider {
+        display: none !important;
+      }
+
+      #slide-1 .social-icons {
+        order: 5 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 36px !important;
+        margin-top: 4px !important;
+        margin-bottom: 24px !important;
+      }
+      #slide-1 .social-link svg {
+        width: 32px !important;
+        height: 32px !important;
+      }
+
+      
+      /* Accordion styles on mobile: collapsed by default with arrow, no borders */
+      .mobile-accordion {
+        border: none !important;
+        border-top: none !important;
+        border-bottom: none !important;
+        padding: 0 !important;
+        margin-bottom: 4px !important;
+      }
+      .accordion-header {
+        cursor: pointer !important;
+        padding: 14px 0 !important;
+      }
+      .accordion-header .section-heading {
+        margin: 0 !important;
+        font-size: clamp(24px, 6vw, 30px) !important;
+        font-weight: 250 !important;
+        color: #1a1a1a !important;
+      }
+      .accordion-arrow {
+        display: block !important;
+        width: 18px !important;
+        height: 18px !important;
+        color: #777 !important;
+        transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        flex-shrink: 0 !important;
+        margin-left: 12px !important;
+      }
+      .accordion-header.active .accordion-arrow {
+        transform: rotate(180deg) !important;
+        color: #1a1a1a !important;
+      }
+      .accordion-content {
+        display: none !important;
+        padding: 6px 0 16px !important;
+      }
+      .accordion-content.active {
+        display: block !important;
+        animation: accordionFadeIn 0.25s ease forwards;
+      }
+      @keyframes accordionFadeIn {
+        from { opacity: 0; transform: translateY(-4px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Slide 2 & 3 Mobile Layout - No horizontal borders/rulers */
+      #slide-2, #slide-3 {
+        border-top: none !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+      }
+      #slide-2 .slide-content,
+      #slide-3 .slide-content {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+      }
+      
+      .section-heading {
+        font-family: var(--font-inter) !important;
+        font-weight: 250 !important;
+        font-size: clamp(24px, 6vw, 30px) !important;
+        letter-spacing: -0.02em !important;
+        color: #1a1a1a !important;
+        line-height: 1.1 !important;
+        margin-top: 24px !important;
+        margin-bottom: 14px !important;
+      }
+      .timeline-item {
+        grid-template-columns: 1fr !important;
+        gap: 2px !important;
+        margin-bottom: 18px !important;
+        font-family: var(--font-inter) !important;
+      }
+      .timeline-date {
+        font-size: 14px !important;
+        font-weight: 300 !important;
+        color: #888888 !important;
+      }
+      .timeline-details strong {
+        font-size: 17px !important;
+        font-weight: 400 !important;
+        color: #1a1a1a !important;
+        line-height: 1.6 !important;
+      }
+      .timeline-details span {
+        font-size: 16px !important;
+        font-weight: 300 !important;
+        color: #555555 !important;
+        line-height: 1.6 !important;
+      }
+      .languages-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 14px !important;
+        font-size: 16px !important;
+        font-weight: 300 !important;
+        color: #333333 !important;
+        line-height: 1.6 !important;
+      }
+
+      /* Skills Subcategory Accordions on Mobile */
+      .skills-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 2px !important;
+      }
+      .skills-category.mobile-accordion {
+        margin-bottom: 2px !important;
+      }
+      .skill-sub-header {
+        padding: 10px 0 !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+        cursor: pointer !important;
+      }
+      .skill-sub-header strong,
+      .skills-category strong {
+        font-family: var(--font-inter) !important;
+        font-size: 17px !important;
+        font-weight: 400 !important;
+        color: #1a1a1a !important;
+        margin-bottom: 0 !important;
+      }
+      .skill-sub-header .accordion-arrow {
+        width: 16px !important;
+        height: 16px !important;
+        margin-left: 8px !important;
+      }
+      .skills-category .accordion-content {
+        padding-top: 4px !important;
+        padding-bottom: 12px !important;
+      }
+      .skills-category ul {
+        margin: 0 !important;
+        padding-left: 20px !important;
+      }
+      .skills-category ul li {
+        font-size: 16px !important;
+        font-weight: 300 !important;
+        color: #555555 !important;
+        line-height: 1.6 !important;
+        margin-bottom: 3px !important;
+      }
+
+      /* Hide slider dots on mobile vertical scroll */
+      .dots-nav {
+        display: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -20,6 +406,10 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <a href="index.html" class="nav-name">jan-luca ahlemeyer</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+    </button>
     <nav class="nav-links">
       <a href="user-understanding.html" class="nav-item" id="nav-user-understanding">user understanding</a>
       <a href="designs.html" class="nav-item" id="nav-designs">designs</a>
@@ -43,27 +433,50 @@
         <!-- SLIDE 1: Hero -->
         <div class="slide" id="slide-1">
           <div class="slide-content">
-            <p class="skills-list blur-in" style="animation-delay: 0.6s;">UX / UI / Web Design / Graphic / Logo / Branding / Typography / Web Development / AI
+            <p class="skills-list blur-in" style="animation-delay: 1s; animation-duration: 2.5s;">UX / UI / Web Design /
+              Graphic / Logo / Branding / Typography / Web Development / AI
               / Art</p>
             <h1 class="hero-heading">
               <span class="anim-word">
-                <span class="anim-letter" style="animation-delay: 0.01s">D</span><span class="anim-letter" style="animation-delay: 0.02s">E</span><span class="anim-letter" style="animation-delay: 0.03s">S</span><span class="anim-letter" style="animation-delay: 0.04s">I</span><span class="anim-letter" style="animation-delay: 0.05s">G</span><span class="anim-letter" style="animation-delay: 0.06s">N</span><span class="anim-letter" style="animation-delay: 0.07s">,</span>
-              </span> 
+                <span class="anim-letter" style="animation-delay: 0.01s">D</span><span class="anim-letter"
+                  style="animation-delay: 0.02s">E</span><span class="anim-letter"
+                  style="animation-delay: 0.03s">S</span><span class="anim-letter"
+                  style="animation-delay: 0.04s">I</span><span class="anim-letter"
+                  style="animation-delay: 0.05s">G</span><span class="anim-letter"
+                  style="animation-delay: 0.06s">N</span><span class="anim-letter"
+                  style="animation-delay: 0.07s">,</span>
+              </span>
               <span class="anim-word serif-word">
-                <span class="anim-letter" style="animation-delay: 0.08s">S</span><span class="anim-letter" style="animation-delay: 0.09s">T</span><span class="anim-letter" style="animation-delay: 0.10s">R</span><span class="anim-letter" style="animation-delay: 0.11s">A</span><span class="anim-letter" style="animation-delay: 0.12s">T</span><span class="anim-letter" style="animation-delay: 0.13s">E</span><span class="anim-letter" style="animation-delay: 0.14s">G</span><span class="anim-letter" style="animation-delay: 0.15s">Y</span>
+                <span class="anim-letter" style="animation-delay: 0.08s">S</span><span class="anim-letter"
+                  style="animation-delay: 0.09s">T</span><span class="anim-letter"
+                  style="animation-delay: 0.10s">R</span><span class="anim-letter"
+                  style="animation-delay: 0.11s">A</span><span class="anim-letter"
+                  style="animation-delay: 0.12s">T</span><span class="anim-letter"
+                  style="animation-delay: 0.13s">E</span><span class="anim-letter"
+                  style="animation-delay: 0.14s">G</span><span class="anim-letter"
+                  style="animation-delay: 0.15s">Y</span>
               </span><br>
               <span class="anim-word">
                 <span class="anim-letter" style="animation-delay: 0.16s">&amp;</span>
-              </span> 
+              </span>
               <span class="anim-word">
-                <span class="anim-letter" style="animation-delay: 0.17s">I</span><span class="anim-letter" style="animation-delay: 0.18s">N</span><span class="anim-letter" style="animation-delay: 0.19s">T</span><span class="anim-letter" style="animation-delay: 0.20s">E</span><span class="anim-letter" style="animation-delay: 0.21s">R</span><span class="anim-letter" style="animation-delay: 0.22s">A</span><span class="anim-letter" style="animation-delay: 0.23s">C</span><span class="anim-letter" style="animation-delay: 0.24s">T</span><span class="anim-letter" style="animation-delay: 0.25s">I</span><span class="anim-letter" style="animation-delay: 0.26s">O</span><span class="anim-letter" style="animation-delay: 0.27s">N</span>
+                <span class="anim-letter" style="animation-delay: 0.17s">I</span><span class="anim-letter"
+                  style="animation-delay: 0.18s">N</span><span class="anim-letter"
+                  style="animation-delay: 0.19s">T</span><span class="anim-letter"
+                  style="animation-delay: 0.20s">E</span><span class="anim-letter"
+                  style="animation-delay: 0.21s">R</span><span class="anim-letter"
+                  style="animation-delay: 0.22s">A</span><span class="anim-letter"
+                  style="animation-delay: 0.23s">C</span><span class="anim-letter"
+                  style="animation-delay: 0.24s">T</span><span class="anim-letter"
+                  style="animation-delay: 0.25s">I</span><span class="anim-letter"
+                  style="animation-delay: 0.26s">O</span><span class="anim-letter"
+                  style="animation-delay: 0.27s">N</span>
               </span>
             </h1>
             <p class="bio-text-lead fade-in" style="animation-delay: 0.35s;">
-              Every form of creation is a form of design.
+              Every form of creating is a form of design.
             </p>
-            <p class="bio-text bio-text--light fade-in" style="animation-delay: 0.4s;">Optimizing human-computer interactions is a topic I have always been
-              interested in. I am eager to bridge the gap between user experience and aesthetically pleasing design.</p>
+            <p class="bio-text bio-text--light fade-in" style="animation-delay: 0.4s;">Optimizing human-computer interactions is a topic I have always been interested in. I am eager to bridge the gap between user experience and aesthetically pleasing design.</p>
             <hr class="divider fade-in" style="animation-delay: 0.45s;">
             <div class="social-icons fade-in" style="animation-delay: 0.5s;">
               <!-- LinkedIn -->
@@ -100,51 +513,71 @@
         <!-- SLIDE 2: About & Work Experience -->
         <div class="slide" id="slide-2">
           <div class="slide-content">
-            <h3 class="section-heading">Work Experience</h3>
-            <div class="timeline">
-              <div class="timeline-item">
-                <span class="timeline-date">Apr 2024 – Present</span>
-                <div class="timeline-details">
-                  <strong>UI Designer · Freelance</strong>
-                  <span>Cycling Bear · Amsterdam</span>
-                </div>
-              </div>
-              <div class="timeline-item">
-                <span class="timeline-date">Mar 2024 – Present</span>
-                <div class="timeline-details">
-                  <strong>Founder &amp; AI Product Manager</strong>
-                  <span>MIAAC · Munich</span>
-                </div>
-              </div>
-              <div class="timeline-item">
-                <span class="timeline-date">Sep 2023 – Apr 2024</span>
-                <div class="timeline-details">
-                  <strong>Senior Engineer</strong>
-                  <span>Quest Global · Munich</span>
-                </div>
-              </div>
-              <div class="timeline-item">
-                <span class="timeline-date">Oct 2021 – Aug 2023</span>
-                <div class="timeline-details">
-                  <strong>UX Consultant Apr 2022 – Aug 2023<br>Data Consultant Oct 2021 – Apr 2022</strong>
-                  <span>Spiegel Institut · Munich &amp; Ingolstadt</span>
-                </div>
-              </div>
-              <div class="timeline-item">
-                <span class="timeline-date">Mar 2021 – Sep 2021</span>
-                <div class="timeline-details">
-                  <strong>UX Designer and Consultant</strong>
-                  <span>WinValue GmbH · Münster</span>
+            <!-- Work Experience Accordion -->
+            <div class="mobile-accordion">
+              <button class="accordion-header" aria-expanded="false">
+                <h3 class="section-heading">Work Experience</h3>
+                <svg class="accordion-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <span class="timeline-date">Apr 2024 – Present</span>
+                    <div class="timeline-details">
+                      <strong>UI Designer · Freelance</strong>
+                      <span>Cycling Bear · Amsterdam</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <span class="timeline-date">Mar 2024 – Present</span>
+                    <div class="timeline-details">
+                      <strong>Founder &amp; AI Product Manager</strong>
+                      <span>MIAAC · Munich</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <span class="timeline-date">Sep 2023 – Apr 2024</span>
+                    <div class="timeline-details">
+                      <strong>Senior Engineer</strong>
+                      <span>Quest Global · Munich</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <span class="timeline-date">Oct 2021 – Aug 2023</span>
+                    <div class="timeline-details">
+                      <strong>UX Consultant Apr 2022 – Aug 2023<br>Data Consultant Oct 2021 – Apr 2022</strong>
+                      <span>Spiegel Institut · Munich &amp; Ingolstadt</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <span class="timeline-date">Mar 2021 – Sep 2021</span>
+                    <div class="timeline-details">
+                      <strong>UX Designer and Consultant</strong>
+                      <span>WinValue GmbH · Münster</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <h3 class="section-heading">Languages</h3>
-            <div class="languages-grid">
-              <div>German: Native (C2)</div>
-              <div>Dutch: Basic (A2)</div>
-              <div>English: Excellent (C2)</div>
-              <div>Spanish: Beginner (A1)</div>
+            <!-- Languages Accordion -->
+            <div class="mobile-accordion">
+              <button class="accordion-header" aria-expanded="false">
+                <h3 class="section-heading">Languages</h3>
+                <svg class="accordion-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <div class="languages-grid">
+                  <div>German: Native (C2)</div>
+                  <div>Dutch: Basic (A2)</div>
+                  <div>English: Excellent (C2)</div>
+                  <div>Spanish: Beginner (A1)</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -152,58 +585,95 @@
         <!-- SLIDE 3: Academic, Languages, Skills -->
         <div class="slide" id="slide-3">
           <div class="slide-content">
-            <h3 class="section-heading">Academic Background</h3>
-            <div class="timeline">
-              <div class="timeline-item">
-                <span class="timeline-date">Sep 2019 – Aug 2020</span>
-                <div class="timeline-details">
-                  <strong>M.Sc. Human Factors &amp; Engineering Psychology (English-taught)</strong>
-                  <span>University of Twente · Enschede</span>
-                </div>
-              </div>
-              <div class="timeline-item">
-                <span class="timeline-date">Sep 2016 – Aug 2020</span>
-                <div class="timeline-details">
-                  <strong>B.Sc. Psychology (English-taught)</strong>
-                  <span>University of Twente · Enschede</span>
-                </div>
-              </div>
-              <div class="timeline-item">
-                <span class="timeline-date">Feb 2018 – May 2018</span>
-                <div class="timeline-details">
-                  <strong>Minor in Philosophy of Science and Technology</strong>
-                  <span>University of Twente · Enschede</span>
+            <!-- Academic Background Accordion -->
+            <div class="mobile-accordion">
+              <button class="accordion-header" aria-expanded="false">
+                <h3 class="section-heading">Academic Background</h3>
+                <svg class="accordion-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <div class="timeline">
+                  <div class="timeline-item">
+                    <span class="timeline-date">Sep 2019 – Aug 2020</span>
+                    <div class="timeline-details">
+                      <strong>M.Sc. Human Factors &amp; Engineering Psychology (English-taught)</strong>
+                      <span>University of Twente · Enschede</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <span class="timeline-date">Sep 2016 – Aug 2020</span>
+                    <div class="timeline-details">
+                      <strong>B.Sc. Psychology (English-taught)</strong>
+                      <span>University of Twente · Enschede</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <span class="timeline-date">Feb 2018 – May 2018</span>
+                    <div class="timeline-details">
+                      <strong>Minor in Philosophy of Science and Technology</strong>
+                      <span>University of Twente · Enschede</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
+            <!-- Skills -->
             <h3 class="section-heading">Skills</h3>
             <div class="skills-grid">
-              <div class="skills-category">
-                <strong>UX &amp; UI</strong>
-                <ul>
-                  <li>Click &amp; performance analysis</li>
-                  <li>Wire framing</li>
-                  <li>Usability testing</li>
-                  <li>UX-Research</li>
-                </ul>
+              <!-- Subcategory: UX & UI -->
+              <div class="skills-category mobile-accordion">
+                <button class="accordion-header skill-sub-header" aria-expanded="false">
+                  <strong>UX &amp; UI</strong>
+                  <svg class="accordion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="accordion-content">
+                  <ul>
+                    <li>Click &amp; performance analysis</li>
+                    <li>Wire framing</li>
+                    <li>Usability testing</li>
+                    <li>UX-Research</li>
+                  </ul>
+                </div>
               </div>
-              <div class="skills-category">
-                <strong>Coding</strong>
-                <ul>
-                  <li>HTML, CSS, Javascript, Python</li>
-                  <li>AI: Gemini, Antigravity, Base44, Claude</li>
-                  <li>Wordpress</li>
-                </ul>
+
+              <!-- Subcategory: Coding -->
+              <div class="skills-category mobile-accordion">
+                <button class="accordion-header skill-sub-header" aria-expanded="false">
+                  <strong>Coding</strong>
+                  <svg class="accordion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="accordion-content">
+                  <ul>
+                    <li>HTML, CSS, Javascript, Python</li>
+                    <li>AI: Gemini, Antigravity, Base44, Claude</li>
+                    <li>Wordpress</li>
+                  </ul>
+                </div>
               </div>
-              <div class="skills-category">
-                <strong>Visual design</strong>
-                <ul>
-                  <li>Adobe: Lightroom, Photoshop, Illustrator</li>
-                  <li>Figma</li>
-                  <li>CapCut, Premiere Pro</li>
-                  <li>Canva</li>
-                </ul>
+
+              <!-- Subcategory: Visual design -->
+              <div class="skills-category mobile-accordion">
+                <button class="accordion-header skill-sub-header" aria-expanded="false">
+                  <strong>Visual design</strong>
+                  <svg class="accordion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </button>
+                <div class="accordion-content">
+                  <ul>
+                    <li>Adobe: Lightroom, Photoshop, Illustrator</li>
+                    <li>Figma</li>
+                    <li>CapCut, Premiere Pro</li>
+                    <li>Canva</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>

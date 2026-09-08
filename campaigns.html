@@ -10,6 +10,122 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kaisei+Opti:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* MIAAC mobile image: hidden by default, shown on mobile */
+    .miaac-img-mobile {
+      display: none;
+    }
+
+    /* ===== CAMPAIGNS RESPONSIVE LAYOUT (≤900px) ===== */
+    @media (max-width: 900px) {
+
+      /* MIAAC: hide image column on mobile, show inline image */
+      .miaac-col-desktop {
+        display: none !important;
+      }
+      .miaac-img-mobile {
+        display: block !important;
+        width: 100% !important;
+        margin-top: 16px !important;
+      }
+
+      /* Lucky number heading font weight */
+      .lucky-number-heading {
+        font-weight: 470 !important;
+      }
+
+      /* Remove top margin from fashion_03 image so images are flush */
+      .fashion-img-03 {
+        margin-top: 0 !important;
+      }
+
+      /* Hide fashion_02 on mobile */
+      .fashion-img-02 {
+        display: none !important;
+      }
+
+      /* Justify body text on mobile */
+      .campaigns-page .ds-body,
+      .campaigns-page p {
+        text-align: justify !important;
+      }
+
+      /* Wrapper padding */
+      .campaigns-page .designs-wrapper {
+        padding: 16px !important;
+      }
+
+      /* Main title */
+      .campaigns-main-title {
+        margin-bottom: 12px !important;
+      }
+
+      /* Slider images slightly smaller */
+      .slider-img {
+        height: 220px !important;
+        width: 165px !important;
+      }
+
+      .campaigns-slider {
+        margin-bottom: 32px !important;
+      }
+
+      /* ─── Munich Fashion Week ─── */
+      /* Turn 3-column grid into single column */
+      section[style*="margin-top: 64px"] > div[style*="grid-template-columns: repeat(3"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0 !important;
+      }
+
+      /* Fashion images: full width, natural portrait ratio */
+      section[style*="margin-top: 64px"] > div[style*="grid-template-columns: repeat(3"] img {
+        width: 100% !important;
+        margin-left: 0 !important;
+        position: static !important;
+      }
+
+      /* ─── Lucky Number Store ─── */
+      /* Stack the image collage vertically */
+      section[style*="margin-top: 64px"] > div[style*="grid-template-columns: 3fr 2fr"] {
+        display: flex !important;
+        flex-direction: column !important;
+        position: relative !important;
+      }
+
+      section[style*="margin-top: 64px"] > div[style*="grid-template-columns: 3fr 2fr"] img {
+        width: 100% !important;
+        position: static !important;
+        transform: none !important;
+      }
+
+      /* The small centered portrait (lucky_number_02) — keep it visible but in-flow */
+      section[style*="margin-top: 64px"] > div[style*="grid-template-columns: 3fr 2fr"] img[alt="Lucky Number 2"] {
+        width: 50% !important;
+        margin: -40px auto 0 auto !important;
+        display: block !important;
+      }
+
+      /* ─── MIAAC two-column section ─── */
+      .campaigns-page .ds-section {
+        flex-direction: column !important;
+        gap: 24px !important;
+      }
+
+      .campaigns-page .ds-col--image {
+        width: 100% !important;
+      }
+
+      .campaigns-page .campaigns-collage {
+        width: 100% !important;
+      }
+
+      .campaigns-page .ds-col--text {
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+    }
+  </style>
 </head>
 
 <body class="page-scrollable campaigns-page">
@@ -35,27 +151,27 @@
       <div class="campaigns-slider">
         <div class="slider-track scroll-left-photography">
           <!-- Set 1 -->
-          <img src="photography/01_ubahn.png" alt="Photography 1" class="slider-img">
-          <img src="photography/02_safari.png" alt="Photography 2" class="slider-img">
-          <img src="photography/03_building.png" alt="Photography 3" class="slider-img">
-          <img src="photography/04_HDK.png" alt="Photography 4" class="slider-img">
-          <img src="photography/05_art.png" alt="Photography 5" class="slider-img">
-          <img src="photography/06_landscape.png" alt="Photography 6" class="slider-img">
-          <img src="photography/07_noise.png" alt="Photography 7" class="slider-img">
-          <img src="photography/08_muc.png" alt="Photography 8" class="slider-img">
-          <img src="photography/09_DJ.png" alt="Photography 9" class="slider-img">
-          <img src="photography/10_acidarab.png" alt="Photography 10" class="slider-img">
+          <img src="img_campaign/photography/01_ubahn.png" alt="Photography 1" class="slider-img">
+          <img src="img_campaign/photography/02_safari.png" alt="Photography 2" class="slider-img">
+          <img src="img_campaign/photography/03_building.png" alt="Photography 3" class="slider-img">
+          <img src="img_campaign/photography/10_acidarab.png" alt="Photography 10" class="slider-img">
+          <img src="img_campaign/photography/04_HDK.png" alt="Photography 4" class="slider-img">
+          <img src="img_campaign/photography/05_art.png" alt="Photography 5" class="slider-img">
+          <img src="img_campaign/photography/06_landscape.png" alt="Photography 6" class="slider-img">
+          <img src="img_campaign/photography/07_noise.png" alt="Photography 7" class="slider-img">
+          <img src="img_campaign/photography/08_muc.png" alt="Photography 8" class="slider-img">
+          <img src="img_campaign/photography/09_DJ.png" alt="Photography 9" class="slider-img">
           <!-- Set 2 (duplication for seamless loop) -->
-          <img src="photography/01_ubahn.png" alt="Photography 1 Copy" class="slider-img">
-          <img src="photography/02_safari.png" alt="Photography 2 Copy" class="slider-img">
-          <img src="photography/03_building.png" alt="Photography 3 Copy" class="slider-img">
-          <img src="photography/04_HDK.png" alt="Photography 4 Copy" class="slider-img">
-          <img src="photography/05_art.png" alt="Photography 5 Copy" class="slider-img">
-          <img src="photography/06_landscape.png" alt="Photography 6 Copy" class="slider-img">
-          <img src="photography/07_noise.png" alt="Photography 7 Copy" class="slider-img">
-          <img src="photography/08_muc.png" alt="Photography 8 Copy" class="slider-img">
-          <img src="photography/09_DJ.png" alt="Photography 9 Copy" class="slider-img">
-          <img src="photography/10_acidarab.png" alt="Photography 10 Copy" class="slider-img">
+          <img src="img_campaign/photography/01_ubahn.png" alt="Photography 1 Copy" class="slider-img">
+          <img src="img_campaign/photography/02_safari.png" alt="Photography 2 Copy" class="slider-img">
+          <img src="img_campaign/photography/03_building.png" alt="Photography 3 Copy" class="slider-img">
+          <img src="img_campaign/photography/10_acidarab.png" alt="Photography 10 Copy" class="slider-img">
+          <img src="img_campaign/photography/04_HDK.png" alt="Photography 4 Copy" class="slider-img">
+          <img src="img_campaign/photography/05_art.png" alt="Photography 5 Copy" class="slider-img">
+          <img src="img_campaign/photography/06_landscape.png" alt="Photography 6 Copy" class="slider-img">
+          <img src="img_campaign/photography/07_noise.png" alt="Photography 7 Copy" class="slider-img">
+          <img src="img_campaign/photography/08_muc.png" alt="Photography 8 Copy" class="slider-img">
+          <img src="img_campaign/photography/09_DJ.png" alt="Photography 9 Copy" class="slider-img">
         </div>
       </div>
 
@@ -64,23 +180,25 @@
       <div class="campaigns-slider">
         <div class="slider-track scroll-left-flyers">
           <!-- Set 1 -->
-          <img src="flyer/01_lower.png" alt="Flyer 1" class="slider-img">
-          <img src="flyer/02_fritz.png" alt="Flyer 2" class="slider-img">
-          <img src="flyer/03_handwerk.png" alt="Flyer 3" class="slider-img">
-          <img src="flyer/04_core.png" alt="Flyer 4" class="slider-img">
-          <img src="flyer/05_cutting.png" alt="Flyer 5" class="slider-img">
-          <img src="flyer/06_imp.png" alt="Flyer 6" class="slider-img">
-          <img src="flyer/07_mode.png" alt="Flyer 7" class="slider-img">
-          <img src="flyer/08_boese.png" alt="Flyer 8" class="slider-img">
+          <img src="img_campaign/flyer/01_lower.png" alt="Flyer 1" class="slider-img">
+          <img src="img_campaign/flyer/02_fritz.png" alt="Flyer 2" class="slider-img">
+          <img src="img_campaign/flyer/03_handwerk.png" alt="Flyer 3" class="slider-img">
+          <img src="img_campaign/flyer/04_core.png" alt="Flyer 4" class="slider-img">
+          <img src="img_campaign/flyer/05_cutting.png" alt="Flyer 5" class="slider-img">
+          <img src="img_campaign/flyer/06_imp.png" alt="Flyer 6" class="slider-img">
+          <img src="img_campaign/flyer/07_mode.png" alt="Flyer 7" class="slider-img">
+          <img src="img_campaign/flyer/08_boese.png" alt="Flyer 8" class="slider-img">
+          <img src="img_campaign/flyer/09_gods.png" alt="Flyer 9" class="slider-img">
           <!-- Set 2 (duplication for seamless loop) -->
-          <img src="flyer/01_lower.png" alt="Flyer 1 Copy" class="slider-img">
-          <img src="flyer/02_fritz.png" alt="Flyer 2 Copy" class="slider-img">
-          <img src="flyer/03_handwerk.png" alt="Flyer 3 Copy" class="slider-img">
-          <img src="flyer/04_core.png" alt="Flyer 4 Copy" class="slider-img">
-          <img src="flyer/05_cutting.png" alt="Flyer 5 Copy" class="slider-img">
-          <img src="flyer/06_imp.png" alt="Flyer 6 Copy" class="slider-img">
-          <img src="flyer/07_mode.png" alt="Flyer 7 Copy" class="slider-img">
-          <img src="flyer/08_boese.png" alt="Flyer 8 Copy" class="slider-img">
+          <img src="img_campaign/flyer/01_lower.png" alt="Flyer 1 Copy" class="slider-img">
+          <img src="img_campaign/flyer/02_fritz.png" alt="Flyer 2 Copy" class="slider-img">
+          <img src="img_campaign/flyer/03_handwerk.png" alt="Flyer 3 Copy" class="slider-img">
+          <img src="img_campaign/flyer/04_core.png" alt="Flyer 4 Copy" class="slider-img">
+          <img src="img_campaign/flyer/05_cutting.png" alt="Flyer 5 Copy" class="slider-img">
+          <img src="img_campaign/flyer/06_imp.png" alt="Flyer 6 Copy" class="slider-img">
+          <img src="img_campaign/flyer/07_mode.png" alt="Flyer 7 Copy" class="slider-img">
+          <img src="img_campaign/flyer/08_boese.png" alt="Flyer 8 Copy" class="slider-img">
+          <img src="img_campaign/flyer/09_gods.png" alt="Flyer 9 Copy" class="slider-img">
         </div>
       </div>
 
@@ -99,12 +217,12 @@
               </p>
             </div>
             <!-- image 3 -->
-            <img src="img_campaign/fashion_03.png" alt="Munich Fashion Week 3" style="width: 90%; aspect-ratio: 3/4; object-fit: cover; margin-top: 40px; margin-left: 70%; flex-shrink: 0; position: relative; z-index: 3; display: block;">
+            <img src="img_campaign/fashion_03.png" class="fashion-img-03" alt="Munich Fashion Week 3" style="width: 90%; aspect-ratio: 3/4; object-fit: cover; margin-top: 40px; margin-left: 70%; flex-shrink: 0; position: relative; z-index: 3; display: block;">
           </div>
           
           <!-- Col 2: Image 2 staggered -->
           <div style="display: flex; align-items: center;">
-            <img src="img_campaign/fashion_02.png" alt="Munich Fashion Week 2" style="width: 90%; aspect-ratio: 3/4; object-fit: cover; margin-left: 40%; flex-shrink: 0; position: relative; z-index: 1; display: block;">
+            <img src="img_campaign/fashion_02.png" class="fashion-img-02" alt="Munich Fashion Week 2" style="width: 90%; aspect-ratio: 3/4; object-fit: cover; margin-left: 40%; flex-shrink: 0; position: relative; z-index: 1; display: block;">
           </div>
 
           <!-- Col 3: Image 1 staggered -->
@@ -121,7 +239,7 @@
       <section style="margin-top: 64px;">
         <div style="display: grid; grid-template-columns: 3fr 2fr; grid-template-rows: auto auto; gap: 0; position: relative;">
           <!-- Heading overlapping Image 1 -->
-          <h2 class="ux-sub-heading" style="position: absolute; top: 20px; left: 24px; z-index: 3; margin: 0; color: #fff; text-shadow: 0 1px 20px rgba(0,0,0,0.35);">lucky number<br>store</h2>
+          <h2 class="ux-sub-heading lucky-number-heading" style="position: absolute; top: 20px; left: 24px; z-index: 3; margin: 0; color: #fff; text-shadow: 0 1px 20px rgba(0,0,0,0.35);">lucky number<br>store</h2>
           <!-- Image 1: full-width top -->
           <img src="img_campaign/lucky_number_01.png" alt="Lucky Number 1" style="grid-column: 1 / -1; grid-row: 1; width: 100%; display: block;">
           <!-- Image 3: bottom-left (wider) -->
@@ -138,16 +256,18 @@
 
       <!-- ─── TWO-COLUMN DETAILS ─── -->
       <section class="ds-section" style="margin-top: 64px;">
-        <div class="ds-col ds-col--image">
+        <div class="ds-col ds-col--image miaac-col-desktop">
           <img src="img_campaign/miaac_sm.png" alt="MIAAC Collage" class="campaigns-collage">
         </div>
         <div class="ds-col ds-col--text" style="max-width: 650px;">
           <h2 class="ux-sub-heading" style="margin-top: 0; margin-bottom: 16px;">miaac</h2>
           <p class="ds-body">
-            I run the Instagram-based blog <a href="https://www.instagram.com/munichartsandculture/" class="ux-link" target="_blank" rel="noopener">Munich in Arts and Culture</a> where I have presented daily art and culture events from Munich since May 22, 2024. During this period the account has gained around 5,300 followers. Promoting inclusivity is important to me, so all posts are written in English to reach a broad and diverse audience. Because I feature both established galleries and alternative, underground events, this variety is reflected in the visual design.
+            I run the Instagram-based blog <a href="https://www.instagram.com/munichartsandculture/" class="ux-link" target="_blank" rel="noopener">Munich in Arts and Culture</a> where I have presented daily art and culture events from Munich since May 22, 2024. During this period the account has gained around 5,500 followers. Promoting inclusivity is important to me, so all posts are written in English to reach a broad and diverse audience. Because I feature both established galleries and alternative, underground events, this variety is reflected in the visual design.
           </p>
+          <!-- Mobile-only MIAAC image -->
+          <img src="img_campaign/miaac_sm.png" alt="MIAAC Collage" class="campaigns-collage miaac-img-mobile">
           <p class="ds-body">
-            For the stories I developed a hybrid concept: a calm, beige template for art and culture listings and an energetic, magenta design for evening events. At the same time I aim to stand out visually from other social-media pages. Therefore, every week I create a completely new layout—crafted in Photoshop, InDesign, or Figma—rather than reusing old templates. Through this constant creative variation and carefully planned visual impulses I keep the content fresh, inspire my audience, and ensure that the account remains dynamic and engaging over time.
+            To keep the content visually engaging, I create a completely new design every week, constantly experimenting with different themes, layouts, and visual approaches. Rather than relying on a fixed template, I use unexpected design choices to capture attention and keep the audience curious about what comes next. Some designs are inspired by local topics, such as photographing Munich's ghost bikes and building a visual concept around them, while others are created in collaboration with local artists who contribute their own work. I develop these designs using Photoshop, InDesign, and Figma.
           </p>
 
           <h2 class="ux-sub-heading" style="margin-top: 48px; margin-bottom: 16px;">platform expertise</h2>

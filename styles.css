@@ -69,27 +69,12 @@ body {
   color: var(--color-nav);
   text-decoration: none;
   letter-spacing: -5%;
-  transition: opacity 0.2s ease;
+  transition: color 0.2s ease;
   position: relative;
 }
 
-.nav-item::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--color-nav);
-  transition: width 0.25s ease;
-}
-
 .nav-item:hover {
-  opacity: 0.55;
-}
-
-.nav-item:hover::after {
-  width: 100%;
+  color: #13509B;
 }
 
 /* === MAIN LAYOUT === */
@@ -105,7 +90,8 @@ body {
 /* === SCROLLABLE PAGES (designs, campaigns, etc.) === */
 html:has(body.page-scrollable),
 body.page-scrollable {
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   height: auto;
 }
 
@@ -168,6 +154,27 @@ body.page-scrollable {
   flex-direction: column;
   overflow: hidden;
   position: relative;
+}
+
+@media (max-width: 1000px) {
+  .right-panel {
+    width: min(60vw, 650px);
+  }
+
+  .slide-content {
+    max-width: 100%;
+  }
+
+  .skills-list,
+  .bio-text-lead,
+  .bio-text,
+  .bio-text--light {
+    max-width: 100%;
+  }
+
+  .divider {
+    width: 100%;
+  }
 }
 
 /* === SLIDES TRACK === */
@@ -259,9 +266,11 @@ body.page-scrollable {
     opacity: 0;
     filter: blur(12px);
   }
+
   30% {
     opacity: 0.5;
   }
+
   100% {
     opacity: 1;
     filter: blur(0);
@@ -369,7 +378,7 @@ body.page-scrollable {
 }
 
 .bio-text--light {
-  font-weight: 300;
+  font-weight: 250;
   margin-bottom: 20px;
 
 }
@@ -526,6 +535,12 @@ body.page-scrollable {
   position: relative;
 }
 
+@media (max-width: 1350px) {
+  .layout-flipped .left-panel {
+    flex: 0 0 clamp(360px, 48vw, 650px);
+  }
+}
+
 .layout-flipped .right-panel {
   /* Bild-Panel: füllt den restlichen Platz — spiegelverkehrt zu index.html */
   flex: 1;
@@ -676,7 +691,7 @@ body.page-scrollable {
 .ds-body {
   font-family: var(--font-inter);
   font-weight: 300;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 2;
   color: #333;
   text-align: justify;
@@ -748,7 +763,7 @@ body.page-scrollable {
 }
 
 .campaigns-collage {
-  width: 100%;
+  width: 90%;
   height: auto;
   display: block;
   border-radius: 4px;
@@ -774,7 +789,8 @@ body.page-scrollable {
   }
 }
 
-.campaigns-page .ds-body {
+.campaigns-page .ds-body,
+.ai-page .ds-body {
   font-family: var(--font-inter);
   font-weight: 300;
   font-size: 17px;
@@ -786,4 +802,234 @@ body.page-scrollable {
 
 .study-page .designs-wrapper {
   max-width: 910px;
+}
+
+/* === AI PAGE === */
+.ai-hero-text {
+  font-family: var(--font-inter);
+  font-weight: 300;
+  font-size: clamp(32px, 4.5vw, 58px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  /* Sit above the image */
+  position: relative;
+  z-index: 2;
+}
+
+.ai-line-1 {
+  color: #000000;
+}
+
+.ai-line-2 {
+  color: rgba(0, 0, 0, 0.40);
+}
+
+.ai-line-3 {
+  color: rgba(0, 0, 0, 0.25);
+}
+
+.ai-line-4 {
+  color: rgba(0, 0, 0, 0.15);
+}
+
+.ai-hero-binary {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.01) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Wrapper lets hero text and image overlap */
+.ai-hero-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Image 1: pulled up to overlap the lower half of the hero text */
+.ai-img-01 {
+  width: 70%;
+  height: auto;
+  display: block;
+  margin-top: -60px;
+  /* pulled up to overlap the hero text */
+  margin-left: -28px;
+  /* completely left aligned */
+  position: relative;
+  z-index: 1;
+  /* sits behind the text */
+}
+
+/* Image 2: bleeds past the right edge of the column */
+.ai-img-02 {
+  width: calc(100% + 28px);
+  /* bleed into the page padding */
+  height: auto;
+  display: block;
+  margin-right: -28px;
+}
+
+.ai-tag {
+  font-weight: 300;
+  font-size: 15px;
+  border: 1px solid #a3679c;
+  border-radius: 12px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  color: #a3679c;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.ai-tag:hover {
+  background-color: #a3679c;
+  color: #ffffff;
+}
+
+
+/* === AI PAGE — IMPRESSUM (left-column embedded) === */
+
+/* The impressum block sits inside the left column, below custom ai solutions */
+.ai-col-impressum {
+  margin-top: 56px;
+  padding-top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.ai-col-impressum__legal {
+  /* compact legal block */
+}
+
+.ai-col-impressum__contact {
+  /* contact block */
+}
+
+.ai-col-impressum__heading {
+  font-family: var(--font-inter);
+  font-weight: 300;
+  font-size: clamp(26px, 2.5vw, 38px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 32px;
+}
+
+/* Shared label / text styles (reused from old impressum, now scoped narrower) */
+.ai-impressum__label {
+  font-family: var(--font-inter);
+  font-weight: 380;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+
+.ai-impressum__de-label {
+  font-family: var(--font-inter);
+  font-weight: 380;
+  font-size: 17px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  text-transform: none;
+  color: #333;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.ai-impressum__de {
+  font-family: var(--font-inter);
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.5;
+  color: #333;
+  margin: 0;
+}
+
+.ai-impressum__de-small {
+  font-family: var(--font-inter);
+  font-weight: 200;
+  font-size: 17px;
+  line-height: 1.5;
+  color: #333;
+  margin: 0;
+}
+
+.ai-impressum__link {
+  color: #333;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ai-impressum__en {
+  font-family: var(--font-inter);
+  font-weight: 200;
+  font-size: 17px;
+  line-height: 1.5;
+  color: #333;
+  margin: 0;
+}
+
+.ai-impressum__contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.ai-impressum__cta {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
+  border-bottom: 1px solid #ebebeb;
+  text-decoration: none;
+  transition: padding-left 0.2s ease;
+}
+
+.ai-impressum__cta:first-child {
+  border-top: 1px solid #ebebeb;
+}
+
+.ai-impressum__cta:hover {
+  padding-left: 6px;
+}
+
+.ai-impressum__cta-label {
+  font-family: var(--font-inter);
+  font-weight: 380;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-bottom: 3px;
+}
+
+.ai-impressum__cta-value {
+  font-family: var(--font-inter);
+  font-weight: 300;
+  font-size: 15px;
+  color: #1a1a1a;
+  letter-spacing: -0.01em;
+}
+
+.ai-impressum__availability {
+  font-family: var(--font-inter);
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #bbb;
+  margin-top: 24px;
+  margin-bottom: 0;
+}
+
+/* Mobile-only images hidden by default on desktop */
+.ai-img-mobile {
+  display: none;
 }

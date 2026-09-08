@@ -4,15 +4,309 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Designs — Jan-Luca Ahlemeyer</title>
-  <meta name="description" content="Design projects by Jan-Luca Ahlemeyer — in-car infotainment, MIAAC, HOT Performance, app design.">
+  <title>Designs &mdash; Jan-Luca Ahlemeyer</title>
+  <meta name="description"
+    content="Design projects by Jan-Luca Ahlemeyer — in-car infotainment, WinValue, Signal e.V., BIMAXU app design.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kaisei+Opti:wght@400;500;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kaisei+Opti:wght@400;500;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .ds-hero-title {
+      font-family: var(--font-inter);
+      font-weight: 300;
+      font-size: clamp(32px, 4.5vw, 58px);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      margin-bottom: 24px;
+    }
+
+    /* Collage images - no negative margins, stays in document flow */
+    .ds-collage-img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .ds-collage-img-1 {
+      transform: rotate(2deg);
+      transform-origin: top left;
+      margin-bottom: 24px;
+      max-width: 550px;
+      margin-left: -50px;
+      margin-top: -130px;
+    }
+
+    .ds-collage-img-2 {
+      width: 72%;
+      margin: 20px auto;
+      transform: rotate(2deg);
+      transform-origin: center center;
+    }
+
+    .ds-collage-img-3 {
+      transform: rotate(-2deg);
+      transform-origin: top right;
+      margin-top: 32px;
+    }
+
+    .ds-webdesign-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      margin-bottom: 40px;
+    }
+
+    .ds-grid-2-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 48px;
+    }
+
+    .ds-box-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* -- 2-column lower content section -- */
+    .ds-grid-2x2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px 56px;
+      margin-top: 48px;
+      align-items: start;
+    }
+
+    .ds-grid-2x2__cell {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .ds-grid-2x2__img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .ds-grid-2x2__label {
+      font-family: var(--font-inter);
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: #888;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .ds-grid-2x2__heading {
+      font-family: var(--font-inter);
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      color: #1a1a1a;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    /* Fade Sliders */
+    .mobile-only-slider {
+      display: none !important;
+    }
+
+    .fade-slider {
+      position: relative;
+      display: grid;
+      grid-template-areas: "stack";
+      width: 100%;
+      aspect-ratio: 874 / 580;
+      border-radius: 6px;
+      overflow: hidden;
+      background-color: transparent;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .fade-slider__img {
+      grid-area: stack;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      border-radius: 6px;
+      opacity: 0;
+      transition: opacity 0.85s ease-in-out;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .fade-slider__img.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+        /* Webdesign text: desktop/mobile switch */
+    .webdesign-text-mobile {
+      display: none;
+    }
+    .webdesign-text-desktop {
+      display: block;
+    }
+
+    @media (max-width: 1070px) {
+      .ds-collage-img-3 {
+        display: none !important;
+      }
+    }
+
+    /* ===== RESPONSIVE / TABLET / MOBILE LAYOUT (≤900px) ===== */
+    @media (max-width: 900px) {
+
+      /* --- Hero section: single column, vertical stacking --- */
+      .ds-section {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 36px !important;
+      }
+
+      /* Hero section column order: Right column (DESIGN & in-car) first (order 1), Left column (Core responsibilities) second (order 2) */
+      .ds-col--text:first-child {
+        order: 2 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+
+      .ds-col--text:last-child {
+        order: 1 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+
+      /* Hide image 1 on mobile */
+      .ds-collage-img-1 {
+        display: none !important;
+      }
+
+      /* Left column text block: reset desktop negative margins */
+      .ds-col--text > div[style*="margin-top: 64px"] {
+        margin-top: 0 !important;
+        margin-right: 0 !important;
+        padding-right: 0 !important;
+      }
+
+      /* Right column title spacing */
+      .ds-hero-title {
+        margin-bottom: 16px !important;
+      }
+
+      /* In-car section grid: stack vertically with in-car text FIRST, img2 SECOND */
+      .ds-col--text div[style*="grid-template-columns: 1fr 1fr"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 28px !important;
+        margin-top: 32px !important;
+      }
+
+      /* In-car text block: order 1, left-aligned */
+      .ds-col--text div[style*="align-items: flex-end"] {
+        order: 1 !important;
+        align-items: flex-start !important;
+      }
+      .ds-col--text div[style*="align-items: flex-end"] h2 {
+        text-align: left !important;
+        margin-bottom: 16px !important;
+      }
+      .ds-col--text div[style*="align-items: flex-end"] p {
+        text-align: justify !important;
+      }
+
+      /* Image 2: order 2, full width, tasteful tilt */
+      .ds-collage-img-2 {
+        order: 2 !important;
+        width: 100% !important;
+        max-width: 500px !important;
+        margin: 0 auto !important;
+        transform: rotate(0.7deg) !important;
+      }
+
+      /* Desktop webdesign text: shown on desktop, hidden on mobile */
+      .webdesign-text-desktop {
+        display: none !important;
+      }
+      .webdesign-text-mobile {
+        display: block !important;
+      }
+
+      /* Webdesign section top margin */
+      section[style*="margin-top: 120px"] {
+        margin-top: 64px !important;
+        margin-bottom: 0 !important;
+      }
+
+      /* Lower 2x2 grid on mobile: stack flex column. 
+         Right cell ("The interface responds...") order 1, 
+         Left cell (WinValue img5 + "app design") order 2 */
+      .ds-grid-2x2 {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 36px !important;
+        margin-top: 32px !important;
+      }
+
+      .ds-grid-2x2__cell:first-child {
+        order: 2 !important;
+        gap: 32px !important;
+      }
+
+      .ds-grid-2x2__cell:last-child {
+        order: 1 !important;
+        gap: 32px !important;
+      }
+
+      /* In right cell on mobile: place Slider 1 (order 1) BEFORE the text block (order 2) */
+      .ds-grid-2x2__cell:last-child > div:first-child {
+        order: 2 !important;
+      }
+
+      #slider1 {
+        order: 1 !important;
+      }
+
+      /* Mobile vs Desktop Sliders */
+      .desktop-only-slider {
+        display: none !important;
+      }
+      .mobile-only-slider {
+        display: grid !important;
+      }
+
+      /* Sliders styling on mobile */
+      .fade-slider {
+        aspect-ratio: 4 / 3 !important;
+      }
+
+      /* Wrapper padding - match campaigns.html mobile spacing */
+      .designs-wrapper {
+        padding-top: 20px !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+      }
+    }
+  </style>
 </head>
 
-<body class="page-scrollable">
+<body class="page-scrollable designs-page">
 
   <!-- NAVBAR -->
   <header class="navbar">
@@ -26,97 +320,154 @@
   </header>
 
   <main class="designs-page-main">
-    <div class="designs-wrapper">
+    <div class="designs-wrapper" style="overflow: visible; padding-top: 40px;">
 
-      <!-- ─── IN-CAR INFOTAINMENT ─── -->
-      <section class="ds-section">
-        <div class="ds-col ds-col--text">
-          <h2 class="ds-title">In-car infotainment<br>systems</h2>
-          <p class="ds-body">
-            In my role as UX Designer, I worked on in-car infotainment and entertainment system interfaces for premium automotive brands. Working within agile setups, I was heavily involved in designing and refining both low-fidelity screen layouts and high-fidelity wireframes, translating complex requirements into intuitive user flows.
-          </p>
-          <p class="ds-body">
-            Close collaboration with software engineers, product owners, and other stakeholders was key to aligning technical constraints with user-centric concepts, ensuring that UI components were feasible and well-integrated.
-          </p>
-          <p class="ds-body">
-            In addition, I conducted UI usability testing and interface heuristic evaluations to iteratively refine interface concepts, evaluating visual hierarchies and ensuring a seamless end-to-end user experience.
-          </p>
+      <!-- IN-CAR INFOTAINMENT -->
+      <section class="ds-section" style="gap: 56px; align-items: flex-start;">
+
+        <!-- LEFT COLUMN -->
+        <div class="ds-col--text" style="display: flex; flex-direction: column; max-width: 550px;">
+
+          <img src="img_design/img_design1.png" class="ds-collage-img ds-collage-img-1" alt="image 1">
+
+          <div style="padding-right: 12px; margin-top: 64px; margin-right: -200px;">
+            <p class="ds-body">Core responsibilities included defining detailed UX requirements, translating stakeholder
+              and system-level inputs into structured interface concepts, and collaborating closely with development
+              teams to ensure accurate implementation. Design work covered wireframes, user flows, and high-fidelity
+              prototypes as well as the development of UI components aligned with each brand's corporate identity and
+              visual language.</p>
+            <p class="ds-body">In addition, involvement in usability testing and interface validation supported the
+              optimization of key infotainment features, including navigation systems, media interfaces, settings, and
+              privacy-related menus. A strong focus was placed on ensuring clarity, consistency, and seamless
+              cross-functional execution throughout the development process.</p>
+          </div>
+
         </div>
-        <div class="ds-col ds-col--image">
-          <div class="ds-img-placeholder"></div>
-          <div class="ds-img-placeholder ds-img-placeholder--sm"></div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="ds-col--text" style="display: flex; flex-direction: column; margin-left: -70px;">
+          <h1 class="ds-hero-title">DESIGN</h1>
+          <p class="ds-body">Paul Watzlawick’s idea that “one cannot not communicate” applies not only to human communication, but to design as well. Every design choice communicates something, from color and typography to the overall visual language. That’s why it’s important to consider not only what a design does, but also how it feels and how it reflects the brand identity.</p>
+
+          <!-- img2 + in-car text side by side -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; margin-top: 24px;">
+            <img src="img_design/img_design2.png" class="ds-collage-img ds-collage-img-2" alt="image 2"
+              style="margin: 0; width: 100%;">
+            <div style="display: flex; flex-direction: column; align-items: flex-end;">
+              <h2 class="ux-sub-heading" style="text-align: right; margin-bottom: 24px; line-height: 1;">in-car
+                infotainment<br>systems</h2>
+              <p class="ds-body" style="text-align: right;">In my role as UX Designer, I worked on in-car infotainment
+                and entertainment system interfaces for premium automotive brands, including BMW and Audi. The work
+                focused on designing and refining user interfaces across digital cockpit environments, with a strong
+                emphasis on usability, information architecture, and brand-consistent interaction design.</p>
+            </div>
+          </div>
+
+          <img src="img_design/img_design3.png" class="ds-collage-img ds-collage-img-3" alt="image 3"
+            style="margin-left: 270px; max-width: 700px;">
+
         </div>
+
       </section>
 
-      <hr class="ds-divider">
+      <!-- --- WEBDESIGN --- -->
+      <section style="margin-top: 120px; margin-bottom: 32px;">
+        <h2 class="ux-sub-heading" style="margin-bottom: 24px;">webdesign</h2>
 
-      <!-- ─── MIAAC ─── -->
-      <section class="ds-section">
-        <div class="ds-col ds-col--image">
-          <div class="ds-img-placeholder ds-img-placeholder--wide"></div>
-        </div>
-        <div class="ds-col ds-col--text">
-          <h2 class="ds-title">MIAAC</h2>
-          <p class="ds-body" style="font-size:12px; letter-spacing: 0.08em; color: #999; text-transform: uppercase; margin-bottom: 14px;">Munich in Arts and Culture</p>
-          <h3 class="ds-subtitle">ABOUT</h3>
-          <p class="ds-body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales purus in scelerisque consequat, eros mauris congue dui, et efficitur justo massa in est. Maecenas eu lacus sodales, interdum lectus sed, pulvinar nunc.
-          </p>
-          <h3 class="ds-subtitle">BACKSTORY</h3>
-          <p class="ds-body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales purus in scelerisque consequat, eros mauris congue dui, et efficitur justo massa in est.
-          </p>
-          <p class="ds-body">
-            Maecenas eu lacus sodales, interdum lectus sed, pulvinar nunc. Maecenas eu lacus sodales, interdum lectus sed, pulvinar nunc. Vivamus sodales purus in scelerisque.
-          </p>
-        </div>
-      </section>
+        <img src="img_design/img_design4.png" class="ds-webdesign-img" alt="WinValue vehicle analysis tool">
 
-      <hr class="ds-divider">
+        <p class="ds-body">During my work as a UX and Web Designer at WinValue, I was tasked with redesigning the interface of a vehicle analysis tool. The goal was to create a more modern and intuitive experience while making the large amount of information easier to navigate.</p>
+        <p class="ds-body">I restructured the input fields and filters into clearer categories and refined the visual hierarchy to make the most important elements easier to identify. Typography, contrast and input styling were also adjusted to improve readability and accessibility.</p>
 
-      <!-- ─── HOT PERFORMANCE ─── -->
-      <section class="ds-section">
-        <div class="ds-col ds-col--text">
-          <h2 class="ds-title">HOT Performance</h2>
-          <h3 class="ds-subtitle">HOT PERFORMANCE</h3>
-          <p class="ds-body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales purus in scelerisque consequat, eros mauris congue dui, et efficitur justo massa in est.
-          </p>
-          <p class="ds-body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales purus in scelerisque consequat.
-          </p>
-          <h3 class="ds-subtitle" style="margin-top: 24px;">HOT PERFORMANCE</h3>
-          <p class="ds-body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales purus in scelerisque consequat, eros mauris congue dui, et efficitur justo massa in est.
-          </p>
-        </div>
-        <div class="ds-col ds-col--image">
-          <div class="ds-img-placeholder"></div>
-          <div class="ds-img-placeholder ds-img-placeholder--sm"></div>
-        </div>
-      </section>
+        <!-- 2-COLUMN LOWER SECTION -->
+        <div class="ds-grid-2x2">
 
-      <hr class="ds-divider">
+          <!-- LEFT COLUMN: WinValue detail image + BIMAXU App section -->
+          <div class="ds-grid-2x2__cell" style="display: flex; flex-direction: column; gap: 48px;">
+            <img src="img_design/img_design5.png" class="ds-grid-2x2__img" alt="WinValue interface detail">
 
-      <!-- ─── APP DESIGN ─── -->
-      <section class="ds-section">
-        <div class="ds-col ds-col--image">
-          <div class="ds-img-placeholder ds-img-placeholder--tall"></div>
-        </div>
-        <div class="ds-col ds-col--text">
-          <h2 class="ds-title" style="text-transform: lowercase; font-family: var(--font-inter); font-weight: 300;">app design</h2>
-          <h3 class="ds-subtitle">EASZY APP</h3>
-          <p class="ds-body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales purus in scelerisque consequat, eros mauris congue dui, et efficitur justo massa in est.
-          </p>
-          <p class="ds-body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales purus in scelerisque consequat.
-          </p>
+            <div>
+              <h2 class="ux-sub-heading" style="margin-bottom: 16px;">app design</h2>
+              <p class="ds-body">Great app design is not about just making things look pretty; it is about taking full ownership from raw wireframes to pixel-perfect interfaces that people actually enjoy using. Living and breathing Figma daily, I translate intricate product logic into fluid, intuitive user flows. Apple’s Human Interface Guidelines and Google’s Material Design principles are second nature to me, ensuring every screen feels sharp, responsive, and native to the platform.</p>
+              
+            <!-- LOWER SLIDER (Slider 2) -->
+            <div class="fade-slider mobile-only-slider" id="slider2-mobile" style="margin: 28px 0;">
+              <img src="img_design/silder/Slider2_image1.png" class="fade-slider__img active" alt="Slider 2 Image 1">
+              <img src="img_design/silder/Slider2_image2.png" class="fade-slider__img" alt="Slider 2 Image 2">
+              <img src="img_design/silder/Slider2_image3.png" class="fade-slider__img" alt="Slider 2 Image 3">
+            </div>
+
+              <p class="ds-body">Design does not stop at handover either. I treat UX as a continuously evolving craft, constantly challenging assumptions through hands-on usability testing, user feedback, and data-driven iterations. From establishing scalable design tokens and robust component architectures to obsessing over the physics of micro-interactions, every detail is intentional.</p>
+              <p class="ds-body">By bridging the gap between bold aesthetics and real-world engineering constraints, I ensure that ambitious visual concepts survive the development phase without losing their punch. The end goal is always simple: unapologetically user-centered design that looks stunning, solves real problems, and just works.</p>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: Webdesign text continuation + 2 Image Sliders stacked -->
+          <div class="ds-grid-2x2__cell" style="display: flex; flex-direction: column; gap: 32px;">
+            <div>
+              <!-- Desktop version (full text) -->
+              <div class="webdesign-text-desktop">
+                <p class="ds-body">The interface responds to the user's selections by revealing additional options when needed. Visual cues, including changing vehicle imagery, help users keep track of the selected vehicle category and reduce potential selection errors.</p>
+                <p class="ds-body">The redesign also follows the visual language used throughout the product, creating a more consistent and cohesive user experience.</p>
+                <p class="ds-body">I also gained valuable experience working as a freelancer, designing a website for the cultural association Signal e.V. tailored specifically to the needs of the cultural sector. In addition, through my work with another company, I contributed to the development of web interfaces designed to present numerical data in a clear and aesthetically engaging way. Collaborating closely with developers and data analysts allowed me to create designs that were both highly functional and visually compelling.</p>
+              </div>
+              <!-- Mobile version (shorter text) -->
+              <div class="webdesign-text-mobile">
+                <p class="ds-body">The interface responds to the user's selections by revealing additional options, using visual cues to help users track the selected vehicle category and reduce errors.</p>
+                <p class="ds-body">Beyond WinValue, I designed a website for Signal e.V. and contributed to data-visualization web interfaces, working closely with developers and analysts to deliver functional, visually compelling results.</p>
+              </div>
+            </div>
+
+            <!-- UPPER SLIDER (Slider 1) -->
+            <div class="fade-slider" id="slider1">
+              <img src="img_design/silder/Slider1_image1.png" class="fade-slider__img active" alt="Slider 1 Image 1">
+              <img src="img_design/silder/Slider1_image2.png" class="fade-slider__img" alt="Slider 1 Image 2">
+              <img src="img_design/silder/Slider1_image3.png" class="fade-slider__img" alt="Slider 1 Image 3">
+              <img src="img_design/silder/Slider1_image4.png" class="fade-slider__img" alt="Slider 1 Image 4">
+              <img src="img_design/silder/Slider1_image5.png" class="fade-slider__img" alt="Slider 1 Image 5">
+            </div>
+
+            <!-- LOWER SLIDER (Slider 2 for Desktop) -->
+            <div class="fade-slider desktop-only-slider" id="slider2-desktop">
+              <img src="img_design/silder/Slider2_image1.png" class="fade-slider__img active" alt="Slider 2 Image 1">
+              <img src="img_design/silder/Slider2_image2.png" class="fade-slider__img" alt="Slider 2 Image 2">
+              <img src="img_design/silder/Slider2_image3.png" class="fade-slider__img" alt="Slider 2 Image 3">
+            </div>
+
+          </div>
+
         </div>
       </section>
 
     </div>
   </main>
 
+  <script>
+    function setupFadeSlider(sliderId, intervalMs) {
+      const slider = document.getElementById(sliderId);
+      if (!slider) return;
+      const images = Array.from(slider.querySelectorAll('.fade-slider__img'));
+      if (images.length <= 1) return;
+
+      let currentIndex = 0;
+      setInterval(() => {
+        images[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].classList.add('active');
+      }, intervalMs);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Upper Slider: cycles through Slider1 images (alphabetically sorted)
+      setupFadeSlider('slider1', 3000);
+      // Lower Slider: cycles through Slider2 images with staggered timing
+      setTimeout(() => {
+        setupFadeSlider('slider2-desktop', 3400);
+        setupFadeSlider('slider2-mobile', 3400);
+      }, 1000);
+    });
+  </script>
+
 </body>
+
 </html>
