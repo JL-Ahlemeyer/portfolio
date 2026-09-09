@@ -42,7 +42,7 @@ function getCurrentFilename() {
 // Check if navigated from below (scrolled up from subsequent page)
 const isNavigatedFromBelow = window.location.hash === '#bottom' || window.location.search.includes('dir=prev') || window.location.search.includes('from=bottom');
 
-// === ENTRANCE SCROLL ANIMATION (FOR NEW CONTENT) ===
+// === ENTRANCE SCROLL ANIMATION (PAGE ROLLS IN) ===
 (function () {
   const urlParams = new URLSearchParams(window.location.search);
   const dir = urlParams.get('dir');
@@ -51,17 +51,17 @@ const isNavigatedFromBelow = window.location.hash === '#bottom' || window.locati
   const mainEl = document.querySelector('main');
   if (!mainEl) return;
 
-  // Next page (scrolling down): enters from below (+40px)
-  // Previous page (scrolling up): enters from above (-40px)
-  const enterOffset = dir === 'next' ? '40px' : '-40px';
+  // Next page (scrolling down): content scrolls up in from bottom (80vh)
+  // Previous page (scrolling up): content scrolls down in from top (-80vh)
+  const enterOffset = dir === 'next' ? '70vh' : '-70vh';
 
-  mainEl.style.opacity = '0';
+  mainEl.style.opacity = '0.7';
   mainEl.style.transform = `translateY(${enterOffset})`;
   mainEl.style.willChange = 'transform, opacity';
 
   requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      mainEl.style.transition = 'opacity 0.38s ease, transform 0.38s cubic-bezier(0.16, 1, 0.3, 1)';
+      mainEl.style.transition = 'transform 0.48s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease';
       mainEl.style.opacity = '1';
       mainEl.style.transform = 'translateY(0)';
 
@@ -76,7 +76,7 @@ const isNavigatedFromBelow = window.location.hash === '#bottom' || window.locati
           const cleanSearch = window.location.search.replace(/[?&]dir=[^&#]*/, '').replace(/^&/, '?');
           history.replaceState(null, '', window.location.pathname + cleanSearch + (window.location.hash || ''));
         }
-      }, 400);
+      }, 500);
     });
   });
 })();
@@ -268,7 +268,7 @@ if (isNavigatedFromBelow) {
         position: fixed;
         left: 50%;
         transform: translateX(-50%);
-        background: rgba(26, 26, 26, 0.90);
+        background: rgba(26, 26, 26, 0.92);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         color: #f5f5f5;
@@ -278,7 +278,7 @@ if (isNavigatedFromBelow) {
         letter-spacing: 0.04em;
         padding: 8px 18px;
         border-radius: 999px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
         pointer-events: none;
         opacity: 0;
         transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -299,14 +299,22 @@ if (isNavigatedFromBelow) {
 
     if (direction === 'next') {
       el.style.top = 'auto';
-      el.style.bottom = '28px';
+      el.style.bottom = '20px';
     } else {
       el.style.bottom = 'auto';
-      el.style.top = '78px';
+      el.style.top = '72px';
     }
 
     if (step === 1) {
       el.innerHTML = `<span>scroll again for <strong>${targetLabel}</strong></span> <span style="font-size: 14px;">${arrow}</span>`;
+
+      // Shift page content to make space so the notification does NOT obscure any text
+      const mainEl = document.querySelector('main');
+      if (mainEl && !isTransitioning) {
+        const peekShift = direction === 'next' ? '-64px' : '64px';
+        mainEl.style.transition = 'transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1)';
+        mainEl.style.transform = `translateY(${peekShift})`;
+      }
     } else {
       el.innerHTML = `<span>loading <strong>${targetLabel}</strong>...</span>`;
     }
@@ -320,9 +328,22 @@ if (isNavigatedFromBelow) {
       hintEl.style.opacity = '0';
       hintEl.style.transform = 'translateX(-50%) translateY(10px)';
     }
+
+    // Smoothly return content back to normal resting position when notification disappears
+    const mainEl = document.querySelector('main');
+    if (mainEl && !isTransitioning) {
+      mainEl.style.transition = 'transform 0.32s cubic-bezier(0.2, 0.8, 0.2, 1)';
+      mainEl.style.transform = 'translateY(0)';
+      setTimeout(() => {
+        if (!isTransitioning && !activeDirection) {
+          mainEl.style.transform = '';
+          mainEl.style.transition = '';
+        }
+      }, 340);
+    }
   }
 
-  // Directional scroll animation for content (<main>)
+  // Pure scroll-like exit animation: content scrolls all the way off screen
   function executeTransition(targetUrl, direction) {
     if (isTransitioning || !targetUrl) return;
     isTransitioning = true;
@@ -330,21 +351,19 @@ if (isNavigatedFromBelow) {
 
     const mainEl = document.querySelector('main');
     if (mainEl) {
-      // Exit animation:
-      // Scrolling DOWN to next: content moves UP (-40px)
-      // Scrolling UP to prev: content moves DOWN (+40px)
-      const exitOffset = direction === 'next' ? '-40px' : '40px';
-      mainEl.style.transition = 'opacity 0.28s ease, transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1)';
-      mainEl.style.opacity = '0';
+      // Outgoing content scrolls vertically out of view
+      const exitOffset = direction === 'next' ? '-75vh' : '75vh';
+      mainEl.style.transition = 'transform 0.42s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.38s ease';
       mainEl.style.transform = `translateY(${exitOffset})`;
+      mainEl.style.opacity = '0.5';
     }
 
-    // Pass direction flag to trigger matching entrance animation on next page
+    // Pass direction flag to trigger matching entrance scroll on destination page
     const destination = direction === 'prev' ? `${targetUrl}?dir=prev#bottom` : `${targetUrl}?dir=next`;
 
     setTimeout(() => {
       window.location.href = destination;
-    }, 280);
+    }, 340);
   }
 
   function isAtPageTop() {
@@ -361,7 +380,7 @@ if (isNavigatedFromBelow) {
       return true;
     }
 
-    return scrollY <= 8;
+    return scrollY <= 14;
   }
 
   function isAtPageBottom() {
@@ -384,10 +403,10 @@ if (isNavigatedFromBelow) {
       return true;
     }
 
-    return (scrollY + windowH) >= (docH - 12);
+    return (scrollY + windowH) >= (docH - 24);
   }
 
-  // Track how long user has been settled at the boundary (prevents scroll-arrival from triggering)
+  // Track how long user has been settled at boundary (prevents scroll-arrival from triggering)
   let bottomSettleTime = 0;
   let topSettleTime = 0;
 
@@ -455,21 +474,18 @@ if (isNavigatedFromBelow) {
 
     // Scrolling down at bottom -> next page
     if (e.deltaY > 0 && isAtPageBottom() && nextPage) {
-      // Must be settled at the bottom (not just arrived via momentum)
       if (bottomSettleTime && (now - bottomSettleTime > 200) && !isWheelFlickCoolingDown) {
         wheelAccumulator += e.deltaY;
         if (wheelAccumulator >= WHEEL_FLICK_THRESHOLD) {
           isWheelFlickCoolingDown = true;
           wheelAccumulator = 0;
           registerScrollGesture('next');
-          // Enforce a distinct 450ms cooldown so a single wheel glide can never trigger both flicks
           setTimeout(() => { isWheelFlickCoolingDown = false; }, 450);
         }
       }
     }
     // Scrolling up at top -> prev page
     else if (e.deltaY < 0 && isAtPageTop() && prevPage) {
-      // Must be settled at the top
       if (topSettleTime && (now - topSettleTime > 200) && !isWheelFlickCoolingDown) {
         wheelAccumulator += Math.abs(e.deltaY);
         if (wheelAccumulator >= WHEEL_FLICK_THRESHOLD) {
