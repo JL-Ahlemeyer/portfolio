@@ -40,7 +40,46 @@ function getCurrentFilename() {
 }
 
 // Check if navigated from below (scrolled up from subsequent page)
-const isNavigatedFromBelow = window.location.hash === '#bottom' || window.location.search.includes('from=bottom');
+const isNavigatedFromBelow = window.location.hash === '#bottom' || window.location.search.includes('dir=prev') || window.location.search.includes('from=bottom');
+
+// === ENTRANCE SCROLL ANIMATION (FOR NEW CONTENT) ===
+(function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const dir = urlParams.get('dir');
+  if (!dir) return;
+
+  const mainEl = document.querySelector('main');
+  if (!mainEl) return;
+
+  // Next page (scrolling down): enters from below (+40px)
+  // Previous page (scrolling up): enters from above (-40px)
+  const enterOffset = dir === 'next' ? '40px' : '-40px';
+
+  mainEl.style.opacity = '0';
+  mainEl.style.transform = `translateY(${enterOffset})`;
+  mainEl.style.willChange = 'transform, opacity';
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      mainEl.style.transition = 'opacity 0.38s ease, transform 0.38s cubic-bezier(0.16, 1, 0.3, 1)';
+      mainEl.style.opacity = '1';
+      mainEl.style.transform = 'translateY(0)';
+
+      setTimeout(() => {
+        mainEl.style.transition = '';
+        mainEl.style.transform = '';
+        mainEl.style.opacity = '';
+        mainEl.style.willChange = '';
+
+        // Clean URL search param without re-scrolling
+        if (window.location.search.includes('dir=')) {
+          const cleanSearch = window.location.search.replace(/[?&]dir=[^&#]*/, '').replace(/^&/, '?');
+          history.replaceState(null, '', window.location.pathname + cleanSearch + (window.location.hash || ''));
+        }
+      }, 400);
+    });
+  });
+})();
 
 // === HORIZONTAL SLIDER ===
 const track = document.getElementById('slidesTrack');
@@ -283,7 +322,7 @@ if (isNavigatedFromBelow) {
     }
   }
 
-  // Purely animate content (<main>) so .navbar stays completely fixed, stable, and unaffected
+  // Directional scroll animation for content (<main>)
   function executeTransition(targetUrl, direction) {
     if (isTransitioning || !targetUrl) return;
     isTransitioning = true;
@@ -291,16 +330,21 @@ if (isNavigatedFromBelow) {
 
     const mainEl = document.querySelector('main');
     if (mainEl) {
-      mainEl.style.transition = 'opacity 0.26s ease';
+      // Exit animation:
+      // Scrolling DOWN to next: content moves UP (-40px)
+      // Scrolling UP to prev: content moves DOWN (+40px)
+      const exitOffset = direction === 'next' ? '-40px' : '40px';
+      mainEl.style.transition = 'opacity 0.28s ease, transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1)';
       mainEl.style.opacity = '0';
+      mainEl.style.transform = `translateY(${exitOffset})`;
     }
 
-    // When navigating UP to previous page, land at the bottom of that page
-    const destination = direction === 'prev' ? `${targetUrl}#bottom` : targetUrl;
+    // Pass direction flag to trigger matching entrance animation on next page
+    const destination = direction === 'prev' ? `${targetUrl}?dir=prev#bottom` : `${targetUrl}?dir=next`;
 
     setTimeout(() => {
       window.location.href = destination;
-    }, 260);
+    }, 280);
   }
 
   function isAtPageTop() {
