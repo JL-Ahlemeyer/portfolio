@@ -154,18 +154,37 @@
 <body class="page-scrollable ai-page">
 
   <!-- NAVBAR -->
-  <header class="navbar">
+    <header class="navbar">
     <a href="index.html" class="nav-name">jan-luca ahlemeyer</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <div class="nav-right-cluster">
+      <div class="lang-switch lang-switch--mobile-header" aria-label="Language selector">
+        <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        <span class="lang-sep">/</span>
+        <button type="button" class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
     <nav class="nav-links" id="navLinks">
-      <a href="user-understanding.html" class="nav-item" id="nav-user-understanding">user understanding</a>
-      <a href="designs.html" class="nav-item" id="nav-designs">designs</a>
-      <a href="campaigns.html" class="nav-item" id="nav-campaigns">campaigns</a>
-      <a href="ai.html" class="nav-item nav-item--active" id="nav-ai">ai</a>
+      <a href="user-understanding.html" class="nav-item" id="nav-user-understanding" data-i18n="nav.user_understanding">user understanding</a>
+      <a href="designs.html" class="nav-item" id="nav-designs" data-i18n="nav.designs">designs</a>
+      <a href="campaigns.html" class="nav-item" id="nav-campaigns" data-i18n="nav.campaigns">campaigns</a>
+      <a href="ai.html" class="nav-item nav-item--active" id="nav-ai" data-i18n="nav.ai">ai</a>
+      <div class="lang-switch lang-switch--desktop" aria-label="Language selector">
+        <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        <span class="lang-sep">/</span>
+        <button type="button" class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+      </div>
+      <div class="nav-item nav-item--lang" id="nav-lang-item">
+        <div class="lang-switch lang-switch--mobile-menu" aria-label="Language selector">
+          <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+          <span class="lang-sep">/</span>
+          <button type="button" class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+        </div>
+      </div>
     </nav>
   </header>
 
@@ -200,7 +219,7 @@
 
           <!-- custom ai solutions -->
           <div class="ai-block-custom-ai" style="margin-top: 48px;">
-            <h2 class="ux-sub-heading" style="margin-top: 0; margin-bottom: 16px;">custom ai solutions</h2>
+            <h2 class="ux-sub-heading" style="margin-top: 0; margin-bottom: 16px;" data-i18n="ai.custom_solutions_title">custom ai solutions</h2>
             <p class="ds-body" style="margin-bottom: 24px;">I build lightweight, custom AI tools and browser-based interfaces tailored to specific internal and external data workflows. The goal is always to make data processing accessible and fast, without adding bloated infrastructure.</p>
             <!-- Mobile Image 2 -->
             <img src="img_ai/ai_img_02.png" alt="AI Project Image 2" class="ai-img-mobile">
@@ -221,7 +240,7 @@
               <p class="ai-impressum__de-small">Jan-Luca Ahlemeyer<br>Dientzenhoferstraße 20<br>80937 München<br>Deutschland</p>
 
               <p class="ai-impressum__de-label" style="margin-top: 16px;">Kontakt</p>
-              <p class="ai-impressum__de">E-Mail: janluca.ahlemeyer(at)email.com</p>
+              <p class="ai-impressum__de">Mail: janluca.ahlemeyer(at)gmail.com (<a href="https://gmail.com" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">https://gmail.com</a>)</p>
 
               <p class="ai-impressum__de-label" style="margin-top: 16px;">Verantwortlich nach § 18 Abs. 2 MStV</p>
               <p class="ai-impressum__de-small">Jan-Luca Ahlemeyer, Dientzenhoferstraße 20, 80937 München</p>
@@ -247,33 +266,33 @@
           <!-- ai scarpers -->
           <div class="ai-block-scrapers">
             <p class="ds-body" style="margin-bottom: 24px;">I build custom AI applications focused on web scraping and data interpretation. Leveraging models from Gemini and OpenAI, I create pipelines to efficiently analyze and structure complex datasets. Additionally, I am highly proficient in AI image generation and "vibe coding," using tools like Midjourney, DaVinci, Codex, Antigravity, and Gemini to streamline creative and technical workflows.</p>
-            <h2 class="ux-sub-heading" style="margin-top: 0; margin-bottom: 16px;">ai scarpers</h2>
+            <h2 class="ux-sub-heading" style="margin-top: 0; margin-bottom: 16px;" data-i18n="ai.scrapers_title">ai scrapers</h2>
 
             <div style="display: flex; gap: 32px;">
               <div style="flex: 1;">
                 <p class="ds-body" style="font-weight: 500; color: #1a1a1a; margin-bottom: 8px;">
-                  Job offerings <a href="https://github.com/JL-Ahlemeyer/Creative_Job_Scraper_Munich_-public-" target="_blank" rel="noopener noreferrer" class="ai-tag">view code</a>
+                  <span data-i18n="ai.job_offerings_title">Job offerings</span> <a href="https://github.com/JL-Ahlemeyer/Creative_Job_Scraper_Munich_-public-" target="_blank" rel="noopener noreferrer" class="ai-tag" data-i18n="tag.view_code">view code</a>
                 </p>
-                <p class="ds-body">Built with Python, BeautifulSoup, and Aiogram, this automation pipeline scrapes creative job listings from cultural boards. Leveraging an AI model, it categorizes opportunities by field and automatically dispatches them to dedicated Telegram threads, streamlining the job search process for creative professionals.</p>
+                <p class="ds-body" data-i18n="ai.job_offerings_desc">Built with Python, BeautifulSoup, and Aiogram, this automation pipeline scrapes creative job listings from cultural boards. Leveraging an AI model, it categorizes opportunities by field and automatically dispatches them to dedicated Telegram threads, streamlining the job search process for creative professionals.</p>
               </div>
               <div style="flex: 1;">
                 <p class="ds-body" style="font-weight: 500; color: #1a1a1a; margin-bottom: 8px;">
-                  Funding &amp; Submission <a href="https://github.com/JL-Ahlemeyer/Funding" target="_blank" rel="noopener noreferrer" class="ai-tag">view code</a>
+                  <span data-i18n="ai.funding_title">Funding &amp; Submission</span> <a href="https://github.com/JL-Ahlemeyer/Funding" target="_blank" rel="noopener noreferrer" class="ai-tag" data-i18n="tag.view_code">view code</a>
                 </p>
-                <p class="ds-body">This project explores how web scraping and AI can make cultural funding opportunities easier to discover and understand. The scraper collects current calls and funding programs from relevant Munich sources, extracts key information such as deadlines, eligibility, and funding amounts, and transforms it into structured, accessible data. The aim is to reduce manual research and make opportunities easier to find for people working in the creative sector.</p>
+                <p class="ds-body" data-i18n="ai.funding_desc">This project explores how web scraping and AI can make cultural funding opportunities easier to discover and understand. The scraper collects current calls and funding programs from relevant Munich sources, extracts key information such as deadlines, eligibility, and funding amounts, and transforms it into structured, accessible data. The aim is to reduce manual research and make opportunities easier to find for people working in the creative sector.</p>
               </div>
             </div>
           </div>
 
           <!-- data interpretation -->
           <div class="ai-block-data">
-            <h2 class="ux-sub-heading" style="margin-top: 0; margin-bottom: 16px;">data
+            <h2 class="ux-sub-heading" style="margin-top: 0; margin-bottom: 16px;" data-i18n="ai.data_interp_title">data
               interpretation &amp;<br>decision making</h2>
-            <p class="ds-body" style="margin-bottom: 20px;">A central focus of my work is turning unstructured, messy information into actionable data for better decision-making. Grounded in an M.Sc. in Human Factors &amp; Engineering Psychology, I approach data interpretation through the lens of human cognitive architecture—designing workflows that align with how people naturally perceive, process, and act on information.</p>
+            <p class="ds-body" style="margin-bottom: 20px;" data-i18n="ai.data_interp_p1">A central focus of my work is turning unstructured, messy information into actionable data for better decision-making. Grounded in an M.Sc. in Human Factors & Engineering Psychology, I approach data interpretation through the lens of human cognitive architecture—designing workflows that align with how people naturally perceive, process, and act on information.</p>
             <!-- Mobile Image 1 -->
             <img src="img_ai/ai_img_01.png" alt="AI Project Image 1" class="ai-img-mobile ai-img-01-mobile">
-            <p class="ds-body" style="margin-bottom: 20px;">Cognitive psychology demonstrates that human working memory is strictly limited in its processing capacity. When confronted with large volumes of raw, fragmented inputs, cognitive overload quickly impairs reasoning, pattern recognition, and sound judgment. People struggle not from an inability to think, but from the severe bandwidth bottlenecks of holding, filtering, and synthesizing noise.</p>
-            <p class="ds-body">By leveraging AI to parse, contextualize, and hierarchically structure complex data, we offload extraneous cognitive burden. This preserves vital working memory and mental bandwidth for what humans do best: strategic reasoning, contextual evaluation, creative problem-solving, and making well-grounded decisions with clarity.</p>
+            <p class="ds-body" style="margin-bottom: 20px;" data-i18n="ai.data_interp_p2">Cognitive psychology demonstrates that human working memory is strictly limited in its processing capacity. When confronted with large volumes of raw, fragmented inputs, cognitive overload quickly impairs reasoning, pattern recognition, and sound judgment. People struggle not from an inability to think, but from the severe bandwidth bottlenecks of holding, filtering, and synthesizing noise.</p>
+            <p class="ds-body" data-i18n="ai.data_interp_p3">By leveraging AI to parse, contextualize, and hierarchically structure complex data, we offload extraneous cognitive burden. This preserves vital working memory and mental bandwidth for what humans do best: strategic reasoning, contextual evaluation, creative problem-solving, and making well-grounded decisions with clarity.</p>
           </div>
 
           <!-- Image 2 &mdash; bleeds past right edge -->
@@ -286,6 +305,7 @@
   
   </main>
 
+  <script src="translations.js"></script>
   <script src="script.js"></script>
 </body>
 

@@ -435,18 +435,37 @@
 <body>
 
   <!-- NAVBAR -->
-  <header class="navbar">
+    <header class="navbar">
     <a href="index.html" class="nav-name">jan-luca ahlemeyer</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <div class="nav-right-cluster">
+      <div class="lang-switch lang-switch--mobile-header" aria-label="Language selector">
+        <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        <span class="lang-sep">/</span>
+        <button type="button" class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
     <nav class="nav-links" id="navLinks">
-      <a href="user-understanding.html" class="nav-item" id="nav-user-understanding">user understanding</a>
-      <a href="designs.html" class="nav-item" id="nav-designs">designs</a>
-      <a href="campaigns.html" class="nav-item" id="nav-campaigns">campaigns</a>
-      <a href="ai.html" class="nav-item" id="nav-ai">ai</a>
+      <a href="user-understanding.html" class="nav-item" id="nav-user-understanding" data-i18n="nav.user_understanding">user understanding</a>
+      <a href="designs.html" class="nav-item" id="nav-designs" data-i18n="nav.designs">designs</a>
+      <a href="campaigns.html" class="nav-item" id="nav-campaigns" data-i18n="nav.campaigns">campaigns</a>
+      <a href="ai.html" class="nav-item" id="nav-ai" data-i18n="nav.ai">ai</a>
+      <div class="lang-switch lang-switch--desktop" aria-label="Language selector">
+        <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        <span class="lang-sep">/</span>
+        <button type="button" class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+      </div>
+      <div class="nav-item nav-item--lang" id="nav-lang-item">
+        <div class="lang-switch lang-switch--mobile-menu" aria-label="Language selector">
+          <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+          <span class="lang-sep">/</span>
+          <button type="button" class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+        </div>
+      </div>
     </nav>
   </header>
 
@@ -748,6 +767,7 @@
 
   </main>
 
+  <script src="translations.js"></script>
   <script src="script.js"></script>
 </body>
 

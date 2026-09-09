@@ -344,18 +344,37 @@
 <body class="page-scrollable designs-page">
 
   <!-- NAVBAR -->
-  <header class="navbar">
+    <header class="navbar">
     <a href="index.html" class="nav-name">jan-luca ahlemeyer</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <div class="nav-right-cluster">
+      <div class="lang-switch lang-switch--mobile-header" aria-label="Language selector">
+        <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        <span class="lang-sep">/</span>
+        <button type="button" class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
     <nav class="nav-links" id="navLinks">
-      <a href="user-understanding.html" class="nav-item" id="nav-user-understanding">user understanding</a>
-      <a href="designs.html" class="nav-item nav-item--active" id="nav-designs">designs</a>
-      <a href="campaigns.html" class="nav-item" id="nav-campaigns">campaigns</a>
-      <a href="ai.html" class="nav-item" id="nav-ai">ai</a>
+      <a href="user-understanding.html" class="nav-item" id="nav-user-understanding" data-i18n="nav.user_understanding">user understanding</a>
+      <a href="designs.html" class="nav-item nav-item--active" id="nav-designs" data-i18n="nav.designs">designs</a>
+      <a href="campaigns.html" class="nav-item" id="nav-campaigns" data-i18n="nav.campaigns">campaigns</a>
+      <a href="ai.html" class="nav-item" id="nav-ai" data-i18n="nav.ai">ai</a>
+      <div class="lang-switch lang-switch--desktop" aria-label="Language selector">
+        <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        <span class="lang-sep">/</span>
+        <button type="button" class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+      </div>
+      <div class="nav-item nav-item--lang" id="nav-lang-item">
+        <div class="lang-switch lang-switch--mobile-menu" aria-label="Language selector">
+          <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+          <span class="lang-sep">/</span>
+          <button type="button" class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+        </div>
+      </div>
     </nav>
   </header>
 
@@ -371,17 +390,10 @@
           <img src="img_design/img_design1.png" class="ds-collage-img ds-collage-img-1" alt="image 1">
 
           <div style="padding-right: 12px; margin-top: 64px; margin-right: -200px;">
-            <p class="ds-body">Core responsibilities included defining detailed UX requirements, translating stakeholder
-              and system-level inputs into structured interface concepts, and collaborating closely with development
-              teams to ensure accurate implementation. Design work covered wireframes, user flows, and high-fidelity
-              prototypes as well as the development of UI components aligned with each brand's corporate identity and
-              visual language.</p>
+            <p class="ds-body" data-i18n="designs.infotainment_resp_1">Core responsibilities included defining detailed UX requirements, translating stakeholder and system-level inputs into structured interface concepts, and collaborating closely with development teams to ensure accurate implementation. Design work covered wireframes, user flows, and high-fidelity prototypes as well as the development of UI components aligned with each brand's corporate identity and visual language.</p>
 
             <img src="img_design/img_design3.png" class="ds-responsibilities-img-mobile" alt="Audi in-car interface">
-            <p class="ds-body">In addition, involvement in usability testing and interface validation supported the
-              optimization of key infotainment features, including navigation systems, media interfaces, settings, and
-              privacy-related menus. A strong focus was placed on ensuring clarity, consistency, and seamless
-              cross-functional execution throughout the development process.</p>
+            <p class="ds-body" data-i18n="designs.infotainment_resp_2">In addition, involvement in usability testing and interface validation supported the optimization of key infotainment features, including navigation systems, media interfaces, settings, and privacy-related menus. A strong focus was placed on ensuring clarity, consistency, and seamless cross-functional execution throughout the development process.</p>
           </div>
 
         </div>
@@ -397,8 +409,7 @@
             <img src="img_design/img_design2.png" class="ds-collage-img ds-collage-img-2" alt="image 2"
               style="margin: 0; width: 100%;">
             <div style="display: flex; flex-direction: column; align-items: flex-end;">
-              <h2 class="ux-sub-heading" style="text-align: right; margin-bottom: 24px; line-height: 1;">in-car
-                infotainment<br>systems</h2>
+              <h2 class="ux-sub-heading" style="text-align: right; margin-bottom: 24px; line-height: 1;" data-i18n="designs.infotainment_title">in-car<br>infotainment<br>systems</h2>
               <p class="ds-body" style="text-align: right;">In my role as UX Designer, I worked on in-car infotainment
                 and entertainment system interfaces for premium automotive brands, including BMW and Audi. The work
                 focused on designing and refining user interfaces across digital cockpit environments, with a strong
@@ -417,12 +428,12 @@
 
       <!-- --- WEBDESIGN --- -->
       <section class="ds-webdesign-section">
-        <h2 class="ux-sub-heading" style="margin-bottom: 24px;">webdesign</h2>
+        <h2 class="ux-sub-heading" style="margin-bottom: 24px;" data-i18n="designs.webdesign_title">webdesign</h2>
 
         <img src="img_design/img_design4.png" class="ds-webdesign-img" alt="WinValue vehicle analysis tool">
 
-        <p class="ds-body">During my work as a UX and Web Designer at WinValue, I was tasked with redesigning the interface of a vehicle analysis tool. The goal was to create a more modern and intuitive experience while making the large amount of information easier to navigate.</p>
-        <p class="ds-body">I restructured the input fields and filters into clearer categories and refined the visual hierarchy to make the most important elements easier to identify. Typography, contrast and input styling were also adjusted to improve readability and accessibility.</p>
+        <p class="ds-body" data-i18n="designs.webdesign_p1">During my work as a UX and Web Designer at WinValue, I was tasked with redesigning the interface of a vehicle analysis tool. The goal was to create a more modern and intuitive experience while making the large amount of information easier to navigate.</p>
+        <p class="ds-body" data-i18n="designs.webdesign_p2">I restructured the input fields and filters into clearer categories and refined the visual hierarchy to make the most important elements easier to identify. Typography, contrast and input styling were also adjusted to improve readability and accessibility.</p>
 
         <!-- 2-COLUMN LOWER SECTION -->
         <div class="ds-grid-2x2">
@@ -432,8 +443,8 @@
             <img src="img_design/img_design5.png" class="ds-grid-2x2__img" alt="WinValue interface detail">
 
             <div>
-              <h2 class="ux-sub-heading" style="margin-bottom: 16px;">app design</h2>
-              <p class="ds-body">Great app design is not about just making things look pretty; it is about taking full ownership from raw wireframes to pixel-perfect interfaces that people actually enjoy using. Living and breathing Figma daily, I translate intricate product logic into fluid, intuitive user flows. Apple’s Human Interface Guidelines and Google’s Material Design principles are second nature to me, ensuring every screen feels sharp, responsive, and native to the platform.</p>
+              <h2 class="ux-sub-heading" style="margin-bottom: 16px;" data-i18n="designs.appdesign_title">app design</h2>
+              <p class="ds-body" data-i18n="designs.appdesign_p1">Great app design is not about just making things look pretty; it is about taking full ownership from raw wireframes to pixel-perfect interfaces that people actually enjoy using. Living and breathing Figma daily, I translate intricate product logic into fluid, intuitive user flows. Apple’s Human Interface Guidelines and Google’s Material Design principles are second nature to me, ensuring every screen feels sharp, responsive, and native to the platform.</p>
               
             <!-- LOWER SLIDER (Slider 2) -->
             <div class="fade-slider mobile-only-slider" id="slider2-mobile" style="margin: 28px 0;">
@@ -442,8 +453,8 @@
               <img src="img_design/silder/Slider2_image3.png" class="fade-slider__img" alt="Slider 2 Image 3">
             </div>
 
-              <p class="ds-body">Design does not stop at handover either. I treat UX as a continuously evolving craft, constantly challenging assumptions through hands-on usability testing, user feedback, and data-driven iterations. From establishing scalable design tokens and robust component architectures to obsessing over the physics of micro-interactions, every detail is intentional.</p>
-              <p class="ds-body">By bridging the gap between bold aesthetics and real-world engineering constraints, I ensure that ambitious visual concepts survive the development phase without losing their punch. The end goal is always simple: unapologetically user-centered design that looks stunning, solves real problems, and just works.</p>
+              <p class="ds-body" data-i18n="designs.appdesign_p2">Design does not stop at handover either. I treat UX as a continuously evolving craft, constantly challenging assumptions through hands-on usability testing, user feedback, and data-driven iterations. From establishing scalable design tokens and robust component architectures to obsessing over the physics of micro-interactions, every detail is intentional.</p>
+              <p class="ds-body" data-i18n="designs.appdesign_p3">By bridging the gap between bold aesthetics and real-world engineering constraints, I ensure that ambitious visual concepts survive the development phase without losing their punch. The end goal is always simple: unapologetically user-centered design that looks stunning, solves real problems, and just works.</p>
             </div>
           </div>
 
@@ -452,9 +463,9 @@
             <div>
               <!-- Desktop version (full text) -->
               <div class="webdesign-text-desktop">
-                <p class="ds-body">The interface responds to the user's selections by revealing additional options when needed. Visual cues, including changing vehicle imagery, help users keep track of the selected vehicle category and reduce potential selection errors.</p>
-                <p class="ds-body">The redesign also follows the visual language used throughout the product, creating a more consistent and cohesive user experience.</p>
-                <p class="ds-body">I also gained valuable experience working as a freelancer, designing a website for the cultural association Signal e.V. tailored specifically to the needs of the cultural sector. In addition, through my work with another company, I contributed to the development of web interfaces designed to present numerical data in a clear and aesthetically engaging way. Collaborating closely with developers and data analysts allowed me to create designs that were both highly functional and visually compelling.</p>
+                <p class="ds-body" data-i18n="designs.webdesign_p3">The interface responds to the user's selections by revealing additional options when needed. Visual cues, including changing vehicle imagery, help users keep track of the selected vehicle category and reduce potential selection errors.</p>
+                <p class="ds-body" data-i18n="designs.webdesign_p4">The redesign also follows the visual language used throughout the product, creating a more consistent and cohesive user experience.</p>
+                <p class="ds-body" data-i18n="designs.webdesign_p5">I also gained valuable experience working as a freelancer, designing a website for the cultural association Signal e.V. tailored specifically to the needs of the cultural sector. In addition, through my work with another company, I contributed to the development of web interfaces designed to present numerical data in a clear and aesthetically engaging way. Collaborating closely with developers and data analysts allowed me to create designs that were both highly functional and visually compelling.</p>
               </div>
               <!-- Mobile version (shorter text) -->
               <div class="webdesign-text-mobile">
@@ -513,6 +524,7 @@
     });
   </script>
 
+  <script src="translations.js"></script>
   <script src="script.js"></script>
 </body>
 

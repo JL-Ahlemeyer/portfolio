@@ -202,19 +202,37 @@
 <body>
 
   <!-- NAVBAR -->
-  <header class="navbar">
+    <header class="navbar">
     <a href="index.html" class="nav-name">jan-luca ahlemeyer</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <div class="nav-right-cluster">
+      <div class="lang-switch lang-switch--mobile-header" aria-label="Language selector">
+        <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        <span class="lang-sep">/</span>
+        <button type="button" class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
     <nav class="nav-links" id="navLinks">
-      <a href="user-understanding.html" class="nav-item nav-item--active" id="nav-user-understanding">user
-        understanding</a>
-      <a href="designs.html" class="nav-item" id="nav-designs">designs</a>
-      <a href="campaigns.html" class="nav-item" id="nav-campaigns">campaigns</a>
-      <a href="ai.html" class="nav-item" id="nav-ai">ai</a>
+      <a href="user-understanding.html" class="nav-item nav-item--active" id="nav-user-understanding" data-i18n="nav.user_understanding">user understanding</a>
+      <a href="designs.html" class="nav-item" id="nav-designs" data-i18n="nav.designs">designs</a>
+      <a href="campaigns.html" class="nav-item" id="nav-campaigns" data-i18n="nav.campaigns">campaigns</a>
+      <a href="ai.html" class="nav-item" id="nav-ai" data-i18n="nav.ai">ai</a>
+      <div class="lang-switch lang-switch--desktop" aria-label="Language selector">
+        <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        <span class="lang-sep">/</span>
+        <button type="button" class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+      </div>
+      <div class="nav-item nav-item--lang" id="nav-lang-item">
+        <div class="lang-switch lang-switch--mobile-menu" aria-label="Language selector">
+          <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+          <span class="lang-sep">/</span>
+          <button type="button" class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+        </div>
+      </div>
     </nav>
   </header>
 
@@ -228,18 +246,10 @@
         <!-- SLIDE 1: Overview -->
         <div class="slide" id="slide-1">
           <div class="slide-content">
-            <h1 class="ux-main-heading">User<br>Understanding</h1>
-            <h2 class="ux-sub-heading">studies &amp; data collection</h2>
-            <p class="ux-body">
-              My background spans empirical user research and data-driven analysis. From <a href="in-car-tutor.html"
-                class="ux-link">driving simulator studies</a> and <a href="eye-tracking-study.html"
-                class="ux-link">eye-tracking</a> experiments to qualitative <a href="physician-review-analysis.html"
-                class="ux-link">content analyses</a> and consumer dataset evaluations.
-            </p>
-            <p class="ux-body">
-              By combining controlled lab experiments with real-world behavioral analytics, I turn complex data and
-              statistical insights into evidence-based UX decisions.
-            </p>
+            <h1 class="ux-main-heading" data-i18n="uu.hero_title">User<br>Understanding</h1>
+            <h2 class="ux-sub-heading" data-i18n="uu.studies_title">studies &amp; data collection</h2>
+            <p class="ux-body" data-i18n="uu.studies_p1">My background spans empirical user research and data-driven analysis. From driving simulator studies and eye-tracking experiments to qualitative content analyses and consumer dataset evaluations.</p>
+            <p class="ux-body" data-i18n="uu.studies_p2">By combining controlled lab experiments with real-world behavioral analytics, I turn complex data and statistical insights into evidence-based UX decisions.</p>
           </div>
           <!-- Mobile: layer1 + layer3 composited after slide 1 text -->
           <div class="uu-mobile-img-stack">
@@ -251,19 +261,9 @@
         <!-- SLIDE 2: Analytics -->
         <div class="slide" id="slide-2">
           <div class="slide-content">
-            <h2 class="ux-sub-heading">google analytics &amp;<br>social media dashboards</h2>
-            <p class="ux-body">
-              Experience with Google Analytics and a range of social media dashboards, including Meta Business Suite,
-              Instagram Professional Dashboard, TikTok Analytics, and YouTube Studio, forms part of a regular workflow
-              focused on monitoring content performance, understanding user behavior, and evaluating engagement metrics
-              across platforms.
-            </p>
-            <p class="ux-body">
-              I use these insights to assess reach, optimize content strategies, and make data-driven decisions aimed at
-              improving engagement and audience growth. My background also includes applying analytics in a professional
-              context to better understand user behavior and refine digital experiences based on measurable performance
-              data.
-            </p>
+            <h2 class="ux-sub-heading" data-i18n="uu.dashboards_title">google analytics &amp;<br>social media dashboards</h2>
+            <p class="ux-body" data-i18n="uu.dashboards_p1">Experience with Google Analytics and a range of social media dashboards, including Meta Business Suite, Instagram Professional Dashboard, TikTok Analytics, and YouTube Studio, forms part of a regular workflow focused on monitoring content performance, understanding user behavior, and evaluating engagement metrics across platforms.</p>
+            <p class="ux-body" data-i18n="uu.dashboards_p2">I use these insights to assess reach, optimize content strategies, and make data-driven decisions aimed at improving engagement and audience growth. My background also includes applying analytics in a professional context to better understand user behavior and refine digital experiences based on measurable performance data.</p>
           </div>
           <!-- Mobile: layer 2 image after slide 2 text -->
           <img src="img_user/user_layer2.png" alt="UX Research analytics layer" class="uu-mobile-img">
@@ -272,22 +272,10 @@
         <!-- SLIDE 3: Data Analysis -->
         <div class="slide" id="slide-3">
           <div class="slide-content">
-            <h2 class="ux-sub-heading">user data analysis</h2>
-            <p class="ux-body">
-              My experience in Customer Experience (CX) research and data-driven market analysis within the automotive
-              industry includes statistical evaluations of luxury consumer data on behalf of BMW, providing key insights
-              for strategic decision-making.
-            </p>
-            <p class="ux-body">
-              Additionally, I analyze large-scale industry datasets such as the Deloitte Global Automotive Consumer
-              Study to translate consumer behavior patterns into actionable market positioning and product strategies.
-              My work also touches on data ecosystem initiatives like Catena-X to foster cross-stakeholder
-              collaboration.
-            </p>
-            <p class="ux-body">
-              Across these projects, I focus on turning complex consumer and market data into clear, evidence-based
-              insights that drive CX innovation and automotive strategy.
-            </p>
+            <h2 class="ux-sub-heading" data-i18n="uu.data_analysis_title">user data analysis</h2>
+            <p class="ux-body" data-i18n="uu.data_analysis_p1">My experience in Customer Experience (CX) research and data-driven market analysis within the automotive industry includes statistical evaluations of luxury consumer data on behalf of BMW, providing key insights for strategic decision-making.</p>
+            <p class="ux-body" data-i18n="uu.data_analysis_p2">Additionally, I analyze large-scale industry datasets such as the Deloitte Global Automotive Consumer Study to translate consumer behavior patterns into actionable market positioning and product strategies. My work also touches on data ecosystem initiatives like Catena-X to foster cross-stakeholder collaboration.</p>
+            <p class="ux-body" data-i18n="uu.data_analysis_p3">Across these projects, I focus on turning complex consumer and market data into clear, evidence-based insights that drive CX innovation and automotive strategy.</p>
           </div>
         </div>
 
@@ -312,6 +300,7 @@
 
   </main>
 
+  <script src="translations.js"></script>
   <script src="script.js"></script>
   <script>
     (function () {

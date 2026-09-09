@@ -165,18 +165,37 @@
 <body class="page-scrollable campaigns-page">
 
   <!-- NAVBAR -->
-  <header class="navbar">
+    <header class="navbar">
     <a href="index.html" class="nav-name">jan-luca ahlemeyer</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <div class="nav-right-cluster">
+      <div class="lang-switch lang-switch--mobile-header" aria-label="Language selector">
+        <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        <span class="lang-sep">/</span>
+        <button type="button" class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
     <nav class="nav-links" id="navLinks">
-      <a href="user-understanding.html" class="nav-item" id="nav-user-understanding">user understanding</a>
-      <a href="designs.html" class="nav-item" id="nav-designs">designs</a>
-      <a href="campaigns.html" class="nav-item nav-item--active" id="nav-campaigns">campaigns</a>
-      <a href="ai.html" class="nav-item" id="nav-ai">ai</a>
+      <a href="user-understanding.html" class="nav-item" id="nav-user-understanding" data-i18n="nav.user_understanding">user understanding</a>
+      <a href="designs.html" class="nav-item" id="nav-designs" data-i18n="nav.designs">designs</a>
+      <a href="campaigns.html" class="nav-item nav-item--active" id="nav-campaigns" data-i18n="nav.campaigns">campaigns</a>
+      <a href="ai.html" class="nav-item" id="nav-ai" data-i18n="nav.ai">ai</a>
+      <div class="lang-switch lang-switch--desktop" aria-label="Language selector">
+        <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+        <span class="lang-sep">/</span>
+        <button type="button" class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+      </div>
+      <div class="nav-item nav-item--lang" id="nav-lang-item">
+        <div class="lang-switch lang-switch--mobile-menu" aria-label="Language selector">
+          <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
+          <span class="lang-sep">/</span>
+          <button type="button" class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
+        </div>
+      </div>
     </nav>
   </header>
 
@@ -186,7 +205,7 @@
       <h1 class="campaigns-main-title">Campaigns</h1>
 
       <!-- ─── PHOTOGRAPHY SLIDER ─── -->
-      <h2 class="ux-sub-heading">photography</h2>
+      <h2 class="ux-sub-heading" data-i18n="camp.photography_title">photography</h2>
       <div class="campaigns-slider">
         <div class="slider-track scroll-left-photography">
           <!-- Set 1 -->
@@ -215,7 +234,7 @@
       </div>
 
       <!-- ─── FLYER / POSTER SLIDER ─── -->
-      <h2 class="ux-sub-heading">flyer / poster</h2>
+      <h2 class="ux-sub-heading" data-i18n="camp.flyer_title">flyer / poster</h2>
       <div class="campaigns-slider">
         <div class="slider-track scroll-left-flyers">
           <!-- Set 1 -->
@@ -250,7 +269,7 @@
           <!-- Col 1: Text + Image 3 -->
           <div style="display: flex; flex-direction: column; justify-content: space-between;">
             <div class="fashion-text-wrap" style="padding-right: 20px;">
-              <h2 class="ux-sub-heading" style="margin-top: 0; margin-bottom: 16px;">munich<br>fashion week</h2>
+              <h2 class="ux-sub-heading" style="margin-top: 0; margin-bottom: 16px;" data-i18n="camp.mfw_title">munich<br>fashion week</h2>
               <p class="ds-body" style="margin-bottom: 0;">
                 I worked as a press photographer for Munich Fashion Week, capturing runway shows, backstage moments, and on-site atmospheres over several days, displaying different showcases of designers each day. The focus was on documenting both the visual presentation of the collections and the energy behind the scenes for editorial and digital coverage.
               </p>
@@ -278,7 +297,7 @@
       <section style="margin-top: 64px;">
         <div class="lucky-number-grid" style="display: grid; grid-template-columns: 3fr 2fr; grid-template-rows: auto auto; gap: 0; position: relative;">
           <!-- Heading overlapping Image 1 -->
-          <h2 class="ux-sub-heading lucky-number-heading" style="position: absolute; top: 20px; left: 24px; z-index: 3; margin: 0; color: #fff; text-shadow: 0 1px 20px rgba(0,0,0,0.35);">lucky number<br>store</h2>
+          <h2 class="ux-sub-heading lucky-number-heading" style="position: absolute; top: 20px; left: 24px; z-index: 3; margin: 0; color: #fff; text-shadow: 0 1px 20px rgba(0,0,0,0.35);" data-i18n="camp.lucky_title">lucky number<br>store</h2>
           <!-- Image 1: full-width top -->
           <img src="img_campaign/lucky_number_01.png" alt="Lucky Number 1" style="grid-column: 1 / -1; grid-row: 1; width: 100%; display: block;">
           <!-- Image 3: bottom-left (wider) -->
@@ -307,23 +326,17 @@
           <img src="img_campaign/miaac_sm.png" alt="MIAAC Collage" class="campaigns-collage">
         </div>
         <div class="ds-col ds-col--text" style="max-width: 650px;">
-          <h2 class="ux-sub-heading" style="margin-top: 0; margin-bottom: 16px;">miaac</h2>
+          <h2 class="ux-sub-heading" style="margin-top: 0; margin-bottom: 16px;" data-i18n="camp.miaac_title">miaac</h2>
           <p class="ds-body">
             I run the Instagram-based blog <a href="https://www.instagram.com/munichartsandculture/" class="ux-link" target="_blank" rel="noopener">Munich in Arts and Culture</a> where I have presented daily art and culture events from Munich since May 22, 2024. During this period the account has gained around 5,500 followers. Promoting inclusivity is important to me, so all posts are written in English to reach a broad and diverse audience. Because I feature both established galleries and alternative, underground events, this variety is reflected in the visual design.
           </p>
           <!-- Mobile-only MIAAC image -->
           <img src="img_campaign/miaac_sm.png" alt="MIAAC Collage" class="campaigns-collage miaac-img-mobile">
-          <p class="ds-body">
-            To keep the content visually engaging, I create a completely new design every week, constantly experimenting with different themes, layouts, and visual approaches. Rather than relying on a fixed template, I use unexpected design choices to capture attention and keep the audience curious about what comes next. Some designs are inspired by local topics, such as photographing Munich's ghost bikes and building a visual concept around them, while others are created in collaboration with local artists who contribute their own work. I develop these designs using Photoshop, InDesign, and Figma.
-          </p>
+          <p class="ds-body" data-i18n="camp.miaac_desc2">To keep the content visually engaging, I create a completely new design every week, constantly experimenting with different themes, layouts, and visual approaches. Rather than relying on a fixed template, I use unexpected design choices to capture attention and keep the audience curious about what comes next. Some designs are inspired by local topics, such as photographing Munich's ghost bikes and building a visual concept around them, while others are created in collaboration with local artists who contribute their own work. I develop these designs using Photoshop, InDesign, and Figma.</p>
 
-          <h2 class="ux-sub-heading" style="margin-top: 48px; margin-bottom: 16px;">platform expertise</h2>
-          <p class="ds-body">
-            Through my experience distributing content across several platforms, I am familiar with Instagram's Professional Dashboard, Facebook Business Suite, and YouTube Studio. I use these tools to plan, publish, and monitor content performance.
-          </p>
-          <p class="ds-body">
-            Analyzing insights is key to my process, allowing me to make data-driven decisions that steadily increase reach and audience engagement while refining future posts for lasting impact.
-          </p>
+          <h2 class="ux-sub-heading" style="margin-top: 48px; margin-bottom: 16px;" data-i18n="camp.platform_title">platform expertise</h2>
+          <p class="ds-body" data-i18n="camp.platform_desc1">Through my experience distributing content across several platforms, I am familiar with Instagram's Professional Dashboard, Facebook Business Suite, and YouTube Studio. I use these tools to plan, publish, and monitor content performance.</p>
+          <p class="ds-body" data-i18n="camp.platform_desc2">Analyzing insights is key to my process, allowing me to make data-driven decisions that steadily increase reach and audience engagement while refining future posts for lasting impact.</p>
         </div>
       </section>
 
@@ -539,6 +552,7 @@
     // Initialize all sliders on the page
     document.querySelectorAll('.campaigns-slider').forEach(initSlider);
   </script>
+  <script src="translations.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

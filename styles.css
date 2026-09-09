@@ -1061,7 +1061,104 @@ body.page-scrollable {
   transform: translateY(-6.5px) rotate(-45deg);
 }
 
+
+/* =========================================================
+   LANGUAGE SWITCHER (EN / DE)
+   ========================================================= */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-inter);
+  user-select: none;
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  padding: 2px 4px;
+  margin: 0;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: var(--color-nav, #7F7E7D);
+  cursor: pointer;
+  transition: color 0.15s ease, font-weight 0.15s ease;
+  line-height: 1;
+}
+
+.lang-btn:hover {
+  color: #13509B;
+}
+
+.lang-btn.active {
+  color: #13509B;
+  font-weight: 600;
+}
+
+.lang-sep {
+  font-size: 14px;
+  font-weight: 300;
+  color: #C7C7C7;
+  line-height: 1;
+}
+
+.lang-switch--desktop {
+  margin-left: 14px;
+  padding-left: 18px;
+  border-left: 1px solid #D8D6D2;
+}
+
+.lang-switch--mobile-header {
+  display: none;
+}
+
+.nav-item--lang {
+  display: none !important;
+}
+
+.nav-right-cluster {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 @media (max-width: 900px) {
+
+  .lang-switch--desktop {
+    display: none !important;
+  }
+  .lang-switch--mobile-header {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 4px;
+  }
+  .lang-switch--mobile-header .lang-btn {
+    font-size: 15px !important;
+    padding: 6px 3px !important;
+  }
+  .lang-switch--mobile-header .lang-sep {
+    font-size: 13px !important;
+    color: #b0aea9 !important;
+  }
+  .nav-item--lang {
+    display: flex !important;
+    align-items: center;
+    padding: 15px 0 !important;
+  }
+  .lang-switch--mobile-menu {
+    display: inline-flex !important;
+    gap: 12px;
+  }
+  .lang-switch--mobile-menu .lang-btn {
+    font-size: 20px !important;
+    padding: 4px 6px !important;
+  }
+  .lang-switch--mobile-menu .lang-sep {
+    font-size: 18px !important;
+  }
+
   /* Compact navbar */
   .navbar {
     padding: 0 16px !important;

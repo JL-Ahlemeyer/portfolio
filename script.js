@@ -294,7 +294,11 @@ if (isNavigatedFromBelow) {
 
   function showHint(direction, targetPage, step) {
     const el = createOrGetHint();
-    const targetLabel = PAGE_LABELS[targetPage] || 'page';
+    const pageKey = targetPage.replace('.html', '');
+    const targetLabel = (window.I18nManager && window.I18nManager.t('page.' + pageKey)) || PAGE_LABELS[targetPage] || 'page';
+    const isDe = window.I18nManager && window.I18nManager.getLanguage() === 'de';
+    const scrollPrompt = isDe ? (direction === 'next' ? 'Erneut scrollen für' : 'Erneut hochscrollen für') : (direction === 'next' ? 'scroll again for' : 'scroll up again for');
+    const loadingPrompt = isDe ? 'lade' : 'loading';
     const arrow = direction === 'next' ? '↓' : '↑';
 
     if (direction === 'next') {
@@ -306,7 +310,7 @@ if (isNavigatedFromBelow) {
     }
 
     if (step === 1) {
-      el.innerHTML = `<span>scroll again for <strong>${targetLabel}</strong></span> <span style="font-size: 14px;">${arrow}</span>`;
+      el.innerHTML = `<span>${scrollPrompt} <strong>${targetLabel}</strong></span> <span style="font-size: 14px;">${arrow}</span>`;
 
       // Shift page content to make space so the notification does NOT obscure any text
       const mainEl = document.querySelector('main');
@@ -316,7 +320,7 @@ if (isNavigatedFromBelow) {
         mainEl.style.transform = `translateY(${peekShift})`;
       }
     } else {
-      el.innerHTML = `<span>loading <strong>${targetLabel}</strong>...</span>`;
+      el.innerHTML = `<span>${loadingPrompt} <strong>${targetLabel}</strong>...</span>`;
     }
 
     el.style.opacity = '1';
