@@ -32,6 +32,13 @@ if (navToggle && navLinks) {
   });
 }
 
+function getCurrentFilename() {
+  const path = window.location.pathname;
+  let file = path.substring(path.lastIndexOf('/') + 1);
+  if (!file || file === '') file = 'index.html';
+  return file;
+}
+
 // Check if navigated from below (scrolled up from subsequent page)
 const isNavigatedFromBelow = window.location.hash === '#bottom' || window.location.search.includes('from=bottom');
 
@@ -86,6 +93,11 @@ if (track && rightPanel) {
     }
 
     current = index;
+
+    // Persist active slide for desktop slider restoration
+    try {
+      sessionStorage.setItem('last-active-slide-' + getCurrentFilename(), index);
+    } catch (e) {}
   }
 
   // Dot click
@@ -137,10 +149,17 @@ if (track && rightPanel) {
     isDragging = false;
   });
 
-  // Init: if coming from below on desktop horizontal slider, start on the last slide
-  const isDesktopSlider = window.innerWidth > 900 || !document.querySelector('.layout-flipped');
+  // Init: if coming from below on desktop horizontal slider, restore the slide the user last selected
+  const isDesktopSlider = window.innerWidth > 900;
   if (isNavigatedFromBelow && isDesktopSlider) {
-    positionSlides(slides.length - 1, false);
+    let targetSlide = slides.length - 1; // Default fallback to last slide
+    try {
+      const saved = sessionStorage.getItem('last-active-slide-' + getCurrentFilename());
+      if (saved !== null && !isNaN(parseInt(saved, 10))) {
+        targetSlide = Math.max(0, Math.min(slides.length - 1, parseInt(saved, 10)));
+      }
+    } catch (e) {}
+    positionSlides(targetSlide, false);
   } else {
     positionSlides(0, false);
   }
@@ -186,13 +205,6 @@ if (isNavigatedFromBelow) {
     'campaigns.html': 'campaigns',
     'ai.html': 'ai'
   };
-
-  function getCurrentFilename() {
-    const path = window.location.pathname;
-    let file = path.substring(path.lastIndexOf('/') + 1);
-    if (!file || file === '') file = 'index.html';
-    return file;
-  }
 
   function getTargetPages() {
     const currentFile = getCurrentFilename();
