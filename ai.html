@@ -150,7 +150,12 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <a href="index.html" class="nav-name">jan-luca ahlemeyer</a>
-    <nav class="nav-links">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="nav-links" id="navLinks">
       <a href="user-understanding.html" class="nav-item" id="nav-user-understanding">user understanding</a>
       <a href="designs.html" class="nav-item" id="nav-designs">designs</a>
       <a href="campaigns.html" class="nav-item" id="nav-campaigns">campaigns</a>
@@ -193,7 +198,12 @@
             <p class="ds-body" style="margin-bottom: 24px;">I build lightweight, custom AI tools and browser-based interfaces tailored to specific internal and external data workflows. The goal is always to make data processing accessible and fast, without adding bloated infrastructure.</p>
             <!-- Mobile Image 2 -->
             <img src="img_ai/ai_img_02.png" alt="AI Project Image 2" class="ai-img-mobile">
-            <p class="ds-body">For example, I set up custom web apps through Google AI Studio that can be launched directly from a terminal or used in the browser to parse, sort, and extract complex information on the fly. This allows for rapid processing of raw files and media while keeping workflows lean and avoiding unnecessary API overhead. Whether it is an internal management tool or a public-facing data pipeline, I focus on building straightforward interfaces that seamlessly handle the heavy lifting.</p>
+            <p class="ds-body" style="margin-bottom: 16px;">For example, I set up custom web apps through Google AI Studio and specialized scripts that can be launched directly from a terminal or used in the browser to parse, sort, and extract complex information on the fly. Once the data is structured, it can power all kinds of automated systems:</p>
+            <ul class="ds-body" style="padding-left: 20px; margin-bottom: 20px;">
+              <li style="margin-bottom: 8px;"><strong>Audience Targeting:</strong> Segmenting content and listings to reach the right people more effectively.</li>
+              <li style="margin-bottom: 8px;"><strong>Automated Newsletters:</strong> Generating relevant, curated updates without having to write or format everything from scratch.</li>
+              <li style="margin-bottom: 8px;"><strong>Calendar &amp; Schedule Management:</strong> Feeding clean, date-specific entries directly into internal workflows or public community calendars.</li>
+            </ul>
           </div>
 
           <!-- IMPRESSUM + CONTACT (uses left-column white space) -->
@@ -253,16 +263,11 @@
           <div class="ai-block-data">
             <h2 class="ux-sub-heading" style="margin-top: 0; margin-bottom: 16px;">data
               interpretation &amp;<br>decision making</h2>
-            <p class="ds-body" style="margin-bottom: 24px;">A big focus of my work is turning unstructured, messy information into actionable data for better decision-making. Instead of manually sifting through raw inputs, I use AI to analyze, summarize, and categorize data based on its actual content and context.</p>
+            <p class="ds-body" style="margin-bottom: 20px;">A central focus of my work is turning unstructured, messy information into actionable data for better decision-making. Grounded in an M.Sc. in Human Factors &amp; Engineering Psychology, I approach data interpretation through the lens of human cognitive architecture—designing workflows that align with how people naturally perceive, process, and act on information.</p>
             <!-- Mobile Image 1 -->
             <img src="img_ai/ai_img_01.png" alt="AI Project Image 1" class="ai-img-mobile ai-img-01-mobile">
-            <p class="ds-body" style="margin-bottom: 16px;">Once the data is structured, it can power all kinds of automated systems:</p>
-            <ul class="ds-body" style="padding-left: 20px; margin-bottom: 24px;">
-              <li style="margin-bottom: 8px;"><strong>Audience Targeting:</strong> Segmenting content and listings to reach the right people more effectively.</li>
-              <li style="margin-bottom: 8px;"><strong>Automated Newsletters:</strong> Generating relevant, curated updates without having to write or format everything from scratch.</li>
-              <li style="margin-bottom: 8px;"><strong>Calendar &amp; Schedule Management:</strong> Feeding clean, date-specific entries directly into internal workflows or public community calendars.</li>
-            </ul>
-            <p class="ds-body">It is all about letting the models handle the synthesis and categorization so the resulting data is ready to use right away.</p>
+            <p class="ds-body" style="margin-bottom: 20px;">Cognitive psychology demonstrates that human working memory is strictly limited in its processing capacity. When confronted with large volumes of raw, fragmented inputs, cognitive overload quickly impairs reasoning, pattern recognition, and sound judgment. People struggle not from an inability to think, but from the severe bandwidth bottlenecks of holding, filtering, and synthesizing noise.</p>
+            <p class="ds-body">By leveraging AI to parse, contextualize, and hierarchically structure complex data, we offload extraneous cognitive burden. This preserves vital working memory and mental bandwidth for what humans do best: strategic reasoning, contextual evaluation, creative problem-solving, and making well-grounded decisions with clarity.</p>
           </div>
 
           <!-- Image 2 &mdash; bleeds past right edge -->
@@ -275,6 +280,7 @@
   
   </main>
 
+  <script src="script.js"></script>
 </body>
 
 </html>

@@ -43,6 +43,137 @@
     #slide-1 .slide-content.text-visible {
       opacity: 1;
     }
+
+    /* ===== MOBILE LAYOUT (≤900px) ===== */
+    @media (max-width: 900px) {
+
+      /* Switch from side-by-side to vertical stack */
+      .main-layout.layout-flipped {
+        flex-direction: column !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        position: static !important;
+        height: auto !important;
+        min-height: calc(100vh - var(--nav-h)) !important;
+      }
+
+      /* TEXT PANEL (left-panel in desktop = slider panel): takes as much height as its content */
+      .layout-flipped .left-panel {
+        flex: 0 0 auto !important;
+        width: 100% !important;
+        overflow: visible !important;
+      }
+
+      /* slides-track must be measured by its content on mobile */
+      .layout-flipped .left-panel .slides-track {
+        overflow: hidden;
+        height: auto !important;
+      }
+
+      /* Each slide: auto height, full width */
+      .layout-flipped .left-panel .slide {
+        min-width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+      }
+
+      /* slide-content padding & typography matching designs.html mobile */
+      .layout-flipped .slide-content {
+        padding: 20px 16px 24px !important;
+        max-width: 100% !important;
+      }
+
+      /* Main heading */
+      .layout-flipped .ux-main-heading {
+        font-size: clamp(34px, 8vw, 48px) !important;
+        line-height: 1.0 !important;
+        margin-bottom: 8px !important;
+      }
+
+      /* Sub-heading */
+      .layout-flipped .ux-sub-heading {
+        font-size: clamp(20px, 5vw, 28px) !important;
+        margin-bottom: 14px !important;
+        line-height: 1.1 !important;
+      }
+
+      /* Body text matching designs.html mobile ds-body */
+      .layout-flipped .ux-body {
+        font-size: 16px !important;
+        font-weight: 300 !important;
+        line-height: 1.8 !important;
+        text-align: justify !important;
+        margin-bottom: 14px !important;
+        color: #333 !important;
+      }
+
+      /* Slide 1 text fade-in: start visible on mobile (no intro delay issues) */
+      #slide-1 .slide-content {
+        opacity: 1;
+      }
+
+      /* Dots nav: compact on mobile */
+      .layout-flipped .dots-nav {
+        padding: 12px 0 16px !important;
+        gap: 14px !important;
+      }
+
+      /* IMAGE PANEL (right-panel in desktop): below text, fills remaining space */
+      .layout-flipped .right-panel {
+        flex: 0 0 56vw !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 56vw !important;
+        max-height: 56vw !important;
+        min-height: 220px !important;
+        overflow: hidden !important;
+        position: relative !important;
+      }
+
+      /* image-layers fill the mobile panel fully */
+      .layout-flipped .right-panel .image-layers {
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      /* Layer images: cover the panel */
+      .layout-flipped .right-panel .hero-image {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+      }
+
+      /* Intro animation: disable large offsets on mobile */
+      .layer-middle {
+        transform: translate(40px, -20px) rotate(4deg);
+      }
+      .layer-top {
+        transform: translate(-40px, 20px) rotate(-4deg);
+      }
+
+      /* Mobile swipe zone for the slide track */
+      .uu-mobile-swipe-hint {
+        display: flex;
+      }
+    }
+
+    /* Hide swipe hint on desktop */
+    .uu-mobile-swipe-hint {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: var(--font-inter);
+      font-size: 11px;
+      font-weight: 300;
+      color: #aaa;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding-bottom: 4px;
+    }
   </style></head>
 
 <body>
@@ -50,7 +181,12 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <a href="index.html" class="nav-name">jan-luca ahlemeyer</a>
-    <nav class="nav-links">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="nav-links" id="navLinks">
       <a href="user-understanding.html" class="nav-item nav-item--active" id="nav-user-understanding">user
         understanding</a>
       <a href="designs.html" class="nav-item" id="nav-designs">designs</a>
@@ -133,6 +269,7 @@
         <button class="dot" data-index="1" aria-label="Go to slide 2"></button>
         <button class="dot" data-index="2" aria-label="Go to slide 3"></button>
       </div>
+      <p class="uu-mobile-swipe-hint">← swipe to navigate →</p>
     </div><!-- end left-panel -->
 
     <!-- RIGHT: Fixed Image (layered) -->

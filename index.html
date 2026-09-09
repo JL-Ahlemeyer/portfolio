@@ -12,12 +12,67 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kaisei+Opti:wght@400;500;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=1.1">
   <style>
     /* ===== MOBILE STYLES (≤900px) ===== */
     /* Desktop accordion defaults: always expanded, arrows hidden */
     .mobile-accordion {
       width: 100%;
+    }
+    .section-heading {
+      font-family: var(--font-inter);
+      font-weight: 250;
+      font-size: clamp(23px, 2.2vw, 30px);
+      color: #444;
+      margin-top: 0;
+      margin-bottom: 14px;
+      letter-spacing: 0;
+    }
+    .timeline-details strong {
+      font-family: var(--font-inter);
+      font-weight: 380;
+      font-size: 17px;
+      color: #191919;
+      line-height: 1.5;
+    }
+    .timeline-details span {
+      font-family: var(--font-inter);
+      font-weight: 320;
+      font-size: 16px;
+      color: #555;
+      display: block;
+      margin-top: 0px;
+    }
+    .hero-heading {
+      color: #1a1a1a !important;
+      -webkit-text-fill-color: #1a1a1a !important;
+      background: none !important;
+    }
+    .serif-word {
+      color: #4e4e4e !important;
+      -webkit-text-fill-color: #4e4e4e !important;
+      background: none !important;
+    }
+    .anim-letter {
+      color: #1a1a1a !important;
+      -webkit-text-fill-color: #1a1a1a !important;
+      background: none !important;
+      display: inline-block;
+      animation: revealLetter 0.25s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+    }
+    .serif-word .anim-letter {
+      color: #4e4e4e !important;
+      -webkit-text-fill-color: #4e4e4e !important;
+    }
+    @keyframes revealLetter {
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     .accordion-header {
       background: none;
@@ -30,74 +85,40 @@
       justify-content: space-between;
       cursor: default;
     }
+    .accordion-title-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+    .accordion-subtitle {
+      display: none;
+    }
     .accordion-arrow {
       display: none;
     }
     .accordion-content {
       display: block;
     }
-    .nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-      flex-direction: column;
-      gap: 5px;
-      z-index: 201;
+    #slide-2 .mobile-accordion:not(:first-child),
+    #slide-3 .mobile-accordion:not(:first-child) {
+      margin-top: 14px;
     }
-    .nav-toggle span {
-      display: block;
-      width: 22px;
-      height: 1.5px;
-      background: #111;
-      transition: all 0.25s ease;
-    }
-    .nav-toggle.active span:nth-child(1) {
-      transform: translateY(3.25px) rotate(45deg);
-    }
-    .nav-toggle.active span:nth-child(2) {
-      transform: translateY(-3.25px) rotate(-45deg);
-    }
-
+    .mobile-social { display: none !important; }
+    
     @media (max-width: 900px) {
+      .desktop-social { display: none !important; }
+      .mobile-social { 
+        display: flex !important; 
+        margin: 16px auto 60px !important; 
+        gap: 8vw !important; 
+      }
+      .mobile-social svg { width: 28px; height: 28px; }
+
       html, body {
         height: auto !important;
         overflow-x: hidden !important;
         overflow-y: auto !important;
-      }
-
-      /* Navbar mobile */
-      .navbar {
-        padding: 0 16px !important;
-        height: 52px !important;
-      }
-      .nav-name {
-        font-size: 20px !important;
-        letter-spacing: -2% !important;
-      }
-      .nav-toggle {
-        display: flex !important;
-      }
-      .nav-links {
-        display: none !important;
-        position: fixed !important;
-        top: 52px !important;
-        left: 0 !important;
-        right: 0 !important;
-        background: #FFFDFB !important;
-        flex-direction: column !important;
-        padding: 24px 20px !important;
-        gap: 20px !important;
-        border-bottom: 1px solid var(--color-border) !important;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.06) !important;
-        z-index: 199 !important;
-      }
-      .nav-links.active {
-        display: flex !important;
-      }
-      .nav-item {
-        font-size: 20px !important;
       }
 
       /* Main layout mobile */
@@ -177,7 +198,7 @@
         order: 1 !important;
         font-family: var(--font-inter) !important;
         font-weight: 250 !important;
-        font-size: 15px !important;
+        font-size: 13px !important;
         line-height: 1.5 !important;
         color: #666666 !important;
         text-align: justify !important;
@@ -212,7 +233,7 @@
         order: 3 !important;
         font-family: var(--font-inter) !important;
         font-size: 17px !important;
-        font-weight: 400 !important;
+        font-weight: 300 !important;
         color: #1a1a1a !important;
         line-height: 1.8 !important;
         text-align: justify !important;
@@ -234,6 +255,11 @@
         display: none !important;
       }
 
+      #slide-1 .slide-content {
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 20px 16px 28px !important;
+      }
       #slide-1 .social-icons {
         order: 5 !important;
         display: flex !important;
@@ -241,40 +267,92 @@
         align-items: center !important;
         gap: 36px !important;
         margin-top: 4px !important;
-        margin-bottom: 24px !important;
+        margin-bottom: 0 !important;
       }
       #slide-1 .social-link svg {
         width: 32px !important;
         height: 32px !important;
       }
 
-      
-      /* Accordion styles on mobile: collapsed by default with arrow, no borders */
-      .mobile-accordion {
-        border: none !important;
+      /* Slide 2 & 3 Mobile Layout */
+      #slide-2, #slide-3 {
         border-top: none !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+      }
+      #slide-2 .slide-content {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+      }
+      #slide-3 .slide-content {
+        padding-top: 0 !important;
+        padding-bottom: 36px !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+      }
+      
+      /* Drop boxes (accordions) on mobile: styling matching designs.html (.ux-sub-heading) & horizontal rulers */
+      .mobile-accordion {
+        border-top: 1px solid #e0deda !important;
         border-bottom: none !important;
+        border-left: none !important;
+        border-right: none !important;
         padding: 0 !important;
-        margin-bottom: 4px !important;
+        margin: 0 !important;
+        width: 100% !important;
       }
       .accordion-header {
         cursor: pointer !important;
-        padding: 14px 0 !important;
+        padding: 20px 0 !important;
+        width: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        background: none !important;
+        border: none !important;
+        text-align: left !important;
+        box-sizing: border-box !important;
+      }
+      .accordion-title-group {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0 !important;
       }
       .accordion-header .section-heading {
         margin: 0 !important;
-        font-size: clamp(24px, 6vw, 30px) !important;
+        font-family: var(--font-inter) !important;
         font-weight: 250 !important;
-        color: #1a1a1a !important;
+        font-size: clamp(33px, 4.2vw, 51px) !important;
+        color: #444444 !important;
+        line-height: 1.1 !important;
+        letter-spacing: -5% !important;
+        text-transform: lowercase !important;
+      }
+      .accordion-header .section-heading--academic {
+        letter-spacing: -0.075em !important;
+        letter-spacing: -7.5% !important;
+      }
+      .accordion-subtitle {
+        display: block !important;
+        font-family: var(--font-inter) !important;
+        font-weight: 300 !important;
+        font-size: 17px !important;
+        color: #777777 !important;
+        line-height: 1.35 !important;
+        letter-spacing: -0.01em !important;
+        margin-top: 4px !important;
       }
       .accordion-arrow {
         display: block !important;
-        width: 18px !important;
-        height: 18px !important;
-        color: #777 !important;
+        width: 20px !important;
+        height: 20px !important;
+        color: #777777 !important;
         transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1) !important;
         flex-shrink: 0 !important;
-        margin-left: 12px !important;
+        margin-left: 16px !important;
       }
       .accordion-header.active .accordion-arrow {
         transform: rotate(180deg) !important;
@@ -282,7 +360,7 @@
       }
       .accordion-content {
         display: none !important;
-        padding: 6px 0 16px !important;
+        padding: 4px 0 24px !important;
       }
       .accordion-content.active {
         display: block !important;
@@ -293,32 +371,10 @@
         to { opacity: 1; transform: translateY(0); }
       }
 
-      /* Slide 2 & 3 Mobile Layout - No horizontal borders/rulers */
-      #slide-2, #slide-3 {
-        border-top: none !important;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-      }
-      #slide-2 .slide-content,
-      #slide-3 .slide-content {
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-      }
-      
-      .section-heading {
-        font-family: var(--font-inter) !important;
-        font-weight: 250 !important;
-        font-size: clamp(24px, 6vw, 30px) !important;
-        letter-spacing: -0.02em !important;
-        color: #1a1a1a !important;
-        line-height: 1.1 !important;
-        margin-top: 24px !important;
-        margin-bottom: 14px !important;
-      }
       .timeline-item {
         grid-template-columns: 1fr !important;
         gap: 2px !important;
-        margin-bottom: 18px !important;
+        margin-bottom: 8px !important;
         font-family: var(--font-inter) !important;
       }
       .timeline-date {
@@ -347,39 +403,19 @@
         line-height: 1.6 !important;
       }
 
-      /* Skills Subcategory Accordions on Mobile */
+      /* Skills list inside accordion on mobile */
       .skills-grid {
         display: flex !important;
         flex-direction: column !important;
-        gap: 2px !important;
+        gap: 20px !important;
       }
-      .skills-category.mobile-accordion {
-        margin-bottom: 2px !important;
-      }
-      .skill-sub-header {
-        padding: 10px 0 !important;
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        width: 100% !important;
-        cursor: pointer !important;
-      }
-      .skill-sub-header strong,
       .skills-category strong {
         font-family: var(--font-inter) !important;
         font-size: 17px !important;
         font-weight: 400 !important;
         color: #1a1a1a !important;
-        margin-bottom: 0 !important;
-      }
-      .skill-sub-header .accordion-arrow {
-        width: 16px !important;
-        height: 16px !important;
-        margin-left: 8px !important;
-      }
-      .skills-category .accordion-content {
-        padding-top: 4px !important;
-        padding-bottom: 12px !important;
+        display: block !important;
+        margin-bottom: 8px !important;
       }
       .skills-category ul {
         margin: 0 !important;
@@ -390,7 +426,7 @@
         font-weight: 300 !important;
         color: #555555 !important;
         line-height: 1.6 !important;
-        margin-bottom: 3px !important;
+        margin-bottom: 4px !important;
       }
 
       /* Hide slider dots on mobile vertical scroll */
@@ -409,8 +445,9 @@
     <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
       <span></span>
       <span></span>
+      <span></span>
     </button>
-    <nav class="nav-links">
+    <nav class="nav-links" id="navLinks">
       <a href="user-understanding.html" class="nav-item" id="nav-user-understanding">user understanding</a>
       <a href="designs.html" class="nav-item" id="nav-designs">designs</a>
       <a href="campaigns.html" class="nav-item" id="nav-campaigns">campaigns</a>
@@ -478,7 +515,7 @@
             </p>
             <p class="bio-text bio-text--light fade-in" style="animation-delay: 0.4s;">Optimizing human-computer interactions is a topic I have always been interested in. I am eager to bridge the gap between user experience and aesthetically pleasing design.</p>
             <hr class="divider fade-in" style="animation-delay: 0.45s;">
-            <div class="social-icons fade-in" style="animation-delay: 0.5s;">
+            <div class="social-icons fade-in desktop-social" style="animation-delay: 0.5s;">
               <!-- LinkedIn -->
               <a href="https://www.linkedin.com/in/janluca-ahlemeyer/" class="social-link" id="link-linkedin"
                 aria-label="LinkedIn" target="_blank" rel="noopener">
@@ -516,8 +553,11 @@
             <!-- Work Experience Accordion -->
             <div class="mobile-accordion">
               <button class="accordion-header" aria-expanded="false">
-                <h3 class="section-heading">Work Experience</h3>
-                <svg class="accordion-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <div class="accordion-title-group">
+                  <h3 class="section-heading">work experience</h3>
+                  <span class="accordion-subtitle">AI, UX, &amp; UI</span>
+                </div>
+                <svg class="accordion-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
@@ -565,8 +605,11 @@
             <!-- Languages Accordion -->
             <div class="mobile-accordion">
               <button class="accordion-header" aria-expanded="false">
-                <h3 class="section-heading">Languages</h3>
-                <svg class="accordion-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <div class="accordion-title-group">
+                  <h3 class="section-heading">languages</h3>
+                  <span class="accordion-subtitle">German, English, and Dutch</span>
+                </div>
+                <svg class="accordion-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
@@ -588,8 +631,11 @@
             <!-- Academic Background Accordion -->
             <div class="mobile-accordion">
               <button class="accordion-header" aria-expanded="false">
-                <h3 class="section-heading">Academic Background</h3>
-                <svg class="accordion-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <div class="accordion-title-group">
+                  <h3 class="section-heading section-heading--academic">academic background</h3>
+                  <span class="accordion-subtitle">M.Sc. Engineering Psychology</span>
+                </div>
+                <svg class="accordion-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
@@ -603,7 +649,7 @@
                     </div>
                   </div>
                   <div class="timeline-item">
-                    <span class="timeline-date">Sep 2016 – Aug 2020</span>
+                    <span class="timeline-date">Sep 2016 – Aug 2019</span>
                     <div class="timeline-details">
                       <strong>B.Sc. Psychology (English-taught)</strong>
                       <span>University of Twente · Enschede</span>
@@ -620,59 +666,45 @@
               </div>
             </div>
 
-            <!-- Skills -->
-            <h3 class="section-heading">Skills</h3>
-            <div class="skills-grid">
-              <!-- Subcategory: UX & UI -->
-              <div class="skills-category mobile-accordion">
-                <button class="accordion-header skill-sub-header" aria-expanded="false">
-                  <strong>UX &amp; UI</strong>
-                  <svg class="accordion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                </button>
-                <div class="accordion-content">
-                  <ul>
-                    <li>Click &amp; performance analysis</li>
-                    <li>Wire framing</li>
-                    <li>Usability testing</li>
-                    <li>UX-Research</li>
-                  </ul>
+            <!-- Skills Accordion -->
+            <div class="mobile-accordion">
+              <button class="accordion-header" aria-expanded="false">
+                <div class="accordion-title-group">
+                  <h3 class="section-heading">skills</h3>
+                  <span class="accordion-subtitle">UX/UI, Coding, &amp; Visual Design</span>
                 </div>
-              </div>
-
-              <!-- Subcategory: Coding -->
-              <div class="skills-category mobile-accordion">
-                <button class="accordion-header skill-sub-header" aria-expanded="false">
-                  <strong>Coding</strong>
-                  <svg class="accordion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                </button>
-                <div class="accordion-content">
-                  <ul>
-                    <li>HTML, CSS, Javascript, Python</li>
-                    <li>AI: Gemini, Antigravity, Base44, Claude</li>
-                    <li>Wordpress</li>
-                  </ul>
-                </div>
-              </div>
-
-              <!-- Subcategory: Visual design -->
-              <div class="skills-category mobile-accordion">
-                <button class="accordion-header skill-sub-header" aria-expanded="false">
-                  <strong>Visual design</strong>
-                  <svg class="accordion-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                  </svg>
-                </button>
-                <div class="accordion-content">
-                  <ul>
-                    <li>Adobe: Lightroom, Photoshop, Illustrator</li>
-                    <li>Figma</li>
-                    <li>CapCut, Premiere Pro</li>
-                    <li>Canva</li>
-                  </ul>
+                <svg class="accordion-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <div class="accordion-content">
+                <div class="skills-grid">
+                  <div class="skills-category">
+                    <strong>UX &amp; UI</strong>
+                    <ul>
+                      <li>Click &amp; performance analysis</li>
+                      <li>Wire framing</li>
+                      <li>Usability testing</li>
+                      <li>UX-Research</li>
+                    </ul>
+                  </div>
+                  <div class="skills-category">
+                    <strong>Coding</strong>
+                    <ul>
+                      <li>HTML, CSS, Javascript, Python</li>
+                      <li>AI: Gemini, Antigravity, Base44, Claude</li>
+                      <li>Wordpress</li>
+                    </ul>
+                  </div>
+                  <div class="skills-category">
+                    <strong>Visual design</strong>
+                    <ul>
+                      <li>Adobe: Lightroom, Photoshop, Illustrator</li>
+                      <li>Figma</li>
+                      <li>CapCut, Premiere Pro</li>
+                      <li>Canva</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
@@ -686,6 +718,36 @@
         <button class="dot active" data-index="0" aria-label="Go to slide 1"></button>
         <button class="dot" data-index="1" aria-label="Go to slide 2"></button>
         <button class="dot" data-index="2" aria-label="Go to slide 3"></button>
+      </div>
+      <!-- MOBILE SOCIAL ICONS -->
+      <div class="social-icons mobile-social">
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/janluca-ahlemeyer/" class="social-link" id="link-linkedin-mob"
+          aria-label="LinkedIn" target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <rect x="2" y="2" width="20" height="20" rx="3" stroke="currentColor" stroke-width="1.5" />
+            <line x1="7" y1="10" x2="7" y2="17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            <circle cx="7" cy="7.5" r="1" fill="currentColor" />
+            <path d="M11 10v7M11 13.5c0-1.933 1.343-3.5 3-3.5s3 1.567 3 3.5V17" stroke="currentColor"
+              stroke-width="1.5" stroke-linecap="round" />
+          </svg>
+        </a>
+        <!-- Email -->
+        <a href="mailto:janluca.ahlemeyer@email.com" class="social-link" id="link-email-mob" aria-label="Email">
+          <svg width="26" height="20" viewBox="0 0 26 20" fill="none">
+            <rect x="1" y="1" width="24" height="18" rx="2" stroke="currentColor" stroke-width="1.5" />
+            <polyline points="1,4 13,12 25,4" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+          </svg>
+        </a>
+        <!-- GitHub -->
+        <a href="https://github.com/JL-Ahlemeyer" class="social-link" id="link-github-mob" aria-label="GitHub"
+          target="_blank" rel="noopener">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.604-3.369-1.341-3.369-1.341-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.338 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .268.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"
+              stroke="currentColor" stroke-width="1.1" fill="none" />
+          </svg>
+        </a>
       </div>
     </div><!-- end right-panel -->
 

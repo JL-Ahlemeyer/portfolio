@@ -54,6 +54,19 @@
       margin-top: 32px;
     }
 
+    .ds-responsibilities-img-mobile {
+      display: none;
+    }
+
+    .ds-mobile-hero-img {
+      display: none;
+    }
+
+    .ds-webdesign-section {
+      margin-top: 64px;
+      margin-bottom: 32px;
+    }
+
     .ds-webdesign-img {
       width: 100%;
       height: auto;
@@ -160,6 +173,8 @@
       display: block;
     }
 
+
+
     @media (max-width: 1070px) {
       .ds-collage-img-3 {
         display: none !important;
@@ -203,6 +218,23 @@
         margin-top: 0 !important;
         margin-right: 0 !important;
         padding-right: 0 !important;
+      }
+
+      .ds-mobile-hero-img {
+        display: block !important;
+        width: 100% !important;
+        max-width: 380px !important;
+        height: auto !important;
+        margin: 20px auto 0 !important;
+      }
+
+      .ds-responsibilities-img-mobile {
+        display: block !important;
+        width: 100% !important;
+        max-width: 500px !important;
+        height: auto !important;
+        margin: 24px auto !important;
+        border-radius: 4px;
       }
 
       /* Right column title spacing */
@@ -249,7 +281,7 @@
       }
 
       /* Webdesign section top margin */
-      section[style*="margin-top: 120px"] {
+      .ds-webdesign-section {
         margin-top: 64px !important;
         margin-bottom: 0 !important;
       }
@@ -311,7 +343,12 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <a href="index.html" class="nav-name">jan-luca ahlemeyer</a>
-    <nav class="nav-links">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="nav-links" id="navLinks">
       <a href="user-understanding.html" class="nav-item" id="nav-user-understanding">user understanding</a>
       <a href="designs.html" class="nav-item nav-item--active" id="nav-designs">designs</a>
       <a href="campaigns.html" class="nav-item" id="nav-campaigns">campaigns</a>
@@ -336,6 +373,8 @@
               teams to ensure accurate implementation. Design work covered wireframes, user flows, and high-fidelity
               prototypes as well as the development of UI components aligned with each brand's corporate identity and
               visual language.</p>
+
+            <img src="img_design/img_design3.png" class="ds-responsibilities-img-mobile" alt="Audi in-car interface">
             <p class="ds-body">In addition, involvement in usability testing and interface validation supported the
               optimization of key infotainment features, including navigation systems, media interfaces, settings, and
               privacy-related menus. A strong focus was placed on ensuring clarity, consistency, and seamless
@@ -348,6 +387,7 @@
         <div class="ds-col--text" style="display: flex; flex-direction: column; margin-left: -70px;">
           <h1 class="ds-hero-title">DESIGN</h1>
           <p class="ds-body">Paul Watzlawick’s idea that “one cannot not communicate” applies not only to human communication, but to design as well. Every design choice communicates something, from color and typography to the overall visual language. That’s why it’s important to consider not only what a design does, but also how it feels and how it reflects the brand identity.</p>
+          <img src="img_design/img_design6.png" class="ds-mobile-hero-img" alt="Paul Watzlawick">
 
           <!-- img2 + in-car text side by side -->
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; margin-top: 24px;">
@@ -366,12 +406,14 @@
           <img src="img_design/img_design3.png" class="ds-collage-img ds-collage-img-3" alt="image 3"
             style="margin-left: 270px; max-width: 700px;">
 
+
+
         </div>
 
       </section>
 
       <!-- --- WEBDESIGN --- -->
-      <section style="margin-top: 120px; margin-bottom: 32px;">
+      <section class="ds-webdesign-section">
         <h2 class="ux-sub-heading" style="margin-bottom: 24px;">webdesign</h2>
 
         <img src="img_design/img_design4.png" class="ds-webdesign-img" alt="WinValue vehicle analysis tool">
@@ -468,6 +510,7 @@
     });
   </script>
 
+  <script src="script.js"></script>
 </body>
 
 </html>

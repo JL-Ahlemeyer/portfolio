@@ -25,7 +25,6 @@ body {
   overflow: hidden;
   background: var(--color-bg);
   -webkit-font-smoothing: antialiased;
-  scrollbar-gutter: stable;
 }
 
 /* === NAVBAR === */
@@ -232,11 +231,7 @@ body.page-scrollable {
   line-height: 1.1;
   letter-spacing: -7%;
   margin-block: 12px;
-  background: linear-gradient(to bottom, #070707, #5a5a59);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
+  color: #1a1a1a;
 }
 
 .serif-word {
@@ -244,9 +239,7 @@ body.page-scrollable {
   font-weight: 400;
   font-size: 1.05em;
   letter-spacing: -6px;
-  background: -webkit-linear-gradient(#2c2c2c, #7C7676);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #4e4e4e;
 }
 
 /* --- HERO ANIMATIONS --- */
@@ -257,23 +250,23 @@ body.page-scrollable {
 .anim-letter {
   display: inline-block;
   opacity: 0;
-  filter: blur(12px);
-  animation: revealLetter 0.15s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+  color: #1a1a1a;
+  animation: revealLetter 0.25s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+}
+
+.serif-word .anim-letter {
+  color: #4e4e4e;
 }
 
 @keyframes revealLetter {
   0% {
     opacity: 0;
-    filter: blur(12px);
-  }
-
-  30% {
-    opacity: 0.5;
+    transform: translateY(4px);
   }
 
   100% {
     opacity: 1;
-    filter: blur(0);
+    transform: translateY(0);
   }
 }
 
@@ -386,11 +379,11 @@ body.page-scrollable {
 /* === SECTION HEADING === */
 .section-heading {
   font-family: var(--font-inter);
-  font-weight: 400;
-  font-size: 24px;
-  color: #1a1a1a;
-  margin-bottom: 24px;
-  margin-top: 24px;
+  font-weight: 250;
+  font-size: clamp(23px, 2.2vw, 30px);
+  color: #444;
+  margin-top: 0;
+  margin-bottom: 14px;
   letter-spacing: 0;
 }
 
@@ -431,15 +424,15 @@ body.page-scrollable {
 
 .timeline-details strong {
   font-family: var(--font-inter);
-  font-weight: 400;
-  font-size: 16px;
-  color: #1a1a1a;
+  font-weight: 380;
+  font-size: 17px;
+  color: #191919;
   line-height: 1.5;
 }
 
 .timeline-details span {
   font-family: var(--font-inter);
-  font-weight: 400;
+  font-weight: 320;
   font-size: 16px;
   color: #555;
   display: block;
@@ -1032,4 +1025,76 @@ body.page-scrollable {
 /* Mobile-only images hidden by default on desktop */
 .ai-img-mobile {
   display: none;
+}
+
+
+/* ===== MOBILE NAVBAR (≤ 900px) — shared across all pages ===== */
+
+/* Toggle button: hidden by default (desktop) */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 4px;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 201;
+  flex-shrink: 0;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: #111;
+  transition: all 0.25s ease;
+}
+/* 3-stripe → X animation */
+.nav-toggle.active span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav-toggle.active span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+@media (max-width: 900px) {
+  /* Compact navbar */
+  .navbar {
+    padding: 0 16px !important;
+    height: 52px !important;
+  }
+  /* Name size */
+  .nav-name {
+    font-size: 24px !important;
+    letter-spacing: -0.02em !important;
+  }
+  /* Show burger, hide horizontal links */
+  .nav-toggle {
+    display: flex !important;
+  }
+  .nav-links {
+    display: none !important;
+    position: fixed !important;
+    top: 52px !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: #FEFCFA !important;
+    flex-direction: column !important;
+    padding: 24px 20px !important;
+    gap: 20px !important;
+    border-bottom: 1px solid var(--color-border) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
+    z-index: 199 !important;
+  }
+  .nav-links.active {
+    display: flex !important;
+  }
+  /* Dropdown nav items */
+  .nav-item {
+    font-size: 22px !important;
+  }
 }

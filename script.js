@@ -20,6 +20,16 @@ if (navToggle && navLinks) {
     navToggle.classList.toggle('active');
     navLinks.classList.toggle('active');
   });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('active')) {
+      if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      }
+    }
+  });
 }
 
 // === HORIZONTAL SLIDER ===
@@ -93,7 +103,6 @@ document.addEventListener('keydown', (e) => {
 const rightPanel = document.querySelector('.slider-panel');
 
 rightPanel.addEventListener('touchstart', (e) => {
-  if (window.innerWidth <= 900) return;
   startX = e.touches[0].clientX;
   isDragging = true;
 }, { passive: true });

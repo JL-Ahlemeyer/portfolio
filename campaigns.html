@@ -15,6 +15,9 @@
     .miaac-img-mobile {
       display: none;
     }
+    .ln-mobile-only {
+      display: none;
+    }
 
     /* ===== CAMPAIGNS RESPONSIVE LAYOUT (≤900px) ===== */
     @media (max-width: 900px) {
@@ -26,8 +29,9 @@
       .miaac-img-mobile {
         display: block !important;
         width: 100% !important;
-        margin-top: 16px !important;
+        margin: 28px 0 !important;
       }
+
 
       /* Lucky number heading font weight */
       .lucky-number-heading {
@@ -36,7 +40,11 @@
 
       /* Remove top margin from fashion_03 image so images are flush */
       .fashion-img-03 {
-        margin-top: 0 !important;
+        margin-top: 24px !important;
+      }
+
+      .fashion-text-wrap {
+        padding-right: 0 !important;
       }
 
       /* Hide fashion_02 on mobile */
@@ -85,25 +93,47 @@
         position: static !important;
       }
 
-      /* ─── Lucky Number Store ─── */
-      /* Stack the image collage vertically */
-      section[style*="margin-top: 64px"] > div[style*="grid-template-columns: 3fr 2fr"] {
+            /* ─── Lucky Number Store ─── */
+      .lucky-number-grid {
         display: flex !important;
         flex-direction: column !important;
-        position: relative !important;
       }
-
-      section[style*="margin-top: 64px"] > div[style*="grid-template-columns: 3fr 2fr"] img {
+      .lucky-number-grid img {
         width: 100% !important;
         position: static !important;
         transform: none !important;
       }
-
-      /* The small centered portrait (lucky_number_02) — keep it visible but in-flow */
-      section[style*="margin-top: 64px"] > div[style*="grid-template-columns: 3fr 2fr"] img[alt="Lucky Number 2"] {
-        width: 50% !important;
-        margin: -40px auto 0 auto !important;
+      .ln-desktop-only {
+        display: none !important;
+      }
+      .ln-mobile-only {
         display: block !important;
+        width: 100% !important;
+        margin-top: 40px !important;
+      }
+      .ln-sub-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 480px;
+        margin: 0 auto;
+        padding-bottom: max(0px, calc(42% - 85px));
+      }
+      .ln-sub-bg {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+      }
+      .ln-sub-fg {
+        position: absolute;
+        width: 38.5%;
+        left: 50%;
+        transform: translateX(-50%);
+        top: calc(76% - 85px);
+        z-index: 2;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+        display: block;
       }
 
       /* ─── MIAAC two-column section ─── */
@@ -133,7 +163,12 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <a href="index.html" class="nav-name">jan-luca ahlemeyer</a>
-    <nav class="nav-links">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="nav-links" id="navLinks">
       <a href="user-understanding.html" class="nav-item" id="nav-user-understanding">user understanding</a>
       <a href="designs.html" class="nav-item" id="nav-designs">designs</a>
       <a href="campaigns.html" class="nav-item nav-item--active" id="nav-campaigns">campaigns</a>
@@ -210,7 +245,7 @@
           <!-- Top Row area -->
           <!-- Col 1: Text + Image 3 -->
           <div style="display: flex; flex-direction: column; justify-content: space-between;">
-            <div style="padding-right: 20px;">
+            <div class="fashion-text-wrap" style="padding-right: 20px;">
               <h2 class="ux-sub-heading" style="margin-top: 0; margin-bottom: 16px;">munich<br>fashion week</h2>
               <p class="ds-body" style="margin-bottom: 0;">
                 I worked as a press photographer for Munich Fashion Week, capturing runway shows, backstage moments, and on-site atmospheres over several days, displaying different showcases of designers each day. The focus was on documenting both the visual presentation of the collections and the energy behind the scenes for editorial and digital coverage.
@@ -237,22 +272,30 @@
 
       <!-- ─── LUCKY NUMBER STORE ─── -->
       <section style="margin-top: 64px;">
-        <div style="display: grid; grid-template-columns: 3fr 2fr; grid-template-rows: auto auto; gap: 0; position: relative;">
+        <div class="lucky-number-grid" style="display: grid; grid-template-columns: 3fr 2fr; grid-template-rows: auto auto; gap: 0; position: relative;">
           <!-- Heading overlapping Image 1 -->
           <h2 class="ux-sub-heading lucky-number-heading" style="position: absolute; top: 20px; left: 24px; z-index: 3; margin: 0; color: #fff; text-shadow: 0 1px 20px rgba(0,0,0,0.35);">lucky number<br>store</h2>
           <!-- Image 1: full-width top -->
           <img src="img_campaign/lucky_number_01.png" alt="Lucky Number 1" style="grid-column: 1 / -1; grid-row: 1; width: 100%; display: block;">
           <!-- Image 3: bottom-left (wider) -->
           <img src="img_campaign/lucky_number_03.png" alt="Lucky Number 3" style="grid-column: 1; grid-row: 2; width: 100%; height: 100%; object-fit: cover; display: block;">
-          <!-- Image 4: bottom-right -->
-          <img src="img_campaign/lucky_number_04.png" alt="Lucky Number 4" style="grid-column: 2; grid-row: 2; width: 100%; height: 100%; object-fit: cover; display: block;">
-          <!-- Image 2: portrait, centered, overlapping rows 1–2 -->
-          <img src="img_campaign/lucky_number_02.png" alt="Lucky Number 2" style="position: absolute; top: 42%; left: 50%; transform: translate(-50%, -50%); width: 18%; z-index: 2; box-shadow: 0 4px 20px rgba(0,0,0,0.12);">
+          <!-- Image 4: bottom-right (desktop) -->
+          <img src="img_campaign/lucky_number_04.png" alt="Lucky Number 4" class="ln-desktop-only" style="grid-column: 2; grid-row: 2; width: 100%; height: 100%; object-fit: cover; display: block;">
+          <!-- Image 2: portrait, centered, overlapping rows 1–2 (desktop) -->
+          <img src="img_campaign/lucky_number_02.png" alt="Lucky Number 2" class="ln-desktop-only" style="position: absolute; top: 42%; left: 50%; transform: translate(-50%, -50%); width: 18%; z-index: 2; box-shadow: 0 4px 20px rgba(0,0,0,0.12);">
         </div>
       </section>
       <p class="ds-body" style="margin-top: 24px;">
         Lucky Number is a Munich-based curated vintage pop-up concept specializing in premium second-hand vintage suits with a distinctive 70s Vegas theme. I collaborated closely with the founder Simon Merkle on building a social media presence, covering events, shooting product and video edits while helping shape the campaign's brand direction. Together, we developed a clear art direction and semi-professional shooting concept centered around fine lifestyle content, creating a unique visual impulse through clean suits, bold visuals, and playful retro branding to create a distinctive identity across digital platforms.
       </p>
+
+      <!-- Images 04 and 02 under text for mobile only -->
+      <div class="lucky-number-sub-collage ln-mobile-only">
+        <div class="ln-sub-wrapper">
+          <img src="img_campaign/lucky_number_04.png" alt="Lucky Number 4" class="ln-sub-bg">
+          <img src="img_campaign/lucky_number_02.png" alt="Lucky Number 2" class="ln-sub-fg">
+        </div>
+      </div>
 
       <!-- ─── TWO-COLUMN DETAILS ─── -->
       <section class="ds-section" style="margin-top: 64px;">
@@ -288,124 +331,210 @@
       const track = slider.querySelector('.slider-track');
       
       let isDown = false;
-      let startX;
-      let scrollLeftVal;
+      let isTouching = false;
       let isHovered = false;
+      let resumeTimeout = null;
+      let momentumAnim = null;
       let half = 0;
-      
-      // Disable CSS animation because we are doing JS scroll-based movement
-      track.style.animation = 'none';
-      slider.style.overflowX = 'auto'; // allow scrolling
-      slider.style.scrollbarWidth = 'none'; // hide scrollbar in Firefox
-      
-      function updateBounds() {
-        half = slider.scrollWidth / 2;
-      }
-      
-      // We need to wait for images to load to get correct scrollWidth
-      window.addEventListener('load', updateBounds);
-      
-      // Auto-scroll loop
-      let speed = 0.5; // pixels per frame (slower autoscrolling)
       let currentScroll = 0;
-      
+      const speed = 0.5; // pixels per frame
+
+      // Drag / Swipe tracking
+      let startX = 0;
+      let startY = 0;
+      let scrollLeftStart = 0;
+      let lastTouchX = 0;
+      let lastTouchTime = 0;
+      let velocity = 0;
+      let touchMoved = false;
+      let isHorizontalSwipe = false;
+
+      // Prepare styles for reliable touch and mouse scrolling
+      track.style.animation = 'none';
+      slider.style.overflowX = 'hidden';
+      slider.style.userSelect = 'none';
+      slider.style.webkitUserSelect = 'none';
+      slider.style.touchAction = 'pan-y'; // native vertical page scroll, horizontal gestures captured
+
+      function updateBounds() {
+        half = track.scrollWidth / 2;
+      }
+
+      window.addEventListener('load', updateBounds);
+      window.addEventListener('resize', updateBounds);
+      updateBounds();
+      setTimeout(updateBounds, 300);
+      setTimeout(updateBounds, 1000);
+      setTimeout(updateBounds, 2500);
+
+      // Auto-scroll loop
       function step() {
         if (half > 0) {
-          if (!isDown && !isHovered) {
+          if (!isDown && !isTouching && !isHovered) {
             currentScroll += speed;
-            
-            // Loop forward
             if (currentScroll >= half) {
               currentScroll -= half;
+            } else if (currentScroll < 0) {
+              currentScroll += half;
             }
             slider.scrollLeft = currentScroll;
-          } else {
-            currentScroll = slider.scrollLeft;
           }
         }
         requestAnimationFrame(step);
       }
       requestAnimationFrame(step);
-      
-      // Hover events
-      slider.addEventListener('mouseenter', () => {
-        isHovered = true;
-      });
-      slider.addEventListener('mouseleave', () => {
-        isHovered = false;
-        isDown = false;
-        slider.style.cursor = 'grab';
-      });
-      
-      // Mouse drag events
-      slider.style.cursor = 'grab';
-      
-      // Prevent browser default image dragging
-      const imgs = slider.querySelectorAll('img');
-      imgs.forEach(img => {
+
+      // Prevent native image dragging
+      slider.querySelectorAll('img').forEach(img => {
         img.addEventListener('dragstart', (e) => e.preventDefault());
       });
 
+      // --- MOUSE DRAG ---
+      slider.style.cursor = 'grab';
+
+      slider.addEventListener('mouseenter', () => {
+        isHovered = true;
+      });
+
+      slider.addEventListener('mouseleave', () => {
+        isHovered = false;
+        if (isDown) {
+          isDown = false;
+          slider.style.cursor = 'grab';
+          currentScroll = slider.scrollLeft;
+        }
+      });
+
       slider.addEventListener('mousedown', (e) => {
+        cancelAnimationFrame(momentumAnim);
         isDown = true;
         slider.style.cursor = 'grabbing';
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeftVal = slider.scrollLeft;
+        startX = e.pageX;
+        scrollLeftStart = slider.scrollLeft;
+        currentScroll = slider.scrollLeft;
       });
-      
-      slider.addEventListener('mouseup', () => {
-        isDown = false;
-        slider.style.cursor = 'grab';
+
+      window.addEventListener('mouseup', () => {
+        if (isDown) {
+          isDown = false;
+          slider.style.cursor = 'grab';
+          currentScroll = slider.scrollLeft;
+        }
       });
-      
-      slider.addEventListener('mousemove', (e) => {
+
+      window.addEventListener('mousemove', (e) => {
         if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 1.5; // scroll speed multiplier
-        slider.scrollLeft = scrollLeftVal - walk;
-        
-        // Wrap during drag
+        const dx = e.pageX - startX;
+        let newScroll = scrollLeftStart - dx;
+
         if (half > 0) {
-          if (slider.scrollLeft >= half) {
-            slider.scrollLeft -= half;
-            scrollLeftVal -= half;
-            startX = x;
-          } else if (slider.scrollLeft <= 0) {
-            slider.scrollLeft += half;
-            scrollLeftVal += half;
-            startX = x;
+          while (newScroll >= half) {
+            newScroll -= half;
+            scrollLeftStart -= half;
+          }
+          while (newScroll < 0) {
+            newScroll += half;
+            scrollLeftStart += half;
           }
         }
+        slider.scrollLeft = newScroll;
+        currentScroll = newScroll;
       });
-      
-      // Touch swipe support and native wrapping
-      slider.addEventListener('scroll', () => {
-        if (half > 0) {
-          if (slider.scrollLeft >= half) {
-            slider.scrollLeft -= half;
-          } else if (slider.scrollLeft <= 0) {
-            slider.scrollLeft += half;
+
+      // --- TOUCH / MOBILE SWIPE ---
+      slider.addEventListener('touchstart', (e) => {
+        cancelAnimationFrame(momentumAnim);
+        clearTimeout(resumeTimeout);
+        isTouching = true;
+        touchMoved = false;
+        isHorizontalSwipe = false;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        lastTouchX = startX;
+        lastTouchTime = performance.now();
+        velocity = 0;
+        scrollLeftStart = slider.scrollLeft;
+        currentScroll = slider.scrollLeft;
+      }, { passive: true });
+
+      slider.addEventListener('touchmove', (e) => {
+        if (!isTouching) return;
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+        const dx = currentX - startX;
+        const dy = currentY - startY;
+
+        // Detect swipe direction on initial movement
+        if (!touchMoved && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) {
+          touchMoved = true;
+          isHorizontalSwipe = Math.abs(dx) > Math.abs(dy);
+        }
+
+        if (isHorizontalSwipe) {
+          const now = performance.now();
+          const dt = now - lastTouchTime;
+          if (dt > 0) {
+            velocity = (currentX - lastTouchX) / dt; // px per ms
           }
-          if (isDown || isHovered) {
+          lastTouchX = currentX;
+          lastTouchTime = now;
+
+          let newScroll = scrollLeftStart - dx;
+          if (half > 0) {
+            while (newScroll >= half) {
+              newScroll -= half;
+              scrollLeftStart -= half;
+            }
+            while (newScroll < 0) {
+              newScroll += half;
+              scrollLeftStart += half;
+            }
+          }
+          slider.scrollLeft = newScroll;
+          currentScroll = newScroll;
+        }
+      }, { passive: true });
+
+      function applyMomentum() {
+        if (Math.abs(velocity) > 0.05) {
+          velocity *= 0.92; // smooth decay
+          let newScroll = slider.scrollLeft - velocity * 16;
+          if (half > 0) {
+            while (newScroll >= half) newScroll -= half;
+            while (newScroll < 0) newScroll += half;
+          }
+          slider.scrollLeft = newScroll;
+          currentScroll = newScroll;
+          momentumAnim = requestAnimationFrame(applyMomentum);
+        } else {
+          resumeTimeout = setTimeout(() => {
+            isTouching = false;
             currentScroll = slider.scrollLeft;
+          }, 1000);
+        }
+      }
+
+      function endTouch() {
+        if (isTouching) {
+          currentScroll = slider.scrollLeft;
+          if (isHorizontalSwipe && Math.abs(velocity) > 0.15) {
+            momentumAnim = requestAnimationFrame(applyMomentum);
+          } else {
+            resumeTimeout = setTimeout(() => {
+              isTouching = false;
+              currentScroll = slider.scrollLeft;
+            }, 1000);
           }
         }
-      });
-      
-      // Recalculate half on resize
-      window.addEventListener('resize', updateBounds);
-      
-      // Call immediately & repeatedly to account for dynamic image loads
-      updateBounds();
-      setTimeout(updateBounds, 250);
-      setTimeout(updateBounds, 500);
-      setTimeout(updateBounds, 1000);
-      setTimeout(updateBounds, 2000);
+      }
+
+      slider.addEventListener('touchend', endTouch, { passive: true });
+      slider.addEventListener('touchcancel', endTouch, { passive: true });
     }
 
     // Initialize all sliders on the page
     document.querySelectorAll('.campaigns-slider').forEach(initSlider);
   </script>
+  <script src="script.js"></script>
 </body>
 </html>
