@@ -544,8 +544,41 @@ body.page-scrollable {
   position: static;
 }
 
+/* Disable internal scrolling within user-understanding slides */
+.layout-flipped .slide {
+  overflow-y: hidden !important;
+  overflow-x: hidden !important;
+  scrollbar-width: none !important;
+}
+
+.layout-flipped .slide::-webkit-scrollbar {
+  display: none !important;
+}
+
 .layout-flipped .slide-content {
-  /* float entfernt — panel hat jetzt feste Breite, kein float nötig */
+  padding: clamp(14px, 2.5vh, 26px) 28px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.layout-flipped .ux-main-heading {
+  margin-bottom: clamp(4px, 1vh, 8px);
+}
+
+.layout-flipped .ux-sub-heading {
+  font-size: clamp(24px, 2.4vw, 40px);
+  margin-bottom: clamp(8px, 1.6vh, 16px);
+  line-height: 1.12;
+}
+
+.layout-flipped .ux-body {
+  font-size: clamp(13px, 0.95vw, 15px);
+  line-height: 1.55;
+  margin-bottom: clamp(6px, 1.4vh, 12px);
+  text-align: left;
 }
 
 /* === UX PAGE STYLES === */
