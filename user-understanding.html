@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -44,43 +44,91 @@
       opacity: 1;
     }
 
+    /* Mobile inline layer images: hidden on desktop */
+    .uu-mobile-img {
+      display: none;
+    }
+
+    /* Mobile stacked image pair: hidden on desktop */
+    .uu-mobile-img-stack {
+      display: none;
+      position: relative;
+    }
+    .uu-mobile-img-stack .uu-mobile-img-base {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .uu-mobile-img-stack .uu-mobile-img-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Hide swipe hint on desktop */
+    .uu-mobile-swipe-hint {
+      display: none;
+    }
+
     /* ===== MOBILE LAYOUT (≤900px) ===== */
     @media (max-width: 900px) {
 
-      /* Switch from side-by-side to vertical stack */
+      /* Full-page vertical scroll */
+      html, body {
+        height: auto !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+      }
+
       .main-layout.layout-flipped {
         flex-direction: column !important;
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
         position: static !important;
         height: auto !important;
-        min-height: calc(100vh - var(--nav-h)) !important;
+        overflow: visible !important;
+        margin-top: 52px !important;
       }
 
-      /* TEXT PANEL (left-panel in desktop = slider panel): takes as much height as its content */
+      /* Left panel: full width, natural flow */
       .layout-flipped .left-panel {
-        flex: 0 0 auto !important;
+        flex: none !important;
         width: 100% !important;
         overflow: visible !important;
-      }
-
-      /* slides-track must be measured by its content on mobile */
-      .layout-flipped .left-panel .slides-track {
-        overflow: hidden;
         height: auto !important;
       }
 
-      /* Each slide: auto height, full width */
+      /* Slides-track: vertical stacking */
+      .layout-flipped .left-panel .slides-track {
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: visible !important;
+        height: auto !important;
+        transform: none !important;
+        transition: none !important;
+      }
+
+      /* Each slide: full width, auto height */
       .layout-flipped .left-panel .slide {
         min-width: 100% !important;
+        width: 100% !important;
         height: auto !important;
         overflow: visible !important;
+        transform: none !important;
+        transition: none !important;
+        display: block !important;
       }
 
-      /* slide-content padding & typography matching designs.html mobile */
+      /* Slide content padding */
       .layout-flipped .slide-content {
-        padding: 20px 16px 24px !important;
+        padding: 20px 16px 8px !important;
         max-width: 100% !important;
+      }
+
+      /* Slide 1 text: always visible on mobile */
+      #slide-1 .slide-content {
+        opacity: 1 !important;
       }
 
       /* Main heading */
@@ -92,14 +140,15 @@
 
       /* Sub-heading */
       .layout-flipped .ux-sub-heading {
-        font-size: clamp(20px, 5vw, 28px) !important;
-        margin-bottom: 14px !important;
+        font-size: clamp(33px, 4.2vw, 51px) !important;
+        margin-bottom: 12px !important;
         line-height: 1.1 !important;
       }
 
-      /* Body text matching designs.html mobile ds-body */
+      /* Body text */
       .layout-flipped .ux-body {
-        font-size: 16px !important;
+        font-family: var(--font-inter) !important;
+        font-size: 17px !important;
         font-weight: 300 !important;
         line-height: 1.8 !important;
         text-align: justify !important;
@@ -107,72 +156,46 @@
         color: #333 !important;
       }
 
-      /* Slide 1 text fade-in: start visible on mobile (no intro delay issues) */
-      #slide-1 .slide-content {
-        opacity: 1;
-      }
-
-      /* Dots nav: compact on mobile */
+      /* Dots nav: hidden (single vertical scroll) */
       .layout-flipped .dots-nav {
-        padding: 12px 0 16px !important;
-        gap: 14px !important;
+        display: none !important;
       }
 
-      /* IMAGE PANEL (right-panel in desktop): below text, fills remaining space */
+      /* Right panel (layered image): hidden — images shown inline */
       .layout-flipped .right-panel {
-        flex: 0 0 56vw !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        height: 56vw !important;
-        max-height: 56vw !important;
-        min-height: 220px !important;
-        overflow: hidden !important;
-        position: relative !important;
+        display: none !important;
       }
 
-      /* image-layers fill the mobile panel fully */
-      .layout-flipped .right-panel .image-layers {
-        width: 100% !important;
-        height: 100% !important;
-      }
-
-      /* Layer images: cover the panel */
-      .layout-flipped .right-panel .hero-image {
-        position: absolute !important;
-        inset: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
+      /* Inline mobile images between text sections */
+      .uu-mobile-img {
+        display: block !important;
+        width: calc(100% + 32px) !important;
+        max-width: none !important;
+        margin-left: -16px !important;
+        margin-right: -16px !important;
+        margin-top: 20px !important;
+        margin-bottom: 28px !important;
+        height: auto !important;
         object-fit: cover !important;
-        object-position: center !important;
       }
 
-      /* Intro animation: disable large offsets on mobile */
-      .layer-middle {
-        transform: translate(40px, -20px) rotate(4deg);
+      /* Stacked image pair on mobile */
+      .uu-mobile-img-stack {
+        display: block !important;
+        width: calc(100% + 32px) !important;
+        margin-left: -16px !important;
+        margin-right: -16px !important;
+        margin-top: 20px !important;
+        margin-bottom: 28px !important;
+        overflow: hidden !important;
       }
+
+      /* Disable intro animation on mobile */
+      .layer-middle,
       .layer-top {
-        transform: translate(-40px, 20px) rotate(-4deg);
+        transform: none !important;
+        transition: none !important;
       }
-
-      /* Mobile swipe zone for the slide track */
-      .uu-mobile-swipe-hint {
-        display: flex;
-      }
-    }
-
-    /* Hide swipe hint on desktop */
-    .uu-mobile-swipe-hint {
-      display: none;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      font-family: var(--font-inter);
-      font-size: 11px;
-      font-weight: 300;
-      color: #aaa;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding-bottom: 4px;
     }
   </style></head>
 
@@ -198,7 +221,7 @@
   <!-- MAIN -->
   <main class="main-layout layout-flipped">
 
-    <!-- LEFT: Horizontal Slider (text) -->
+    <!-- LEFT: Horizontal Slider (text) + inline mobile images -->
     <div class="left-panel slider-panel">
       <div class="slides-track" id="slidesTrack">
 
@@ -206,7 +229,7 @@
         <div class="slide" id="slide-1">
           <div class="slide-content">
             <h1 class="ux-main-heading">User<br>Understanding</h1>
-            <h2 class="ux-sub-heading">studies & data collection</h2>
+            <h2 class="ux-sub-heading">studies &amp; data collection</h2>
             <p class="ux-body">
               My background spans empirical user research and data-driven analysis. From <a href="in-car-tutor.html"
                 class="ux-link">driving simulator studies</a> and <a href="eye-tracking-study.html"
@@ -218,12 +241,17 @@
               statistical insights into evidence-based UX decisions.
             </p>
           </div>
+          <!-- Mobile: layer1 + layer3 composited after slide 1 text -->
+          <div class="uu-mobile-img-stack">
+            <img src="img_user/user_layer1.png" alt="UX Research base layer" class="uu-mobile-img-base">
+            <img src="img_user/user_layer3.png" alt="UX Research overlay" class="uu-mobile-img-overlay">
+          </div>
         </div>
 
         <!-- SLIDE 2: Analytics -->
         <div class="slide" id="slide-2">
           <div class="slide-content">
-            <h2 class="ux-sub-heading">google analytics &<br>social media dashboards</h2>
+            <h2 class="ux-sub-heading">google analytics &amp;<br>social media dashboards</h2>
             <p class="ux-body">
               Experience with Google Analytics and a range of social media dashboards, including Meta Business Suite,
               Instagram Professional Dashboard, TikTok Analytics, and YouTube Studio, forms part of a regular workflow
@@ -237,6 +265,8 @@
               data.
             </p>
           </div>
+          <!-- Mobile: layer 2 image after slide 2 text -->
+          <img src="img_user/user_layer2.png" alt="UX Research analytics layer" class="uu-mobile-img">
         </div>
 
         <!-- SLIDE 3: Data Analysis -->
@@ -263,16 +293,15 @@
 
       </div><!-- end slides-track -->
 
-      <!-- DOT NAVIGATION -->
+      <!-- DOT NAVIGATION (desktop only) -->
       <div class="dots-nav" id="dotsNav">
         <button class="dot active" data-index="0" aria-label="Go to slide 1"></button>
         <button class="dot" data-index="1" aria-label="Go to slide 2"></button>
         <button class="dot" data-index="2" aria-label="Go to slide 3"></button>
       </div>
-      <p class="uu-mobile-swipe-hint">← swipe to navigate →</p>
     </div><!-- end left-panel -->
 
-    <!-- RIGHT: Fixed Image (layered) -->
+    <!-- RIGHT: Fixed Image (layered) — desktop only -->
     <div class="right-panel">
       <div class="image-layers">
         <img src="img_user/user_layer1.png" alt="UX Research" class="hero-image layer-base">

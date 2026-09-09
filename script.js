@@ -32,106 +32,420 @@ if (navToggle && navLinks) {
   });
 }
 
+// Check if navigated from below (scrolled up from subsequent page)
+const isNavigatedFromBelow = window.location.hash === '#bottom' || window.location.search.includes('from=bottom');
+
 // === HORIZONTAL SLIDER ===
 const track = document.getElementById('slidesTrack');
-const slides = Array.from(track.querySelectorAll('.slide'));
-const dots = Array.from(document.querySelectorAll('.dot'));
-let current = 0;
-let startX = 0;
-let isDragging = false;
-
-// Layer 2 parallax — startet rechts, bewegt sich pro Slide nach links
-const LAYER2_OFFSETS = [50, 25, 0];
-const imageLayer2 = document.getElementById('imageLayer3');
-
-// Layer 2 middle — halfway between layer1 (0px) and layer3
-const LAYER_MIDDLE_OFFSETS = [25, 13, 0];
-const imageLayerMiddle = document.getElementById('imageLayer2');
-
-// Position all slides side by side via translateX
-function positionSlides(index, animate = true) {
-  slides.forEach((slide, i) => {
-    slide.style.transition = animate
-      ? 'transform 0.65s cubic-bezier(0.77, 0, 0.175, 1)'
-      : 'none';
-    slide.style.transform = `translateX(${-index * 100}%)`;
-  });
-
-  dots.forEach((dot, i) => {
-    dot.classList.toggle('active', i === index);
-  });
-
-  // Shift layer 3 (top) on each slide
-  if (imageLayer2) {
-    const offset = LAYER2_OFFSETS[index] ?? LAYER2_OFFSETS[LAYER2_OFFSETS.length - 1];
-    imageLayer2.style.transition = animate
-      ? 'transform 0.65s cubic-bezier(0.77, 0, 0.175, 1)'
-      : 'none';
-    imageLayer2.style.transform = `translateX(${offset}px)`;
-  }
-
-  // Shift layer 2 (middle) on each slide
-  if (imageLayerMiddle) {
-    const offset = LAYER_MIDDLE_OFFSETS[index] ?? LAYER_MIDDLE_OFFSETS[LAYER_MIDDLE_OFFSETS.length - 1];
-    imageLayerMiddle.style.transition = animate
-      ? 'transform 0.65s cubic-bezier(0.77, 0, 0.175, 1)'
-      : 'none';
-    imageLayerMiddle.style.transform = `translateX(${offset}px)`;
-  }
-
-  current = index;
-}
-
-
-// Dot click
-dots.forEach((dot) => {
-  dot.addEventListener('click', () => {
-    positionSlides(parseInt(dot.dataset.index));
-  });
-});
-
-// Keyboard navigation
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowRight' && current < slides.length - 1) {
-    positionSlides(current + 1);
-  } else if (e.key === 'ArrowLeft' && current > 0) {
-    positionSlides(current - 1);
-  }
-});
-
-// Touch/swipe support
 const rightPanel = document.querySelector('.slider-panel');
 
-rightPanel.addEventListener('touchstart', (e) => {
-  startX = e.touches[0].clientX;
-  isDragging = true;
-}, { passive: true });
+if (track && rightPanel) {
+  const slides = Array.from(track.querySelectorAll('.slide'));
+  const dots = Array.from(document.querySelectorAll('.dot'));
+  let current = 0;
+  let startX = 0;
+  let isDragging = false;
 
-rightPanel.addEventListener('touchend', (e) => {
-  if (!isDragging) return;
-  const diff = startX - e.changedTouches[0].clientX;
-  if (Math.abs(diff) > 50) {
-    if (diff > 0 && current < slides.length - 1) positionSlides(current + 1);
-    else if (diff < 0 && current > 0) positionSlides(current - 1);
+  // Layer 2 parallax — startet rechts, bewegt sich pro Slide nach links
+  const LAYER2_OFFSETS = [50, 25, 0];
+  const imageLayer2 = document.getElementById('imageLayer3');
+
+  // Layer 2 middle — halfway between layer1 (0px) and layer3
+  const LAYER_MIDDLE_OFFSETS = [25, 13, 0];
+  const imageLayerMiddle = document.getElementById('imageLayer2');
+
+  // Position all slides side by side via translateX
+  function positionSlides(index, animate = true) {
+    slides.forEach((slide, i) => {
+      slide.style.transition = animate
+        ? 'transform 0.65s cubic-bezier(0.77, 0, 0.175, 1)'
+        : 'none';
+      slide.style.transform = `translateX(${-index * 100}%)`;
+    });
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+
+    // Shift layer 3 (top) on each slide
+    if (imageLayer2) {
+      const offset = LAYER2_OFFSETS[index] ?? LAYER2_OFFSETS[LAYER2_OFFSETS.length - 1];
+      imageLayer2.style.transition = animate
+        ? 'transform 0.65s cubic-bezier(0.77, 0, 0.175, 1)'
+        : 'none';
+      imageLayer2.style.transform = `translateX(${offset}px)`;
+    }
+
+    // Shift layer 2 (middle) on each slide
+    if (imageLayerMiddle) {
+      const offset = LAYER_MIDDLE_OFFSETS[index] ?? LAYER_MIDDLE_OFFSETS[LAYER_MIDDLE_OFFSETS.length - 1];
+      imageLayerMiddle.style.transition = animate
+        ? 'transform 0.65s cubic-bezier(0.77, 0, 0.175, 1)'
+        : 'none';
+      imageLayerMiddle.style.transform = `translateX(${offset}px)`;
+    }
+
+    current = index;
   }
-  isDragging = false;
-}, { passive: true });
 
-// Mouse drag support (desktop)
-rightPanel.addEventListener('mousedown', (e) => {
-  startX = e.clientX;
-  isDragging = true;
-});
+  // Dot click
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      positionSlides(parseInt(dot.dataset.index));
+    });
+  });
 
-window.addEventListener('mouseup', (e) => {
-  if (!isDragging) return;
-  const diff = startX - e.clientX;
-  if (Math.abs(diff) > 60) {
-    if (diff > 0 && current < slides.length - 1) positionSlides(current + 1);
-    else if (diff < 0 && current > 0) positionSlides(current - 1);
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' && current < slides.length - 1) {
+      positionSlides(current + 1);
+    } else if (e.key === 'ArrowLeft' && current > 0) {
+      positionSlides(current - 1);
+    }
+  });
+
+  // Touch/swipe support (only on desktop or non-stacked mobile)
+  rightPanel.addEventListener('touchstart', (e) => {
+    if (window.innerWidth <= 900 && document.querySelector('.layout-flipped')) return;
+    startX = e.touches[0].clientX;
+    isDragging = true;
+  }, { passive: true });
+
+  rightPanel.addEventListener('touchend', (e) => {
+    if (!isDragging) return;
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0 && current < slides.length - 1) positionSlides(current + 1);
+      else if (diff < 0 && current > 0) positionSlides(current - 1);
+    }
+    isDragging = false;
+  }, { passive: true });
+
+  // Mouse drag support (desktop)
+  rightPanel.addEventListener('mousedown', (e) => {
+    startX = e.clientX;
+    isDragging = true;
+  });
+
+  window.addEventListener('mouseup', (e) => {
+    if (!isDragging) return;
+    const diff = startX - e.clientX;
+    if (Math.abs(diff) > 60) {
+      if (diff > 0 && current < slides.length - 1) positionSlides(current + 1);
+      else if (diff < 0 && current > 0) positionSlides(current - 1);
+    }
+    isDragging = false;
+  });
+
+  // Init: if coming from below on desktop horizontal slider, start on the last slide
+  const isDesktopSlider = window.innerWidth > 900 || !document.querySelector('.layout-flipped');
+  if (isNavigatedFromBelow && isDesktopSlider) {
+    positionSlides(slides.length - 1, false);
+  } else {
+    positionSlides(0, false);
   }
-  isDragging = false;
-});
+}
 
-// Init
-positionSlides(0, false);
+// On vertically scrollable pages (or mobile stacked view), scroll to bottom if navigated from below
+if (isNavigatedFromBelow) {
+  const jumpToBottom = () => {
+    const docH = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight,
+      document.documentElement.offsetHeight,
+      document.body.offsetHeight
+    );
+    window.scrollTo({ top: docH, behavior: 'instant' });
+  };
+  jumpToBottom();
+  requestAnimationFrame(jumpToBottom);
+  setTimeout(jumpToBottom, 60);
+  setTimeout(jumpToBottom, 250);
+  // Clean URL hash without triggering scroll
+  setTimeout(() => {
+    if (window.location.hash === '#bottom') {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+  }, 350);
+}
+
+// === BIDIRECTIONAL DOUBLE-SCROLL PAGE TRANSITIONS ===
+(function () {
+  const PAGE_SEQUENCE = [
+    'index.html',
+    'user-understanding.html',
+    'designs.html',
+    'campaigns.html',
+    'ai.html'
+  ];
+
+  const PAGE_LABELS = {
+    'index.html': 'home',
+    'user-understanding.html': 'user understanding',
+    'designs.html': 'designs',
+    'campaigns.html': 'campaigns',
+    'ai.html': 'ai'
+  };
+
+  function getCurrentFilename() {
+    const path = window.location.pathname;
+    let file = path.substring(path.lastIndexOf('/') + 1);
+    if (!file || file === '') file = 'index.html';
+    return file;
+  }
+
+  function getTargetPages() {
+    const currentFile = getCurrentFilename();
+    const idx = PAGE_SEQUENCE.indexOf(currentFile);
+    return {
+      prev: idx > 0 ? PAGE_SEQUENCE[idx - 1] : null,
+      next: idx !== -1 && idx < PAGE_SEQUENCE.length - 1 ? PAGE_SEQUENCE[idx + 1] : null
+    };
+  }
+
+  const { prev: prevPage, next: nextPage } = getTargetPages();
+  if (!prevPage && !nextPage) return; // Neither prev nor next page exists
+
+  let isTransitioning = false;
+  let hintEl = null;
+
+  function createOrGetHint() {
+    if (!hintEl) {
+      hintEl = document.createElement('div');
+      hintEl.id = 'pageScrollHint';
+      hintEl.style.cssText = `
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(26, 26, 26, 0.88);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        color: #f5f5f5;
+        font-family: var(--font-inter, -apple-system, sans-serif);
+        font-size: 13px;
+        font-weight: 300;
+        letter-spacing: 0.04em;
+        padding: 8px 18px;
+        border-radius: 999px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      `;
+      document.body.appendChild(hintEl);
+    }
+    return hintEl;
+  }
+
+  function showHint(direction, targetPage, step) {
+    const el = createOrGetHint();
+    const targetLabel = PAGE_LABELS[targetPage] || 'page';
+    const arrow = direction === 'next' ? '↓' : '↑';
+
+    if (direction === 'next') {
+      el.style.top = 'auto';
+      el.style.bottom = '24px';
+    } else {
+      el.style.bottom = 'auto';
+      el.style.top = '68px';
+    }
+
+    if (step === 1) {
+      el.innerHTML = `<span>scroll again for <strong>${targetLabel}</strong></span> <span style="font-size: 14px;">${arrow}</span>`;
+    } else {
+      el.innerHTML = `<span>loading <strong>${targetLabel}</strong>...</span>`;
+    }
+
+    el.style.opacity = '1';
+    el.style.transform = 'translateX(-50%) translateY(0)';
+  }
+
+  function hideHint() {
+    if (hintEl) {
+      hintEl.style.opacity = '0';
+      hintEl.style.transform = 'translateX(-50%) translateY(10px)';
+    }
+  }
+
+  function executeTransition(targetUrl, direction) {
+    if (isTransitioning || !targetUrl) return;
+    isTransitioning = true;
+    showHint(direction, targetUrl, 2);
+
+    const translateY = direction === 'next' ? '-14px' : '14px';
+    document.body.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+    document.body.style.opacity = '0';
+    document.body.style.transform = `translateY(${translateY})`;
+
+    // When navigating UP to the previous page, land at the bottom of that page
+    const destination = direction === 'prev' ? `${targetUrl}#bottom` : targetUrl;
+
+    setTimeout(() => {
+      window.location.href = destination;
+    }, 350);
+  }
+
+  function isAtPageTop() {
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const docH = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+    const windowH = window.innerHeight;
+
+    // Desktop horizontal slider layout
+    if (docH <= windowH + 30) {
+      const trackEl = document.getElementById('slidesTrack');
+      if (trackEl && typeof current !== 'undefined') {
+        return current === 0;
+      }
+      return true;
+    }
+
+    return scrollY <= 10;
+  }
+
+  function isAtPageBottom() {
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    const windowH = window.innerHeight;
+    const docH = Math.max(
+      document.documentElement.scrollHeight,
+      document.body.scrollHeight,
+      document.documentElement.offsetHeight,
+      document.body.offsetHeight
+    );
+
+    // Desktop horizontal slider layout
+    if (docH <= windowH + 30) {
+      const trackEl = document.getElementById('slidesTrack');
+      if (trackEl && typeof current !== 'undefined') {
+        const slidesCount = trackEl.querySelectorAll('.slide').length;
+        return current === slidesCount - 1;
+      }
+      return true;
+    }
+
+    return (scrollY + windowH) >= (docH - 16);
+  }
+
+  // --- Double Scroll State Tracking ---
+  const DOUBLE_SCROLL_WINDOW = 900; // ms to complete second scroll
+  let activeDirection = null; // 'next' or 'prev'
+  let scrollCount = 0;
+  let resetTimer = null;
+
+  function registerScrollGesture(direction) {
+    if (isTransitioning) return;
+
+    const targetUrl = direction === 'next' ? nextPage : prevPage;
+    if (!targetUrl) return;
+
+    if (activeDirection === direction && scrollCount === 1) {
+      // Second scroll detected within time window!
+      if (resetTimer) clearTimeout(resetTimer);
+      scrollCount = 2;
+      executeTransition(targetUrl, direction);
+    } else {
+      // First scroll detected
+      activeDirection = direction;
+      scrollCount = 1;
+      showHint(direction, targetUrl, 1);
+
+      if (resetTimer) clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => {
+        scrollCount = 0;
+        activeDirection = null;
+        hideHint();
+      }, DOUBLE_SCROLL_WINDOW);
+    }
+  }
+
+  // --- Wheel Handling (Desktop) ---
+  let wheelAccumulator = 0;
+  let wheelResetTimer = null;
+  let isWheelFlickCoolingDown = false;
+  const WHEEL_FLICK_THRESHOLD = 110;
+
+  window.addEventListener('wheel', (e) => {
+    if (isTransitioning) return;
+
+    // Scrolling down at bottom -> next page
+    if (e.deltaY > 0 && isAtPageBottom() && nextPage) {
+      if (!isWheelFlickCoolingDown) {
+        wheelAccumulator += e.deltaY;
+        if (wheelAccumulator >= WHEEL_FLICK_THRESHOLD) {
+          isWheelFlickCoolingDown = true;
+          wheelAccumulator = 0;
+          registerScrollGesture('next');
+          // Short cooldown to require a distinct second flick
+          setTimeout(() => { isWheelFlickCoolingDown = false; }, 220);
+        }
+      }
+    }
+    // Scrolling up at top -> prev page
+    else if (e.deltaY < 0 && isAtPageTop() && prevPage) {
+      if (!isWheelFlickCoolingDown) {
+        wheelAccumulator += Math.abs(e.deltaY);
+        if (wheelAccumulator >= WHEEL_FLICK_THRESHOLD) {
+          isWheelFlickCoolingDown = true;
+          wheelAccumulator = 0;
+          registerScrollGesture('prev');
+          // Short cooldown to require a distinct second flick
+          setTimeout(() => { isWheelFlickCoolingDown = false; }, 220);
+        }
+      }
+    } else {
+      wheelAccumulator = 0;
+    }
+
+    if (wheelResetTimer) clearTimeout(wheelResetTimer);
+    wheelResetTimer = setTimeout(() => {
+      wheelAccumulator = 0;
+    }, 200);
+  }, { passive: true });
+
+  // --- Touch Handling (Mobile) ---
+  let touchStartY = 0;
+  let touchStartX = 0;
+  let wasAtTopOnStart = false;
+  let wasAtBottomOnStart = false;
+  let isTrackingTouch = false;
+  const TOUCH_PULL_THRESHOLD = 60; // 60px pull past boundary
+
+  window.addEventListener('touchstart', (e) => {
+    if (isTransitioning || e.touches.length !== 1) return;
+    touchStartY = e.touches[0].clientY;
+    touchStartX = e.touches[0].clientX;
+    wasAtTopOnStart = isAtPageTop();
+    wasAtBottomOnStart = isAtPageBottom();
+    isTrackingTouch = true;
+  }, { passive: true });
+
+  window.addEventListener('touchend', (e) => {
+    if (!isTrackingTouch || isTransitioning) return;
+    isTrackingTouch = false;
+
+    if (!e.changedTouches || e.changedTouches.length !== 1) return;
+    const endY = e.changedTouches[0].clientY;
+    const endX = e.changedTouches[0].clientX;
+    const deltaY = touchStartY - endY; // Positive = pulled finger up (scroll down)
+    const deltaX = Math.abs(endX - touchStartX);
+
+    // Ensure predominantly vertical swipe
+    if (Math.abs(deltaY) < deltaX * 1.1) return;
+
+    // Pulled up past bottom -> next page
+    if (deltaY >= TOUCH_PULL_THRESHOLD && (wasAtBottomOnStart || isAtPageBottom()) && nextPage) {
+      registerScrollGesture('next');
+    }
+    // Pulled down past top -> prev page
+    else if (deltaY <= -TOUCH_PULL_THRESHOLD && (wasAtTopOnStart || isAtPageTop()) && prevPage) {
+      registerScrollGesture('prev');
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchcancel', () => {
+    isTrackingTouch = false;
+  }, { passive: true });
+})();
