@@ -229,7 +229,7 @@ if (isNavigatedFromBelow) {
         position: fixed;
         left: 50%;
         transform: translateX(-50%);
-        background: rgba(26, 26, 26, 0.88);
+        background: rgba(26, 26, 26, 0.90);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         color: #f5f5f5;
@@ -260,10 +260,10 @@ if (isNavigatedFromBelow) {
 
     if (direction === 'next') {
       el.style.top = 'auto';
-      el.style.bottom = '24px';
+      el.style.bottom = '28px';
     } else {
       el.style.bottom = 'auto';
-      el.style.top = '68px';
+      el.style.top = '78px';
     }
 
     if (step === 1) {
@@ -283,22 +283,24 @@ if (isNavigatedFromBelow) {
     }
   }
 
+  // Purely animate content (<main>) so .navbar stays completely fixed, stable, and unaffected
   function executeTransition(targetUrl, direction) {
     if (isTransitioning || !targetUrl) return;
     isTransitioning = true;
     showHint(direction, targetUrl, 2);
 
-    const translateY = direction === 'next' ? '-14px' : '14px';
-    document.body.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
-    document.body.style.opacity = '0';
-    document.body.style.transform = `translateY(${translateY})`;
+    const mainEl = document.querySelector('main');
+    if (mainEl) {
+      mainEl.style.transition = 'opacity 0.26s ease';
+      mainEl.style.opacity = '0';
+    }
 
-    // When navigating UP to the previous page, land at the bottom of that page
+    // When navigating UP to previous page, land at the bottom of that page
     const destination = direction === 'prev' ? `${targetUrl}#bottom` : targetUrl;
 
     setTimeout(() => {
       window.location.href = destination;
-    }, 350);
+    }, 260);
   }
 
   function isAtPageTop() {
@@ -315,7 +317,7 @@ if (isNavigatedFromBelow) {
       return true;
     }
 
-    return scrollY <= 10;
+    return scrollY <= 8;
   }
 
   function isAtPageBottom() {
@@ -338,11 +340,35 @@ if (isNavigatedFromBelow) {
       return true;
     }
 
-    return (scrollY + windowH) >= (docH - 16);
+    return (scrollY + windowH) >= (docH - 12);
   }
 
+  // Track how long user has been settled at the boundary (prevents scroll-arrival from triggering)
+  let bottomSettleTime = 0;
+  let topSettleTime = 0;
+
+  function updateSettleTimes() {
+    const atBottom = isAtPageBottom();
+    const atTop = isAtPageTop();
+
+    if (atBottom) {
+      if (!bottomSettleTime) bottomSettleTime = Date.now();
+    } else {
+      bottomSettleTime = 0;
+    }
+
+    if (atTop) {
+      if (!topSettleTime) topSettleTime = Date.now();
+    } else {
+      topSettleTime = 0;
+    }
+  }
+
+  window.addEventListener('scroll', updateSettleTimes, { passive: true });
+  updateSettleTimes();
+
   // --- Double Scroll State Tracking ---
-  const DOUBLE_SCROLL_WINDOW = 900; // ms to complete second scroll
+  const DOUBLE_SCROLL_WINDOW = 1100; // ms window to complete second scroll
   let activeDirection = null; // 'next' or 'prev'
   let scrollCount = 0;
   let resetTimer = null;
@@ -354,12 +380,12 @@ if (isNavigatedFromBelow) {
     if (!targetUrl) return;
 
     if (activeDirection === direction && scrollCount === 1) {
-      // Second scroll detected within time window!
+      // Second deliberate scroll confirmed!
       if (resetTimer) clearTimeout(resetTimer);
       scrollCount = 2;
       executeTransition(targetUrl, direction);
     } else {
-      // First scroll detected
+      // First deliberate scroll registered
       activeDirection = direction;
       scrollCount = 1;
       showHint(direction, targetUrl, 1);
@@ -377,34 +403,36 @@ if (isNavigatedFromBelow) {
   let wheelAccumulator = 0;
   let wheelResetTimer = null;
   let isWheelFlickCoolingDown = false;
-  const WHEEL_FLICK_THRESHOLD = 110;
+  const WHEEL_FLICK_THRESHOLD = 260; // Deliberate strong scroll threshold
 
   window.addEventListener('wheel', (e) => {
     if (isTransitioning) return;
+    const now = Date.now();
 
     // Scrolling down at bottom -> next page
     if (e.deltaY > 0 && isAtPageBottom() && nextPage) {
-      if (!isWheelFlickCoolingDown) {
+      // Must be settled at the bottom (not just arrived via momentum)
+      if (bottomSettleTime && (now - bottomSettleTime > 200) && !isWheelFlickCoolingDown) {
         wheelAccumulator += e.deltaY;
         if (wheelAccumulator >= WHEEL_FLICK_THRESHOLD) {
           isWheelFlickCoolingDown = true;
           wheelAccumulator = 0;
           registerScrollGesture('next');
-          // Short cooldown to require a distinct second flick
-          setTimeout(() => { isWheelFlickCoolingDown = false; }, 220);
+          // Enforce a distinct 450ms cooldown so a single wheel glide can never trigger both flicks
+          setTimeout(() => { isWheelFlickCoolingDown = false; }, 450);
         }
       }
     }
     // Scrolling up at top -> prev page
     else if (e.deltaY < 0 && isAtPageTop() && prevPage) {
-      if (!isWheelFlickCoolingDown) {
+      // Must be settled at the top
+      if (topSettleTime && (now - topSettleTime > 200) && !isWheelFlickCoolingDown) {
         wheelAccumulator += Math.abs(e.deltaY);
         if (wheelAccumulator >= WHEEL_FLICK_THRESHOLD) {
           isWheelFlickCoolingDown = true;
           wheelAccumulator = 0;
           registerScrollGesture('prev');
-          // Short cooldown to require a distinct second flick
-          setTimeout(() => { isWheelFlickCoolingDown = false; }, 220);
+          setTimeout(() => { isWheelFlickCoolingDown = false; }, 450);
         }
       }
     } else {
@@ -414,7 +442,7 @@ if (isNavigatedFromBelow) {
     if (wheelResetTimer) clearTimeout(wheelResetTimer);
     wheelResetTimer = setTimeout(() => {
       wheelAccumulator = 0;
-    }, 200);
+    }, 220);
   }, { passive: true });
 
   // --- Touch Handling (Mobile) ---
@@ -423,7 +451,7 @@ if (isNavigatedFromBelow) {
   let wasAtTopOnStart = false;
   let wasAtBottomOnStart = false;
   let isTrackingTouch = false;
-  const TOUCH_PULL_THRESHOLD = 60; // 60px pull past boundary
+  const TOUCH_PULL_THRESHOLD = 90; // Deliberate 90px pull past boundary
 
   window.addEventListener('touchstart', (e) => {
     if (isTransitioning || e.touches.length !== 1) return;
@@ -444,15 +472,15 @@ if (isNavigatedFromBelow) {
     const deltaY = touchStartY - endY; // Positive = pulled finger up (scroll down)
     const deltaX = Math.abs(endX - touchStartX);
 
-    // Ensure predominantly vertical swipe
-    if (Math.abs(deltaY) < deltaX * 1.1) return;
+    // Ensure predominantly vertical pull
+    if (Math.abs(deltaY) < deltaX * 1.2) return;
 
-    // Pulled up past bottom -> next page
-    if (deltaY >= TOUCH_PULL_THRESHOLD && (wasAtBottomOnStart || isAtPageBottom()) && nextPage) {
+    // Pulled up past bottom -> next page (MUST have started at the bottom)
+    if (deltaY >= TOUCH_PULL_THRESHOLD && wasAtBottomOnStart && nextPage) {
       registerScrollGesture('next');
     }
-    // Pulled down past top -> prev page
-    else if (deltaY <= -TOUCH_PULL_THRESHOLD && (wasAtTopOnStart || isAtPageTop()) && prevPage) {
+    // Pulled down past top -> prev page (MUST have started at the top)
+    else if (deltaY <= -TOUCH_PULL_THRESHOLD && wasAtTopOnStart && prevPage) {
       registerScrollGesture('prev');
     }
   }, { passive: true });
