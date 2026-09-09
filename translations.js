@@ -204,25 +204,71 @@ const I18nManager = {
   DEFAULT_LANG: "en",
 
   getLanguage() {
+    // 1. Check URL query parameter
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get("lang");
+      if (urlLang === "de" || urlLang === "en") {
+        this.saveLanguage(urlLang);
+        return urlLang;
+      }
+    } catch (e) {}
+
+    // 2. Check localStorage
     try {
       const saved = localStorage.getItem(this.STORAGE_KEY);
       if (saved === "de" || saved === "en") return saved;
     } catch (e) {}
+
+    // 3. Check sessionStorage
+    try {
+      const sessionSaved = sessionStorage.getItem(this.STORAGE_KEY);
+      if (sessionSaved === "de" || sessionSaved === "en") return sessionSaved;
+    } catch (e) {}
+
+    // 4. Check cookie
+    try {
+      const match = document.cookie.match(/(?:^|;\s*)portfolio_lang=([^;]+)/);
+      if (match && (match[1] === "de" || match[1] === "en")) return match[1];
+    } catch (e) {}
+
     return this.DEFAULT_LANG;
+  },
+
+  saveLanguage(lang) {
+    try { localStorage.setItem(this.STORAGE_KEY, lang); } catch (e) {}
+    try { sessionStorage.setItem(this.STORAGE_KEY, lang); } catch (e) {}
+    try { document.cookie = `portfolio_lang=${lang};path=/;max-age=31536000;SameSite=Lax`; } catch (e) {}
   },
 
   setLanguage(lang) {
     if (lang !== "de" && lang !== "en") lang = "en";
-    try {
-      localStorage.setItem(this.STORAGE_KEY, lang);
-    } catch (e) {}
+    this.saveLanguage(lang);
     document.documentElement.lang = lang;
     document.documentElement.setAttribute("data-lang", lang);
     this.apply(lang);
     this.updateControls(lang);
+    this.updateLinks(lang);
 
     // Dispatch custom event so script.js or other modules can react
     window.dispatchEvent(new CustomEvent("languageChanged", { detail: { language: lang } }));
+  },
+
+  updateLinks(lang) {
+    // Append or update ?lang= on internal links as an unbreakable fallback
+    try {
+      const links = document.querySelectorAll('a[href$="html"], a[href*=".html#"], a[href*=".html?"]');
+      links.forEach(a => {
+        const href = a.getAttribute('href');
+        if (href && !href.startsWith('http://') && !href.startsWith('https://') && !href.startsWith('mailto:')) {
+          const parts = href.split('#');
+          const pathAndQuery = parts[0].split('?');
+          const path = pathAndQuery[0];
+          const hash = parts[1] ? '#' + parts[1] : '';
+          a.setAttribute('href', `${path}?lang=${lang}${hash}`);
+        }
+      });
+    } catch (e) {}
   },
 
   t(key, lang) {
@@ -295,6 +341,7 @@ const I18nManager = {
     const currentLang = this.getLanguage();
     this.apply(currentLang);
     this.updateControls(currentLang);
+    this.updateLinks(currentLang);
 
     // Bind click events on all language buttons
     document.addEventListener("click", e => {

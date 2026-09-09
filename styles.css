@@ -1163,17 +1163,7 @@ body.page-scrollable {
     display: none !important;
   }
   .lang-switch--mobile-header {
-    display: inline-flex !important;
-    align-items: center;
-    gap: 4px;
-  }
-  .lang-switch--mobile-header .lang-btn {
-    font-size: 15px !important;
-    padding: 6px 3px !important;
-  }
-  .lang-switch--mobile-header .lang-sep {
-    font-size: 13px !important;
-    color: #b0aea9 !important;
+    display: none !important;
   }
   .nav-item--lang {
     display: flex !important;
@@ -1199,8 +1189,13 @@ body.page-scrollable {
   }
   /* Name size */
   .nav-name {
-    font-size: 24px !important;
+    font-size: clamp(19px, 5.6vw, 24px) !important;
     letter-spacing: -0.02em !important;
+    white-space: nowrap !important;
+    display: block !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    line-height: 1 !important;
   }
   /* Show burger, hide horizontal links */
   .nav-toggle {

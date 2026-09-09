@@ -1,18 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
 
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Understanding &mdash; Jan-Luca Ahlemeyer</title>
-  <meta name="description" content="User research methods, analytics, and data analysis work by Jan-Luca Ahlemeyer.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Kaisei+Opti:wght@400;500;700&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Understanding — Jan-Luca Ahlemeyer</title>
+<meta content="User research methods, analytics, and data analysis work by Jan-Luca Ahlemeyer." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Kaisei+Opti:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
+<style>
     /* ── Intro animation ── */
 
     /* Layer 1: always visible, no animation */
@@ -198,111 +196,92 @@
       }
     }
   </style></head>
-
 <body>
-
-  <!-- NAVBAR -->
-    <header class="navbar">
-    <a href="index.html" class="nav-name">jan-luca ahlemeyer</a>
-    <div class="nav-right-cluster">
-      <div class="lang-switch lang-switch--mobile-header" aria-label="Language selector">
-        <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
-        <span class="lang-sep">/</span>
-        <button type="button" class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
-      </div>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-      </button>
-    </div>
-    <nav class="nav-links" id="navLinks">
-      <a href="user-understanding.html" class="nav-item nav-item--active" id="nav-user-understanding" data-i18n="nav.user_understanding">user understanding</a>
-      <a href="designs.html" class="nav-item" id="nav-designs" data-i18n="nav.designs">designs</a>
-      <a href="campaigns.html" class="nav-item" id="nav-campaigns" data-i18n="nav.campaigns">campaigns</a>
-      <a href="ai.html" class="nav-item" id="nav-ai" data-i18n="nav.ai">ai</a>
-      <div class="lang-switch lang-switch--desktop" aria-label="Language selector">
-        <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
-        <span class="lang-sep">/</span>
-        <button type="button" class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
-      </div>
-      <div class="nav-item nav-item--lang" id="nav-lang-item">
-        <div class="lang-switch lang-switch--mobile-menu" aria-label="Language selector">
-          <button type="button" class="lang-btn" data-lang="en" aria-label="English">EN</button>
-          <span class="lang-sep">/</span>
-          <button type="button" class="lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
-        </div>
-      </div>
-    </nav>
-  </header>
-
-  <!-- MAIN -->
-  <main class="main-layout layout-flipped">
-
-    <!-- LEFT: Horizontal Slider (text) + inline mobile images -->
-    <div class="left-panel slider-panel">
-      <div class="slides-track" id="slidesTrack">
-
-        <!-- SLIDE 1: Overview -->
-        <div class="slide" id="slide-1">
-          <div class="slide-content">
-            <h1 class="ux-main-heading" data-i18n="uu.hero_title">User<br>Understanding</h1>
-            <h2 class="ux-sub-heading" data-i18n="uu.studies_title">studies &amp; data collection</h2>
-            <p class="ux-body" data-i18n="uu.studies_p1">My background spans empirical user research and data-driven analysis. From driving simulator studies and eye-tracking experiments to qualitative content analyses and consumer dataset evaluations.</p>
-            <p class="ux-body" data-i18n="uu.studies_p2">By combining controlled lab experiments with real-world behavioral analytics, I turn complex data and statistical insights into evidence-based UX decisions.</p>
-          </div>
-          <!-- Mobile: layer1 + layer3 composited after slide 1 text -->
-          <div class="uu-mobile-img-stack">
-            <img src="img_user/user_layer1.png" alt="UX Research base layer" class="uu-mobile-img-base">
-            <img src="img_user/user_layer3.png" alt="UX Research overlay" class="uu-mobile-img-overlay">
-          </div>
-        </div>
-
-        <!-- SLIDE 2: Analytics -->
-        <div class="slide" id="slide-2">
-          <div class="slide-content">
-            <h2 class="ux-sub-heading" data-i18n="uu.dashboards_title">google analytics &amp;<br>social media dashboards</h2>
-            <p class="ux-body" data-i18n="uu.dashboards_p1">Experience with Google Analytics and a range of social media dashboards, including Meta Business Suite, Instagram Professional Dashboard, TikTok Analytics, and YouTube Studio, forms part of a regular workflow focused on monitoring content performance, understanding user behavior, and evaluating engagement metrics across platforms.</p>
-            <p class="ux-body" data-i18n="uu.dashboards_p2">I use these insights to assess reach, optimize content strategies, and make data-driven decisions aimed at improving engagement and audience growth. My background also includes applying analytics in a professional context to better understand user behavior and refine digital experiences based on measurable performance data.</p>
-          </div>
-          <!-- Mobile: layer 2 image after slide 2 text -->
-          <img src="img_user/user_layer2.png" alt="UX Research analytics layer" class="uu-mobile-img">
-        </div>
-
-        <!-- SLIDE 3: Data Analysis -->
-        <div class="slide" id="slide-3">
-          <div class="slide-content">
-            <h2 class="ux-sub-heading" data-i18n="uu.data_analysis_title">user data analysis</h2>
-            <p class="ux-body" data-i18n="uu.data_analysis_p1">My experience in Customer Experience (CX) research and data-driven market analysis within the automotive industry includes statistical evaluations of luxury consumer data on behalf of BMW, providing key insights for strategic decision-making.</p>
-            <p class="ux-body" data-i18n="uu.data_analysis_p2">Additionally, I analyze large-scale industry datasets such as the Deloitte Global Automotive Consumer Study to translate consumer behavior patterns into actionable market positioning and product strategies. My work also touches on data ecosystem initiatives like Catena-X to foster cross-stakeholder collaboration.</p>
-            <p class="ux-body" data-i18n="uu.data_analysis_p3">Across these projects, I focus on turning complex consumer and market data into clear, evidence-based insights that drive CX innovation and automotive strategy.</p>
-          </div>
-        </div>
-
-      </div><!-- end slides-track -->
-
-      <!-- DOT NAVIGATION (desktop only) -->
-      <div class="dots-nav" id="dotsNav">
-        <button class="dot active" data-index="0" aria-label="Go to slide 1"></button>
-        <button class="dot" data-index="1" aria-label="Go to slide 2"></button>
-        <button class="dot" data-index="2" aria-label="Go to slide 3"></button>
-      </div>
-    </div><!-- end left-panel -->
-
-    <!-- RIGHT: Fixed Image (layered) — desktop only -->
-    <div class="right-panel">
-      <div class="image-layers">
-        <img src="img_user/user_layer1.png" alt="UX Research" class="hero-image layer-base">
-        <img src="img_user/user_layer2.png" alt="UX Research middle" class="hero-image layer-middle" id="imageLayer2">
-        <img src="img_user/user_layer3.png" alt="UX Research overlay" class="hero-image layer-top" id="imageLayer3">
-      </div>
-    </div>
-
-  </main>
-
-  <script src="translations.js"></script>
-  <script src="script.js"></script>
-  <script>
+<!-- NAVBAR -->
+<header class="navbar">
+<a class="nav-name" href="index.html">jan-luca ahlemeyer</a>
+<button aria-label="Toggle navigation" class="nav-toggle" id="navToggle">
+<span class="nav-toggle-bar"></span>
+<span class="nav-toggle-bar"></span>
+<span class="nav-toggle-bar"></span>
+</button>
+<nav class="nav-links" id="navLinks">
+<a class="nav-item nav-item--active" data-i18n="nav.user_understanding" href="user-understanding.html" id="nav-user-understanding">user understanding</a>
+<a class="nav-item" data-i18n="nav.designs" href="designs.html" id="nav-designs">designs</a>
+<a class="nav-item" data-i18n="nav.campaigns" href="campaigns.html" id="nav-campaigns">campaigns</a>
+<a class="nav-item" data-i18n="nav.ai" href="ai.html" id="nav-ai">ai</a>
+<div aria-label="Language selector" class="lang-switch lang-switch--desktop">
+<button aria-label="English" class="lang-btn" data-lang="en" type="button">EN</button>
+<span class="lang-sep">/</span>
+<button aria-label="Deutsch" class="lang-btn" data-lang="de" type="button">DE</button>
+</div>
+<div class="nav-item nav-item--lang" id="nav-lang-item">
+<div aria-label="Language selector" class="lang-switch lang-switch--mobile-menu">
+<button aria-label="English" class="lang-btn" data-lang="en" type="button">EN</button>
+<span class="lang-sep">/</span>
+<button aria-label="Deutsch" class="lang-btn" data-lang="de" type="button">DE</button>
+</div>
+</div>
+</nav>
+</header>
+<!-- MAIN -->
+<main class="main-layout layout-flipped">
+<!-- LEFT: Horizontal Slider (text) + inline mobile images -->
+<div class="left-panel slider-panel">
+<div class="slides-track" id="slidesTrack">
+<!-- SLIDE 1: Overview -->
+<div class="slide" id="slide-1">
+<div class="slide-content">
+<h1 class="ux-main-heading" data-i18n="uu.hero_title">User<br/>Understanding</h1>
+<h2 class="ux-sub-heading" data-i18n="uu.studies_title">studies &amp; data collection</h2>
+<p class="ux-body" data-i18n="uu.studies_p1">My background spans empirical user research and data-driven analysis. From driving simulator studies and eye-tracking experiments to qualitative content analyses and consumer dataset evaluations.</p>
+<p class="ux-body" data-i18n="uu.studies_p2">By combining controlled lab experiments with real-world behavioral analytics, I turn complex data and statistical insights into evidence-based UX decisions.</p>
+</div>
+<!-- Mobile: layer1 + layer3 composited after slide 1 text -->
+<div class="uu-mobile-img-stack">
+<img alt="UX Research base layer" class="uu-mobile-img-base" src="img_user/user_layer1.png"/>
+<img alt="UX Research overlay" class="uu-mobile-img-overlay" src="img_user/user_layer3.png"/>
+</div>
+</div>
+<!-- SLIDE 2: Analytics -->
+<div class="slide" id="slide-2">
+<div class="slide-content">
+<h2 class="ux-sub-heading" data-i18n="uu.dashboards_title">google analytics &amp;<br/>social media dashboards</h2>
+<p class="ux-body" data-i18n="uu.dashboards_p1">Experience with Google Analytics and a range of social media dashboards, including Meta Business Suite, Instagram Professional Dashboard, TikTok Analytics, and YouTube Studio, forms part of a regular workflow focused on monitoring content performance, understanding user behavior, and evaluating engagement metrics across platforms.</p>
+<p class="ux-body" data-i18n="uu.dashboards_p2">I use these insights to assess reach, optimize content strategies, and make data-driven decisions aimed at improving engagement and audience growth. My background also includes applying analytics in a professional context to better understand user behavior and refine digital experiences based on measurable performance data.</p>
+</div>
+<!-- Mobile: layer 2 image after slide 2 text -->
+<img alt="UX Research analytics layer" class="uu-mobile-img" src="img_user/user_layer2.png"/>
+</div>
+<!-- SLIDE 3: Data Analysis -->
+<div class="slide" id="slide-3">
+<div class="slide-content">
+<h2 class="ux-sub-heading" data-i18n="uu.data_analysis_title">user data analysis</h2>
+<p class="ux-body" data-i18n="uu.data_analysis_p1">My experience in Customer Experience (CX) research and data-driven market analysis within the automotive industry includes statistical evaluations of luxury consumer data on behalf of BMW, providing key insights for strategic decision-making.</p>
+<p class="ux-body" data-i18n="uu.data_analysis_p2">Additionally, I analyze large-scale industry datasets such as the Deloitte Global Automotive Consumer Study to translate consumer behavior patterns into actionable market positioning and product strategies. My work also touches on data ecosystem initiatives like Catena-X to foster cross-stakeholder collaboration.</p>
+<p class="ux-body" data-i18n="uu.data_analysis_p3">Across these projects, I focus on turning complex consumer and market data into clear, evidence-based insights that drive CX innovation and automotive strategy.</p>
+</div>
+</div>
+</div><!-- end slides-track -->
+<!-- DOT NAVIGATION (desktop only) -->
+<div class="dots-nav" id="dotsNav">
+<button aria-label="Go to slide 1" class="dot active" data-index="0"></button>
+<button aria-label="Go to slide 2" class="dot" data-index="1"></button>
+<button aria-label="Go to slide 3" class="dot" data-index="2"></button>
+</div>
+</div><!-- end left-panel -->
+<!-- RIGHT: Fixed Image (layered) — desktop only -->
+<div class="right-panel">
+<div class="image-layers">
+<img alt="UX Research" class="hero-image layer-base" src="img_user/user_layer1.png"/>
+<img alt="UX Research middle" class="hero-image layer-middle" id="imageLayer2" src="img_user/user_layer2.png"/>
+<img alt="UX Research overlay" class="hero-image layer-top" id="imageLayer3" src="img_user/user_layer3.png"/>
+</div>
+</div>
+</main>
+<script src="translations.js"></script>
+<script src="script.js"></script>
+<script>
     (function () {
       var layer2  = document.querySelector('.layer-middle');
       var layer3  = document.querySelector('.layer-top');
@@ -330,5 +309,4 @@
     })();
   </script>
 </body>
-
 </html>
