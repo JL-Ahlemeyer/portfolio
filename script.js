@@ -1030,6 +1030,21 @@ if (isNavigatedFromBelow) {
     isTrackingTouch = true;
   }, { passive: true });
 
+    window.addEventListener('touchmove', (e) => {
+    if (!isTrackingTouch || isTransitioning || !e.touches || e.touches.length !== 1) return;
+    const currentY = e.touches[0].clientY;
+    const currentX = e.touches[0].clientX;
+    const diffY = currentY - touchStartY;
+    const diffX = Math.abs(currentX - touchStartX);
+
+    // Cancel browser pull-to-refresh reload ONLY when pulling downwards at the very top of the page
+    if (diffY > 0 && wasAtTopOnStart && isAtPageTop() && Math.abs(diffY) > diffX) {
+      if (e.cancelable) {
+        e.preventDefault();
+      }
+    }
+  }, { passive: false });
+
   window.addEventListener('touchend', (e) => {
     if (!isTrackingTouch || isTransitioning) return;
     isTrackingTouch = false;
