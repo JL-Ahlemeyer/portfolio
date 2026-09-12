@@ -254,6 +254,13 @@ const I18nManager = {
     this.updateControls(lang);
     this.updateLinks(lang);
 
+    // Keep URL in sync with active language
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", lang);
+      window.history.replaceState(null, "", url.toString());
+    } catch (e) {}
+
     // Dispatch custom event so script.js or other modules can react
     window.dispatchEvent(new CustomEvent("languageChanged", { detail: { language: lang } }));
   },
@@ -322,8 +329,18 @@ const I18nManager = {
     if (navDesigns) navDesigns.textContent = this.t("nav.designs", lang);
     const navCampaigns = document.getElementById("nav-campaigns");
     if (navCampaigns) navCampaigns.textContent = this.t("nav.campaigns", lang);
-    const navAi = document.getElementById("nav-ai");
+        const navAi = document.getElementById("nav-ai");
     if (navAi) navAi.textContent = this.t("nav.ai", lang);
+
+    // Dynamic hero heading in index.html
+    const heroHeading = document.querySelector('.hero-heading');
+    if (heroHeading) {
+      if (lang === 'de') {
+        heroHeading.innerHTML = `<span class="anim-word"><span class="anim-letter">D</span><span class="anim-letter">E</span><span class="anim-letter">S</span><span class="anim-letter">I</span><span class="anim-letter">G</span><span class="anim-letter">N</span><span class="anim-letter">,</span></span> <span class="anim-word serif-word"><span class="anim-letter">S</span><span class="anim-letter">T</span><span class="anim-letter">R</span><span class="anim-letter">A</span><span class="anim-letter">T</span><span class="anim-letter">E</span><span class="anim-letter">G</span><span class="anim-letter">I</span><span class="anim-letter">E</span></span><br/><span class="anim-word"><span class="anim-letter">&amp;</span></span> <span class="anim-word"><span class="anim-letter">I</span><span class="anim-letter">N</span><span class="anim-letter">T</span><span class="anim-letter">E</span><span class="anim-letter">R</span><span class="anim-letter">A</span><span class="anim-letter">K</span><span class="anim-letter">T</span><span class="anim-letter">I</span><span class="anim-letter">O</span><span class="anim-letter">N</span></span>`;
+      } else {
+        heroHeading.innerHTML = `<span class="anim-word"><span class="anim-letter">D</span><span class="anim-letter">E</span><span class="anim-letter">S</span><span class="anim-letter">I</span><span class="anim-letter">G</span><span class="anim-letter">N</span><span class="anim-letter">,</span></span> <span class="anim-word serif-word"><span class="anim-letter">S</span><span class="anim-letter">T</span><span class="anim-letter">R</span><span class="anim-letter">A</span><span class="anim-letter">T</span><span class="anim-letter">E</span><span class="anim-letter">G</span><span class="anim-letter">Y</span></span><br/><span class="anim-word"><span class="anim-letter">&amp;</span></span> <span class="anim-word"><span class="anim-letter">I</span><span class="anim-letter">N</span><span class="anim-letter">T</span><span class="anim-letter">E</span><span class="anim-letter">R</span><span class="anim-letter">A</span><span class="anim-letter">C</span><span class="anim-letter">T</span><span class="anim-letter">I</span><span class="anim-letter">O</span><span class="anim-letter">N</span></span>`;
+      }
+    }
   },
 
   updateControls(lang) {

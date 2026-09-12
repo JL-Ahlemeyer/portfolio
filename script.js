@@ -495,10 +495,14 @@ const isNavigatedFromBelow = window.location.hash === '#bottom' || window.locati
         mainEl.style.opacity = '';
         mainEl.style.willChange = '';
 
-        // Clean URL search param without re-scrolling
+                // Clean URL search param without re-scrolling while preserving language
         if (window.location.search.includes('dir=')) {
+          const currentLang = (window.I18nManager && window.I18nManager.getLanguage()) || 'en';
           const cleanSearch = window.location.search.replace(/[?&]dir=[^&#]*/, '').replace(/^&/, '?');
-          history.replaceState(null, '', window.location.pathname + cleanSearch + (window.location.hash || ''));
+          const finalSearch = cleanSearch && cleanSearch !== '?' 
+            ? cleanSearch 
+            : (currentLang && currentLang !== 'en' ? `?lang=${currentLang}` : '');
+          history.replaceState(null, '', window.location.pathname + finalSearch + (window.location.hash || ''));
         }
       }, 500);
     });
@@ -829,7 +833,7 @@ if (isNavigatedFromBelow) {
   }
 
   // Pure scroll-like exit animation: content scrolls all the way off screen
-  function executeTransition(targetUrl, direction) {
+    function executeTransition(targetUrl, direction) {
     if (window.dismissMobileNavCta) window.dismissMobileNavCta();
     if (isTransitioning || !targetUrl) return;
     isTransitioning = true;
@@ -844,8 +848,14 @@ if (isNavigatedFromBelow) {
       mainEl.style.opacity = '0.5';
     }
 
+    // Preserve language parameter during transition
+    const currentLang = (window.I18nManager && window.I18nManager.getLanguage()) || 'en';
+    const langParam = currentLang ? `&lang=${currentLang}` : '';
+
     // Pass direction flag to trigger matching entrance scroll on destination page
-    const destination = direction === 'prev' ? `${targetUrl}?dir=prev#bottom` : `${targetUrl}?dir=next`;
+    const destination = direction === 'prev' 
+      ? `${targetUrl}?dir=prev${langParam}#bottom` 
+      : `${targetUrl}?dir=next${langParam}`;
 
     setTimeout(() => {
       window.location.href = destination;
