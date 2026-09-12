@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -143,23 +143,44 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
     }
 
-    .fade-slider__img {
+    /* Stack all direct items (both <a> links in slider1 and <img> in slider2) */
+    .fade-slider > * {
       grid-area: stack;
+      width: 100%;
+      height: 100%;
+      display: block;
+      border-radius: 6px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      user-select: none;
+      text-decoration: none;
+      z-index: 1;
+      transition: opacity 0.85s ease-in-out, visibility 0.85s ease-in-out;
+    }
+
+    .fade-slider > *.active {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      z-index: 10 !important;
+    }
+
+    .fade-slider__slide {
+      cursor: pointer;
+    }
+
+    .fade-slider img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center;
       display: block;
       border-radius: 6px;
-      opacity: 0;
-      transition: opacity 0.85s ease-in-out;
-      pointer-events: none;
-      user-select: none;
     }
 
-    .fade-slider__img.active {
-      opacity: 1;
-      pointer-events: auto;
+    .fade-slider__slide img {
+      pointer-events: none;
     }
 
         /* Webdesign text: desktop/mobile switch */
@@ -233,7 +254,7 @@
         margin: 24px auto !important;
         border-radius: 0 !important;
       }
-      img[src*="img_design3.png"] {
+      img[src*="img_design3"] {
         border-radius: 0 !important;
       }
 
@@ -371,10 +392,10 @@
 <section class="ds-section" style="gap: 56px; align-items: flex-start;">
 <!-- LEFT COLUMN -->
 <div class="ds-col--text" style="display: flex; flex-direction: column; max-width: 550px;">
-<img alt="image 1" class="ds-collage-img ds-collage-img-1" src="img_design/img_design1.png"/>
+<img alt="image 1" class="ds-collage-img ds-collage-img-1" src="img_design/img_design1.webp"/>
 <div style="padding-right: 12px; margin-top: 64px; margin-right: -200px;">
 <p class="ds-body" data-i18n="designs.infotainment_resp_1">Core responsibilities included defining detailed UX requirements, translating stakeholder and system-level inputs into structured interface concepts, and collaborating closely with development teams to ensure accurate implementation. Design work covered wireframes, user flows, and high-fidelity prototypes as well as the development of UI components aligned with each brand's corporate identity and visual language.</p>
-<img alt="Audi in-car interface" class="ds-responsibilities-img-mobile" src="img_design/img_design3.png"/>
+<img alt="Audi in-car interface" class="ds-responsibilities-img-mobile" src="img_design/img_design3.webp"/>
 <p class="ds-body" data-i18n="designs.infotainment_resp_2">In addition, involvement in usability testing and interface validation supported the optimization of key infotainment features, including navigation systems, media interfaces, settings, and privacy-related menus. A strong focus was placed on ensuring clarity, consistency, and seamless cross-functional execution throughout the development process.</p>
 </div>
 </div>
@@ -382,10 +403,10 @@
 <div class="ds-col--text" style="display: flex; flex-direction: column; margin-left: -70px;">
 <h1 class="ds-hero-title">DESIGN</h1>
 <p class="ds-body" data-i18n="designs.quote">Paul Watzlawick’s idea that “one cannot not communicate” applies not only to human communication, but to design as well. Every design choice communicates something, from color and typography to the overall visual language. That’s why it’s important to consider not only what a design does, but also how it feels and how it reflects the brand identity.</p>
-<img alt="Paul Watzlawick" class="ds-mobile-hero-img" src="img_design/img_design6.png"/>
+<img alt="Paul Watzlawick" class="ds-mobile-hero-img" src="img_design/img_design6.webp"/>
 <!-- img2 + in-car text side by side -->
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; margin-top: 24px;">
-<img alt="image 2" class="ds-collage-img ds-collage-img-2" src="img_design/img_design2.png" style="margin: 0; width: 100%;"/>
+<img alt="image 2" class="ds-collage-img ds-collage-img-2" src="img_design/img_design2.webp" style="margin: 0; width: 100%;"/>
 <div style="display: flex; flex-direction: column; align-items: flex-end;">
 <h2 class="ux-sub-heading" data-i18n="designs.infotainment_title" style="text-align: right; margin-bottom: 24px; line-height: 1;">in-car<br/>infotainment<br/>systems</h2>
 <p class="ds-body" data-i18n="designs.infotainment_p1" style="text-align: right;">In my role as UX Designer, I worked on in-car infotainment
@@ -394,28 +415,28 @@
                 emphasis on usability, information architecture, and brand-consistent interaction design.</p>
 </div>
 </div>
-<img alt="image 3" class="ds-collage-img ds-collage-img-3" src="img_design/img_design3.png" style="margin-left: 270px; max-width: 700px;"/>
+<img alt="image 3" class="ds-collage-img ds-collage-img-3" src="img_design/img_design3.webp" style="margin-left: 270px; max-width: 700px;"/>
 </div>
 </section>
 <!-- --- WEBDESIGN --- -->
 <section class="ds-webdesign-section">
 <h2 class="ux-sub-heading" data-i18n="designs.webdesign_title" style="margin-bottom: 24px;">webdesign</h2>
-<img alt="WinValue vehicle analysis tool" class="ds-webdesign-img" src="img_design/img_design4.png"/>
+<img alt="WinValue vehicle analysis tool" class="ds-webdesign-img" src="img_design/img_design4.webp"/>
 <p class="ds-body" data-i18n="designs.webdesign_p1">During my work as a UX and Web Designer at WinValue, I was tasked with redesigning the interface of a vehicle analysis tool. The goal was to create a more modern and intuitive experience while making the large amount of information easier to navigate.</p>
 <p class="ds-body" data-i18n="designs.webdesign_p2">I restructured the input fields and filters into clearer categories and refined the visual hierarchy to make the most important elements easier to identify. Typography, contrast and input styling were also adjusted to improve readability and accessibility.</p>
 <!-- 2-COLUMN LOWER SECTION -->
 <div class="ds-grid-2x2">
 <!-- LEFT COLUMN: WinValue detail image + BIMAXU App section -->
 <div class="ds-grid-2x2__cell" style="display: flex; flex-direction: column; gap: 48px;">
-<img alt="WinValue interface detail" class="ds-grid-2x2__img" src="img_design/img_design5.png"/>
+<img alt="WinValue interface detail" class="ds-grid-2x2__img" src="img_design/img_design5.webp"/>
 <div>
 <h2 class="ux-sub-heading" data-i18n="designs.appdesign_title" style="margin-bottom: 16px;">app design</h2>
 <p class="ds-body" data-i18n="designs.appdesign_p1">Great app design is not about just making things look pretty; it is about taking full ownership from raw wireframes to pixel-perfect interfaces that people actually enjoy using. Living and breathing Figma daily, I translate intricate product logic into fluid, intuitive user flows. Apple’s Human Interface Guidelines and Google’s Material Design principles are second nature to me, ensuring every screen feels sharp, responsive, and native to the platform.</p>
 <!-- LOWER SLIDER (Slider 2) -->
 <div class="fade-slider mobile-only-slider" id="slider2-mobile" style="margin: 28px 0;">
-<img alt="Slider 2 Image 1" class="fade-slider__img active" src="img_design/silder/Slider2_image1.png"/>
-<img alt="Slider 2 Image 2" class="fade-slider__img" src="img_design/silder/Slider2_image2.png"/>
-<img alt="Slider 2 Image 3" class="fade-slider__img" src="img_design/silder/Slider2_image3.png"/>
+<img alt="Slider 2 Image 1" class="fade-slider__img active" src="img_design/silder/Slider2_image1.webp"/>
+<img alt="Slider 2 Image 2" class="fade-slider__img" src="img_design/silder/Slider2_image2.webp"/>
+<img alt="Slider 2 Image 3" class="fade-slider__img" src="img_design/silder/Slider2_image3.webp"/>
 </div>
 <p class="ds-body" data-i18n="designs.appdesign_p2">Design does not stop at handover either. I treat UX as a continuously evolving craft, constantly challenging assumptions through hands-on usability testing, user feedback, and data-driven iterations. From establishing scalable design tokens and robust component architectures to obsessing over the physics of micro-interactions, every detail is intentional.</p>
 <p class="ds-body" data-i18n="designs.appdesign_p3">By bridging the gap between bold aesthetics and real-world engineering constraints, I ensure that ambitious visual concepts survive the development phase without losing their punch. The end goal is always simple: unapologetically user-centered design that looks stunning, solves real problems, and just works.</p>
@@ -438,17 +459,27 @@
 </div>
 <!-- UPPER SLIDER (Slider 1) -->
 <div class="fade-slider" id="slider1">
-<img alt="Slider 1 Image 1" class="fade-slider__img active" src="img_design/silder/Slider1_image1.png"/>
-<img alt="Slider 1 Image 2" class="fade-slider__img" src="img_design/silder/Slider1_image2.png"/>
-<img alt="Slider 1 Image 3" class="fade-slider__img" src="img_design/silder/Slider1_image3.png"/>
-<img alt="Slider 1 Image 4" class="fade-slider__img" src="img_design/silder/Slider1_image4.png"/>
-<img alt="Slider 1 Image 5" class="fade-slider__img" src="img_design/silder/Slider1_image5.png"/>
+<a aria-label="Aurelia Figma Design" class="fade-slider__slide active" href="https://www.figma.com/design/raapUueqGTrfyaPAmOesri/Aurelia-file?m=auto&amp;t=VXJ44pE17n4QEnB6-1" rel="noopener noreferrer" target="_blank">
+  <img alt="Slider 1 Image 1" class="fade-slider__img" src="img_design/silder/Slider1_image1.webp"/>
+</a>
+<a aria-label="Der Eiswagen Website" class="fade-slider__slide" href="https://dereiswagen.github.io/website/" rel="noopener noreferrer" target="_blank">
+  <img alt="Slider 1 Image 2" class="fade-slider__img" src="img_design/silder/Slider1_image2.webp"/>
+</a>
+<a aria-label="Signal Figma Design" class="fade-slider__slide" href="https://www.figma.com/design/z8iC8cEzIQQkIY7LOI2nzG/Signal?m=auto&amp;t=INX93485URUGemsZ-1" rel="noopener noreferrer" target="_blank">
+  <img alt="Slider 1 Image 3" class="fade-slider__img" src="img_design/silder/Slider1_image3.webp"/>
+</a>
+<a aria-label="MIAAC Website" class="fade-slider__slide" href="https://www.miaac.de/" rel="noopener noreferrer" target="_blank">
+  <img alt="Slider 1 Image 4" class="fade-slider__img" src="img_design/silder/Slider1_image4.webp"/>
+</a>
+<a aria-label="Hot Performance Website" class="fade-slider__slide" href="https://hot-performance.github.io/website/" rel="noopener noreferrer" target="_blank">
+  <img alt="Slider 1 Image 5" class="fade-slider__img" src="img_design/silder/Slider1_image5.webp"/>
+</a>
 </div>
 <!-- LOWER SLIDER (Slider 2 for Desktop) -->
 <div class="fade-slider desktop-only-slider" id="slider2-desktop">
-<img alt="Slider 2 Image 1" class="fade-slider__img active" src="img_design/silder/Slider2_image1.png"/>
-<img alt="Slider 2 Image 2" class="fade-slider__img" src="img_design/silder/Slider2_image2.png"/>
-<img alt="Slider 2 Image 3" class="fade-slider__img" src="img_design/silder/Slider2_image3.png"/>
+<img alt="Slider 2 Image 1" class="fade-slider__img active" src="img_design/silder/Slider2_image1.webp"/>
+<img alt="Slider 2 Image 2" class="fade-slider__img" src="img_design/silder/Slider2_image2.webp"/>
+<img alt="Slider 2 Image 3" class="fade-slider__img" src="img_design/silder/Slider2_image3.webp"/>
 </div>
 </div>
 </div>
@@ -459,14 +490,14 @@
     function setupFadeSlider(sliderId, intervalMs) {
       const slider = document.getElementById(sliderId);
       if (!slider) return;
-      const images = Array.from(slider.querySelectorAll('.fade-slider__img'));
-      if (images.length <= 1) return;
+      const items = Array.from(slider.children);
+      if (items.length <= 1) return;
 
       let currentIndex = 0;
       setInterval(() => {
-        images[currentIndex].classList.remove('active');
-        currentIndex = (currentIndex + 1) % images.length;
-        images[currentIndex].classList.add('active');
+        items[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % items.length;
+        items[currentIndex].classList.add('active');
       }, intervalMs);
     }
 

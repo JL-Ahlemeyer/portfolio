@@ -492,7 +492,6 @@ body.page-scrollable {
   gap: 20px;
   padding: 18px 0 22px;
   flex-shrink: 0;
-  box-shadow: 10px 5px 5px red;
 }
 
 .dot {
@@ -516,6 +515,88 @@ body.page-scrollable {
 .dot.active {
   background: transparent;
   border-color: #b8b4ae;
+}
+
+/* === SLIDER CTA (Call to action on initial visit) === */
+.slider-cta {
+  position: absolute;
+  bottom: 16px;
+  right: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 253, 251, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border, #7F7E7D);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-family: var(--font-inter);
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: -0.01em;
+  color: var(--color-nav, #303030);
+  cursor: pointer;
+  z-index: 20;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: ctaFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+  transition: all 0.25s ease, opacity 0.4s ease, transform 0.4s ease;
+  user-select: none;
+}
+
+.layout-flipped .slider-cta {
+  right: 28px;
+}
+
+.slider-cta:hover {
+  border-color: #13509B;
+  color: #13509B;
+  background: #FFFDFB;
+  box-shadow: 0 2px 10px rgba(19, 80, 155, 0.12);
+}
+
+.slider-cta .slider-cta-arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+  animation: ctaPulse 1.8s ease-in-out infinite;
+}
+
+.slider-cta:hover .slider-cta-arrow {
+  transform: translateX(3px);
+  animation: none;
+}
+
+.slider-cta.slider-cta--hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateX(12px) !important;
+}
+
+@keyframes ctaFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ctaPulse {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+@media (max-width: 900px) {
+  .slider-cta {
+    display: none !important;
+  }
 }
 
 /* === FLIPPED LAYOUT (User Understanding page) === */
@@ -556,7 +637,7 @@ body.page-scrollable {
 }
 
 .layout-flipped .slide-content {
-  padding: clamp(14px, 2.5vh, 26px) 28px !important;
+  padding: clamp(16px, 2.8vh, 28px) 28px !important;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -574,11 +655,10 @@ body.page-scrollable {
   line-height: 1.12;
 }
 
-.layout-flipped .ux-body {
-  font-size: clamp(13px, 0.95vw, 15px);
-  line-height: 1.55;
-  margin-bottom: clamp(6px, 1.4vh, 12px);
-  text-align: left;
+/* Slides 2 & 3 don't scroll internally on desktop — overflow hidden */
+.layout-flipped #slide-2,
+.layout-flipped #slide-3 {
+  overflow-y: hidden;
 }
 
 /* === UX PAGE STYLES === */
@@ -628,13 +708,18 @@ body.page-scrollable {
   margin-bottom: 16px;
 }
 
-.ux-link {
-  color: #5a82aa;
+.ux-link,
+.ux-body a:not(.ai-tag),
+.ds-body a:not(.ai-tag) {
+  color: #13509B;
   text-decoration: none;
 }
 
-.ux-link:hover {
-  text-decoration: underline;
+.ux-link:hover,
+.ux-body a:not(.ai-tag):hover,
+.ds-body a:not(.ai-tag):hover {
+  color: #13509B;
+  text-decoration: none;
 }
 
 /* === DESIGNS PAGE === */
@@ -904,15 +989,17 @@ body.page-scrollable {
   border-radius: 12px;
   padding: 2px 8px;
   margin-left: 8px;
-  color: #a3679c;
+  color: #a3679c !important;
   text-decoration: none;
   transition: all 0.2s ease;
   cursor: pointer;
+  white-space: nowrap !important;
+  display: inline-block;
 }
 
 .ai-tag:hover {
   background-color: #a3679c;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 
@@ -1228,5 +1315,73 @@ body.page-scrollable {
   }
   .nav-item:not(:last-child) {
     border-bottom: 1px solid #d8d6d2 !important;
+  }
+}
+
+/* === MOBILE NAV CTA (Points to burger menu on initial visit) === */
+.mobile-nav-cta {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .mobile-nav-cta {
+    display: inline-flex;
+    position: fixed;
+    top: 60px;
+    right: 16px;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255, 255, 255, 0.19);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--color-border, #7F7E7D);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-family: var(--font-inter, -apple-system, sans-serif);
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: -0.01em;
+    color: var(--color-nav, #303030);
+    cursor: pointer;
+    z-index: 202;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, color 0.2s ease;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.09);
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-nav-cta:hover,
+  .mobile-nav-cta:active {
+    border-color: #13509B;
+    color: #13509B;
+    background: #FFFDFB;
+  }
+
+  .mobile-nav-cta.mobile-nav-cta--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobile-nav-cta.mobile-nav-cta--hidden {
+    opacity: 0 !important;
+    transform: translateY(-8px) !important;
+    pointer-events: none !important;
+  }
+
+  .mobile-nav-cta .mobile-nav-cta-arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+    animation: mobileCtaPulse 1.6s ease-in-out infinite;
+  }
+
+  @keyframes mobileCtaPulse {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-3px);
+    }
   }
 }

@@ -17,6 +17,8 @@ const TRANSLATIONS = {
     "page.campaigns": "Campaigns",
     "page.ai": "AI",
     "tag.view_code": "view code",
+    "cta.explore_slider": "explore slides",
+    "cta.explore_mobile": "explore work projects",
 
     // index.html
     "index.hero_subtitle": "UX / UI / Web Design / Graphic / Logo / Branding / Typography / Web Development / AI / Art",
@@ -74,7 +76,7 @@ const TRANSLATIONS = {
     "camp.lucky_title": "lucky number<br>store",
     "camp.lucky_desc": "Lucky Number is a Munich-based curated vintage pop-up concept specializing in premium second-hand vintage suits with a distinctive 70s Vegas theme. I collaborated closely with the founder Simon Merkle on building a social media presence, covering events, shooting product and video edits while helping shape the campaign's brand direction. Together, we developed a clear art direction and semi-professional shooting concept centered around fine lifestyle content, creating a unique visual impulse through clean suits, bold visuals, and playful retro branding to create a distinctive identity across digital platforms.",
     "camp.miaac_title": "miaac",
-    "camp.miaac_desc1": 'I run the Instagram-based blog <a href="https://instagram.com/munichinartsandculture" target="_blank" rel="noopener noreferrer">Munich in Arts and Culture</a> where I have presented daily art and culture events from Munich since May 22, 2024. During this period the account has gained around 5,500 followers. Promoting inclusivity is important to me, so all posts are written in English to reach a broad and diverse audience. Because I feature both established galleries and alternative, underground events, this variety is reflected in the visual design.',
+    "camp.miaac_desc1": 'I run the Instagram-based blog <a class="ux-link" href="https://instagram.com/munichinartsandculture" target="_blank" rel="noopener noreferrer">Munich in Arts and Culture</a> where I have presented daily art and culture events from Munich since May 22, 2024. During this period the account has gained around 5,500 followers. Promoting inclusivity is important to me, so all posts are written in English to reach a broad and diverse audience. Because I feature both established galleries and alternative, underground events, this variety is reflected in the visual design.',
     "camp.miaac_desc2": "To keep the content visually engaging, I create a completely new design every week, constantly experimenting with different themes, layouts, and visual approaches. Rather than relying on a fixed template, I use unexpected design choices to capture attention and keep the audience curious about what comes next. Some designs are inspired by local topics, such as photographing Munich's ghost bikes and building a visual concept around them, while others are created in collaboration with local artists who contribute their own work. I develop these designs using Photoshop, InDesign, and Figma.",
     "camp.platform_title": "platform expertise",
     "camp.platform_desc1": "Through my experience distributing content across several platforms, I am familiar with Instagram's Professional Dashboard, Facebook Business Suite, and YouTube Studio. I use these tools to plan, publish, and monitor content performance.",
@@ -90,7 +92,7 @@ const TRANSLATIONS = {
     "ai.calendar_mgmt": "<strong>Calendar & Schedule Management:</strong> Feeding clean, date-specific entries directly into internal workflows or public community calendars.",
     "ai.overview_p": "I build custom AI applications focused on web scraping and data interpretation. Leveraging models from Gemini and OpenAI, I create pipelines to efficiently analyze and structure complex datasets. Additionally, I am highly proficient in AI image generation and \"vibe coding,\" using tools like Midjourney, DaVinci, Codex, Antigravity, and Gemini to streamline creative and technical workflows.",
     "ai.scrapers_title": "ai scrapers",
-    "ai.job_offerings_title": "Job offerings",
+    "ai.job_offerings_title": "Job Offerings",
     "ai.job_offerings_desc": "Built with Python, BeautifulSoup, and Aiogram, this automation pipeline scrapes creative job listings from cultural boards. Leveraging an AI model, it categorizes opportunities by field and automatically dispatches them to dedicated Telegram threads, streamlining the job search process for creative professionals.",
     "ai.funding_title": "Funding & Submission",
     "ai.funding_desc": "This project explores how web scraping and AI can make cultural funding opportunities easier to discover and understand. The scraper collects current calls and funding programs from relevant Munich sources, extracts key information such as deadlines, eligibility, and funding amounts, and transforms it into structured, accessible data. The aim is to reduce manual research and make opportunities easier to find for people working in the creative sector.",
@@ -114,6 +116,8 @@ const TRANSLATIONS = {
     "page.campaigns": "Kampagnen",
     "page.ai": "KI",
     "tag.view_code": "Code ansehen",
+    "cta.explore_slider": "mehr entdecken",
+    "cta.explore_mobile": "projekte entdecken",
 
     // index.html
     "index.hero_subtitle": "UX / UI / Webdesign / Grafik / Logo / Branding / Typografie / Webentwicklung / KI / Kunst",
@@ -171,7 +175,7 @@ const TRANSLATIONS = {
     "camp.lucky_title": "lucky number<br>store",
     "camp.lucky_desc": "Lucky Number ist ein Münchner Vintage-Pop-up-Konzept für kuratierte Second-Hand-Anzüge im Stil der 70er-Jahre aus Las Vegas. In enger Zusammenarbeit mit Gründer Simon Merkle baute ich die Social-Media-Präsenz auf, begleitete Events und erstellte Foto- und Video-Content. Gemeinsam entwickelten wir eine markante Art Direction und ein Lifestyle-Shooting-Konzept, das Retro-Charme mit zeitgemäßer digitaler Markenführung verbindet.",
     "camp.miaac_title": "miaac",
-    "camp.miaac_desc1": 'Ich betreibe den Instagram-Blog <a href="https://instagram.com/munichinartsandculture" target="_blank" rel="noopener noreferrer">Munich in Arts and Culture</a>, auf dem ich seit dem 22. Mai 2024 täglich Kulturtipps für München präsentiere. In dieser Zeit ist der Account auf rund 5.500 Follower gewachsen. Um Inklusion zu fördern, erscheinen die Beiträge auf Englisch für ein diverses Publikum. Die Bandbreite von etablierten Häusern bis zu alternativen Underground-Events spiegelt sich auch in der visuellen Gestaltung wider.',
+    "camp.miaac_desc1": 'Ich betreibe den Instagram-Blog <a class="ux-link" href="https://instagram.com/munichinartsandculture" target="_blank" rel="noopener noreferrer">Munich in Arts and Culture</a>, auf dem ich seit dem 22. Mai 2024 täglich Kulturtipps für München präsentiere. In dieser Zeit ist der Account auf rund 5.500 Follower gewachsen. Um Inklusion zu fördern, erscheinen die Beiträge auf Englisch für ein diverses Publikum. Die Bandbreite von etablierten Häusern bis zu alternativen Underground-Events spiegelt sich auch in der visuellen Gestaltung wider.',
     "camp.miaac_desc2": "Für abwechslungsreichen Content entsteht wöchentlich ein neues Design mit experimentellen Layouts und visuellen Ansätzen. Statt starrer Templates sorgen unerwartete Gestaltungsentscheidungen für Neugier. Einige Konzepte greifen lokale Themen auf (wie eine Fotostrecke zu Münchner Ghost Bikes), andere entstehen im Austausch mit lokalen Künstlern. Die Entwürfe erstelle ich in Photoshop, InDesign und Figma.",
     "camp.platform_title": "plattform-expertise",
     "camp.platform_desc1": "Durch die Content-Distribution über mehrere Plattformen nutze ich regelmäßig das Instagram Professional Dashboard, die Facebook Business Suite und YouTube Studio zur Planung, Veröffentlichung und Performance-Analyse.",
