@@ -25,6 +25,8 @@ body {
   overflow: hidden;
   background: var(--color-bg);
   -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
 }
 
 /* === NAVBAR === */
@@ -92,6 +94,7 @@ body.page-scrollable {
   overflow-x: hidden;
   overflow-y: auto;
   height: auto;
+  overscroll-behavior-y: none;
 }
 
 .designs-page-main {
