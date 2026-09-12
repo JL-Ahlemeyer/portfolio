@@ -70,21 +70,25 @@
     return ctaEl;
   }
 
+  let isScheduled = false;
   function scheduleMobileNavCta() {
     if (window.innerWidth > 900) return;
     if (isDismissed()) return;
+    if (isScheduled || ctaEl) return;
 
     // Check if burger menu is already open
     const navLinks = document.getElementById('navLinks');
     if (navLinks && navLinks.classList.contains('active')) return;
 
+    isScheduled = true;
+    if (ctaTimer) clearTimeout(ctaTimer);
     ctaTimer = setTimeout(() => {
+      isScheduled = false;
       if (window.innerWidth > 900 || isDismissed()) return;
       const navLinks = document.getElementById('navLinks');
       if (navLinks && navLinks.classList.contains('active')) return;
 
       const el = createMobileNavCta();
-      // Trigger smooth entrance animation
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           el.classList.add('mobile-nav-cta--visible');
@@ -92,6 +96,14 @@
       });
     }, 6000);
   }
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 900) {
+      scheduleMobileNavCta();
+    } else if (ctaEl) {
+      dismissMobileNavCta();
+    }
+  }, { passive: true });
 
   // Dismiss listeners on burger menu toggle
   const navToggle = document.getElementById('navToggle');
