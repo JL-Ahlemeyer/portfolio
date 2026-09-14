@@ -164,7 +164,7 @@ const TRANSLATIONS = {
     "camp.main_title": "Kampagnen",
     "tag.view_code": "Code ansehen",
     "cta.explore_slider": "mehr entdecken",
-    "cta.explore_mobile": "projekte entdecken",
+    "cta.explore_mobile": "Projekte & Arbeiten",
 
     // index.html
     "index.hero_subtitle": "UX / UI / Webdesign / Grafik / Logo / Branding / Typografie / Webentwicklung / KI / Kunst",
