@@ -1273,15 +1273,18 @@ body.page-scrollable {
     display: none !important;
   }
   .nav-item--lang {
-    display: flex !important;
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
     padding: 15px 0 !important;
-    gap: 24px;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
   .lang-switch--mobile-menu {
     display: inline-flex !important;
     align-items: center;
     gap: 12px;
+    justify-self: start;
   }
   .lang-switch--mobile-menu .lang-btn {
     font-size: 22px !important;
@@ -1297,19 +1300,22 @@ body.page-scrollable {
     color: #C7C7C7;
   }
   .nav-mobile-bottom-sep {
-    display: inline-block;
+    display: block;
     width: 1px;
     height: 26px;
     background: #D8D6D2;
+    justify-self: center;
   }
   .nav-impressum-link {
     font-size: 22px !important;
     color: var(--color-nav, #303030) !important;
     text-decoration: none !important;
-    font-weight: 300 !important;
+    font-weight: 250 !important;
     line-height: 1 !important;
     cursor: pointer;
     transition: color 0.2s ease;
+    justify-self: start;
+    padding-left: 24px;
   }
   .nav-impressum-link:hover {
     color: #13509B !important;
