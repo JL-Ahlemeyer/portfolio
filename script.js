@@ -152,6 +152,44 @@ if (navToggle && navLinks) {
       }
     }
   });
+
+  // Handle Impressum link navigation / lowest scroll position
+  function scrollToImpressumBottom(smooth = true) {
+    const targetY = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.offsetHeight,
+      document.body.clientHeight,
+      document.documentElement.clientHeight
+    );
+    window.scrollTo({
+      top: targetY,
+      behavior: smooth ? 'smooth' : 'auto'
+    });
+  }
+
+  if ((window.location.pathname.endsWith('ai.html') || window.location.pathname.endsWith('/ai')) && window.location.hash === '#impressum') {
+    window.addEventListener('load', () => {
+      setTimeout(() => scrollToImpressumBottom(false), 60);
+      setTimeout(() => scrollToImpressumBottom(true), 300);
+    });
+  }
+
+  document.querySelectorAll('.nav-impressum-link').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const isAiPage = window.location.pathname.endsWith('ai.html') || window.location.pathname.endsWith('/ai');
+      if (isAiPage) {
+        e.preventDefault();
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        if (window.location.hash !== '#impressum') {
+          history.replaceState(null, '', '#impressum');
+        }
+        scrollToImpressumBottom(true);
+      }
+    });
+  });
 }
 
 // ============================================================================

@@ -1276,17 +1276,43 @@ body.page-scrollable {
     display: flex !important;
     align-items: center;
     padding: 15px 0 !important;
+    gap: 24px;
   }
   .lang-switch--mobile-menu {
     display: inline-flex !important;
+    align-items: center;
     gap: 12px;
   }
   .lang-switch--mobile-menu .lang-btn {
-    font-size: 20px !important;
-    padding: 4px 6px !important;
+    font-size: 22px !important;
+    padding: 0 !important;
+    font-weight: 300;
+  }
+  .lang-switch--mobile-menu .lang-btn.active {
+    font-weight: 600;
+    color: #13509B !important;
   }
   .lang-switch--mobile-menu .lang-sep {
     font-size: 18px !important;
+    color: #C7C7C7;
+  }
+  .nav-mobile-bottom-sep {
+    display: inline-block;
+    width: 1px;
+    height: 26px;
+    background: #D8D6D2;
+  }
+  .nav-impressum-link {
+    font-size: 22px !important;
+    color: var(--color-nav, #303030) !important;
+    text-decoration: none !important;
+    font-weight: 300 !important;
+    line-height: 1 !important;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  .nav-impressum-link:hover {
+    color: #13509B !important;
   }
 
   /* Compact navbar */
