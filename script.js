@@ -229,7 +229,6 @@ const ImagePreloader = (function () {
       'img_campaign/flyer/05_cutting.webp',
       'img_campaign/flyer/06_imp.webp',
       'img_campaign/flyer/07_mode.webp',
-      'img_campaign/flyer/08_boese.webp',
       'img_campaign/flyer/09_gods.webp',
       'img_campaign/fashion_03.webp',
       'img_campaign/fashion_02.webp',
