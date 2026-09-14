@@ -19,6 +19,90 @@
       display: none;
     }
 
+    /* Disable page scrolling when large image view is active */
+    body.lightbox-open,
+    html:has(body.lightbox-open) {
+      overflow: hidden !important;
+    }
+
+    /* ===== CAMPAIGNS MOBILE IMAGE EXTENSION LIGHTBOX ===== */
+    .campaigns-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      -webkit-tap-highlight-color: transparent;
+      touch-action: none;
+    }
+
+    .campaigns-lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .campaigns-lightbox-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 90vw;
+      max-height: 80vh;
+      transform: scale(0.92);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .campaigns-lightbox.active .campaigns-lightbox-wrapper {
+      transform: scale(1);
+    }
+
+    .campaigns-lightbox-img {
+      max-width: 86vw;
+      max-height: 72vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 16px 26px rgb(48, 48, 48);
+      display: block;
+    }
+
+    .campaigns-lightbox-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #FFFDFB;
+      border: 1px solid #d8d6d2;
+      color: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      padding: 0;
+      z-index: 10;
+      transition: transform 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .campaigns-lightbox-close:hover,
+    .campaigns-lightbox-close:active {
+      transform: scale(1.08);
+      background: #ffffff;
+      color: #13509B;
+    }
+
     /* ===== CAMPAIGNS RESPONSIVE LAYOUT (≤900px) ===== */
     @media (max-width: 900px) {
 
@@ -53,10 +137,17 @@
         display: none !important;
       }
 
-      /* Justify body text on mobile */
+      /* Justify body text on mobile with hyphenation */
       .campaigns-page .ds-body,
       .campaigns-page p {
         text-align: justify !important;
+        text-justify: inter-word !important;
+        hyphens: auto !important;
+        -webkit-hyphens: auto !important;
+        -moz-hyphens: auto !important;
+        -ms-hyphens: auto !important;
+        text-wrap: pretty !important;
+        overflow-wrap: break-word !important;
       }
 
       /* Wrapper padding */
@@ -69,10 +160,11 @@
         margin-bottom: 12px !important;
       }
 
-      /* Slider images slightly smaller */
+      /* Slider images slightly smaller & clickable on mobile */
       .slider-img {
         height: 220px !important;
         width: 165px !important;
+        cursor: pointer !important;
       }
 
       .campaigns-slider {
@@ -191,7 +283,7 @@
 </header>
 <main class="designs-page-main">
 <div class="designs-wrapper">
-<h1 class="campaigns-main-title">Campaigns</h1>
+<h1 class="campaigns-main-title" data-i18n="camp.main_title">Campaigns</h1>
 <!-- ─── PHOTOGRAPHY SLIDER ─── -->
 <h2 class="ux-sub-heading" data-i18n="camp.photography_title">photography</h2>
 <div class="campaigns-slider">
@@ -317,6 +409,105 @@
 </div>
 </main>
 <script>
+    // Global tracking for extended lightbox & paused slider
+    let activeLightbox = null;
+    let activePausedSlider = null;
+
+    function closeActiveExtendedImage() {
+      document.body.classList.remove('lightbox-open');
+      if (activePausedSlider) {
+        activePausedSlider.isExtendedPaused = false;
+        activePausedSlider = null;
+      }
+      if (activeLightbox) {
+        const lb = activeLightbox;
+        activeLightbox = null;
+        lb.classList.remove('active');
+        setTimeout(() => {
+          if (lb.parentNode) {
+            lb.parentNode.removeChild(lb);
+          }
+        }, 280);
+      }
+    }
+
+    function openExtendedImage(img, slider) {
+      // Ensure any existing extension is closed first (no two images open at once)
+      closeActiveExtendedImage();
+
+      // Disable page scrolling
+      document.body.classList.add('lightbox-open');
+
+      // Pause the slider this image belongs to
+      slider.isExtendedPaused = true;
+      activePausedSlider = slider;
+
+      // Build lightbox overlay
+      const lightbox = document.createElement('div');
+      lightbox.className = 'campaigns-lightbox';
+      lightbox.setAttribute('role', 'dialog');
+      lightbox.setAttribute('aria-modal', 'true');
+      lightbox.setAttribute('aria-label', 'Extended image view');
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'campaigns-lightbox-wrapper';
+
+      const extendedImg = document.createElement('img');
+      extendedImg.src = img.currentSrc || img.src;
+      extendedImg.alt = img.alt || 'Extended View';
+      extendedImg.className = 'campaigns-lightbox-img';
+
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'campaigns-lightbox-close';
+      closeBtn.type = 'button';
+      closeBtn.setAttribute('aria-label', 'Close extended image');
+      closeBtn.innerHTML = `
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      `;
+
+      wrapper.appendChild(extendedImg);
+      wrapper.appendChild(closeBtn);
+      lightbox.appendChild(wrapper);
+
+      // Close on X button
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeActiveExtendedImage();
+      });
+
+      // Close on click outside the image
+      lightbox.addEventListener('click', (e) => {
+        if (!extendedImg.contains(e.target) && !closeBtn.contains(e.target)) {
+          closeActiveExtendedImage();
+        }
+      });
+
+      document.body.appendChild(lightbox);
+      activeLightbox = lightbox;
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          lightbox.classList.add('active');
+        });
+      });
+    }
+
+    // Close on Escape or resizing to desktop
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeActiveExtendedImage();
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900) {
+        closeActiveExtendedImage();
+      }
+    }, { passive: true });
+
     function initSlider(slider) {
       const track = slider.querySelector('.slider-track');
       
@@ -329,14 +520,18 @@
       let currentScroll = 0;
       const speed = 0.5; // pixels per frame
 
+      slider.isExtendedPaused = false;
+
       // Drag / Swipe tracking
       let startX = 0;
       let startY = 0;
+      let mouseStartX = 0;
       let scrollLeftStart = 0;
       let lastTouchX = 0;
       let lastTouchTime = 0;
       let velocity = 0;
       let touchMoved = false;
+      let mouseMoved = false;
       let isHorizontalSwipe = false;
 
       // Prepare styles for reliable touch and mouse scrolling
@@ -360,7 +555,7 @@
       // Auto-scroll loop
       function step() {
         if (half > 0) {
-          if (!isDown && !isTouching && !isHovered) {
+          if (!isDown && !isTouching && !isHovered && !slider.isExtendedPaused) {
             currentScroll += speed;
             if (currentScroll >= half) {
               currentScroll -= half;
@@ -377,6 +572,15 @@
       // Prevent native image dragging
       slider.querySelectorAll('img').forEach(img => {
         img.addEventListener('dragstart', (e) => e.preventDefault());
+      });
+
+      // Handle image click to extend on mobile
+      slider.querySelectorAll('.slider-img').forEach(img => {
+        img.addEventListener('click', (e) => {
+          if (window.innerWidth > 900) return;
+          if (touchMoved || mouseMoved) return;
+          openExtendedImage(img, slider);
+        });
       });
 
       // --- MOUSE DRAG ---
@@ -398,8 +602,10 @@
       slider.addEventListener('mousedown', (e) => {
         cancelAnimationFrame(momentumAnim);
         isDown = true;
+        mouseMoved = false;
         slider.style.cursor = 'grabbing';
         startX = e.pageX;
+        mouseStartX = e.pageX;
         scrollLeftStart = slider.scrollLeft;
         currentScroll = slider.scrollLeft;
       });
@@ -415,6 +621,9 @@
       window.addEventListener('mousemove', (e) => {
         if (!isDown) return;
         const dx = e.pageX - startX;
+        if (Math.abs(e.pageX - mouseStartX) > 6) {
+          mouseMoved = true;
+        }
         let newScroll = scrollLeftStart - dx;
 
         if (half > 0) {

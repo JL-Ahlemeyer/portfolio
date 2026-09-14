@@ -280,8 +280,17 @@
         text-align: left !important;
         margin-bottom: 16px !important;
       }
-      .ds-col--text div[style*="align-items: flex-end"] p {
+      .ds-col--text div[style*="align-items: flex-end"] p,
+      .designs-page .ds-body,
+      .designs-page p {
         text-align: justify !important;
+        text-justify: inter-word !important;
+        hyphens: auto !important;
+        -webkit-hyphens: auto !important;
+        -moz-hyphens: auto !important;
+        -ms-hyphens: auto !important;
+        text-wrap: pretty !important;
+        overflow-wrap: break-word !important;
       }
 
       /* Image 2: order 2, full width, tasteful tilt */

@@ -705,6 +705,13 @@ body.page-scrollable {
   line-height: 1.75;
   color: #333;
   text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  text-wrap: pretty;
+  overflow-wrap: break-word;
   margin-bottom: 16px;
 }
 
@@ -806,6 +813,13 @@ body.page-scrollable {
   line-height: 2;
   color: #333;
   text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  text-wrap: pretty;
+  overflow-wrap: break-word;
   margin-bottom: 14px;
 }
 
@@ -908,6 +922,13 @@ body.page-scrollable {
   line-height: 2;
   color: #333;
   text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  text-wrap: pretty;
+  overflow-wrap: break-word;
   margin-bottom: 16px;
 }
 

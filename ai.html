@@ -167,10 +167,18 @@
         text-align: left !important;
       }
 
-      /* Body text: justify */
+      /* Body text: justify with hyphenation & balanced spacing */
       .ai-page p.ds-body,
+      .ai-page .ds-body,
       .ai-page li {
         text-align: justify !important;
+        text-justify: inter-word !important;
+        hyphens: auto !important;
+        -webkit-hyphens: auto !important;
+        -moz-hyphens: auto !important;
+        -ms-hyphens: auto !important;
+        text-wrap: pretty !important;
+        overflow-wrap: break-word !important;
       }
 
       .ai-impressum__de,
@@ -310,8 +318,7 @@
               <div style="flex: 1;">
                 <div class="ai-scraper-subheading">
                   <span data-i18n="ai.job_offerings_title">Job Offerings</span>
-                  <a class="ai-tag"
-                    data-i18n="tag.view_code"
+                  <a class="ai-tag" data-i18n="tag.view_code"
                     href="https://github.com/JL-Ahlemeyer/Creative_Job_Scraper_Munich_-public-"
                     rel="noopener noreferrer" target="_blank">view code</a>
                 </div>
@@ -323,9 +330,8 @@
               <div style="flex: 1;">
                 <div class="ai-scraper-subheading">
                   <span data-i18n="ai.funding_title">Funding &amp; Submission</span>
-                  <a class="ai-tag"
-                    data-i18n="tag.view_code" href="https://github.com/JL-Ahlemeyer/Funding" rel="noopener noreferrer"
-                    target="_blank">view code</a>
+                  <a class="ai-tag" data-i18n="tag.view_code" href="https://github.com/JL-Ahlemeyer/Funding"
+                    rel="noopener noreferrer" target="_blank">view code</a>
                 </div>
                 <p class="ds-body" data-i18n="ai.funding_desc">This project explores how web scraping and AI can make
                   cultural funding opportunities easier to discover and understand. The scraper collects current calls
