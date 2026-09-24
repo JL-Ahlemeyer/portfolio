@@ -30,7 +30,7 @@
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Kaisei+Opti:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-<link href="styles.css?v=1.1" rel="stylesheet"/>
+<link href="styles.css?v=2.0" rel="stylesheet"/>
 <style>
     /* ===== MOBILE STYLES (≤900px) ===== */
     /* Desktop accordion defaults: always expanded, arrows hidden */
@@ -60,6 +60,20 @@
       color: #555;
       display: block;
       margin-top: 0px;
+    }
+    .timeline-link,
+    .timeline-details a {
+      color: inherit;
+      text-decoration: none;
+      font-family: inherit;
+      font-weight: inherit;
+      font-size: inherit;
+      cursor: pointer;
+    }
+    .timeline-link:hover,
+    .timeline-details a:hover {
+      color: inherit;
+      text-decoration: none;
     }
     .hero-heading {
       color: #1a1a1a !important;
@@ -557,35 +571,37 @@
 <span class="timeline-date" data-i18n="index.work_1_date">Apr 2024 – Present</span>
 <div class="timeline-details">
 <strong data-i18n="index.work_1_title">UI Designer · Freelance</strong>
-<span data-i18n="index.work_1_loc">Cycling Bear · Amsterdam</span>
+<span data-i18n="index.work_1_loc"><a class="timeline-link" href="https://www.linkedin.com/company/cycling-bear/" target="_blank" rel="noopener noreferrer">Cycling Bear</a> · Amsterdam</span>
+<span data-i18n="index.work_1_loc_2"><a class="timeline-link" href="https://ilmazu.app/" target="_blank" rel="noopener noreferrer">ILMAZU GmbH</a> · Munich</span>
+<span data-i18n="index.work_1_loc_3"><a class="timeline-link" href="https://www.linkedin.com/company/working-in-projects-gug/posts/?feedView=all" target="_blank" rel="noopener noreferrer">Working in Projects gUG</a> · Munich</span>
 </div>
 </div>
 <div class="timeline-item">
 <span class="timeline-date" data-i18n="index.work_2_date">Mar 2024 – Present</span>
 <div class="timeline-details">
 <strong data-i18n="index.work_2_title">Founder &amp; AI Product Manager</strong>
-<span data-i18n="index.work_2_loc">MIAAC · Munich</span>
+<span data-i18n="index.work_2_loc"><a class="timeline-link" href="https://www.miaac.de/" target="_blank" rel="noopener noreferrer">MIAAC</a> · Munich</span>
 </div>
 </div>
 <div class="timeline-item">
 <span class="timeline-date" data-i18n="index.work_3_date">Sep 2023 – Apr 2024</span>
 <div class="timeline-details">
 <strong data-i18n="index.work_3_title">Senior Engineer</strong>
-<span data-i18n="index.work_3_loc">Quest Global · Munich</span>
+<span data-i18n="index.work_3_loc"><a class="timeline-link" href="https://www.questglobal.com/de/" target="_blank" rel="noopener noreferrer">Quest Global</a> · Munich</span>
 </div>
 </div>
 <div class="timeline-item">
 <span class="timeline-date" data-i18n="index.work_4_date">Oct 2021 – Aug 2023</span>
 <div class="timeline-details">
 <strong data-i18n-html="index.work_4_title">UX Consultant Apr 2022 – Aug 2023<br/>Data Consultant Oct 2021 – Apr 2022</strong>
-<span data-i18n="index.work_4_loc">Spiegel Institut · Munich &amp; Ingolstadt</span>
+<span data-i18n="index.work_4_loc"><a class="timeline-link" href="https://www.linkedin.com/company/spiegel-institut-mannheim/" target="_blank" rel="noopener noreferrer">Spiegel Institut</a> · Munich &amp; Ingolstadt</span>
 </div>
 </div>
 <div class="timeline-item">
 <span class="timeline-date" data-i18n="index.work_5_date">Mar 2021 – Sep 2021</span>
 <div class="timeline-details">
 <strong data-i18n="index.work_5_title">UX Designer and Consultant</strong>
-<span data-i18n="index.work_5_loc">WinValue GmbH · Münster</span>
+<span data-i18n="index.work_5_loc"><a class="timeline-link" href="https://www.winvalue.de/" target="_blank" rel="noopener noreferrer">WinValue GmbH</a> · Münster</span>
 </div>
 </div>
 </div>
@@ -633,21 +649,21 @@
 <span class="timeline-date" data-i18n="index.acad_1_date">Sep 2019 – Aug 2020</span>
 <div class="timeline-details">
 <strong data-i18n="index.acad_1_title">M.Sc. Human Factors &amp; Engineering Psychology (English-taught)</strong>
-<span data-i18n="index.acad_1_loc">University of Twente · Enschede</span>
+<span data-i18n="index.acad_1_loc"><a class="timeline-link" href="https://www.utwente.nl/" target="_blank" rel="noopener noreferrer">University of Twente</a> · Enschede</span>
 </div>
 </div>
 <div class="timeline-item">
 <span class="timeline-date" data-i18n="index.acad_2_date">Sep 2016 – Aug 2019</span>
 <div class="timeline-details">
 <strong data-i18n="index.acad_2_title">B.Sc. Psychology (English-taught)</strong>
-<span data-i18n="index.acad_2_loc">University of Twente · Enschede</span>
+<span data-i18n="index.acad_2_loc"><a class="timeline-link" href="https://www.utwente.nl/" target="_blank" rel="noopener noreferrer">University of Twente</a> · Enschede</span>
 </div>
 </div>
 <div class="timeline-item">
 <span class="timeline-date" data-i18n="index.acad_3_date">Feb 2018 – May 2018</span>
 <div class="timeline-details">
 <strong data-i18n="index.acad_3_title">Minor in Philosophy of Science and Technology</strong>
-<span data-i18n="index.acad_3_loc">University of Twente · Enschede</span>
+<span data-i18n="index.acad_3_loc"><a class="timeline-link" href="https://www.utwente.nl/" target="_blank" rel="noopener noreferrer">University of Twente</a> · Enschede</span>
 </div>
 </div>
 </div>
@@ -739,7 +755,7 @@
 </div>
 </div><!-- end right-panel -->
 </main>
-<script src="translations.js"></script>
-<script src="script.js"></script>
+<script src="translations.js?v=2.0"></script>
+<script src="script.js?v=2.0"></script>
 </body>
 </html>
